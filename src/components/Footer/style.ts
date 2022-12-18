@@ -19,7 +19,6 @@ export const ThemeFooter = styled.footer`
 
   > span {
     font-family: var(--inter);
-    font-style: normal;
     font-weight: 400;
     font-size: calc(0.6vh + 0.6vw + 0.12vmin);
   }
@@ -37,8 +36,22 @@ export const ThemeFooter = styled.footer`
 
   @media (max-width: 425px) {
     flex-direction: column;
-    padding: calc(1.2vh + 1.2vw) 0;
-    gap: calc(1.5vh + 1.5vw);
-    max-height: 15vh;
+    padding: calc(2vh + 2vw) 0;
+    gap: calc(2.5vh + 2.5vw);
+    max-height: 25vh;
+
+    > img {
+      height: calc(2.2vh + 1.4vw);
+    }
+
+    > span {
+      font-size: calc(1vh + 1vw + 0.2vmin);
+    }
+
+    > button {
+      padding: calc(0.55vh + 0.55vw) calc(0.65vh + 0.65vw);
+      border-radius: calc(0.2vh + 0.2vw);
+      font-size: calc(1.5vh + 1.5vw + 0.6vmin);
+    }
   }
 `;
