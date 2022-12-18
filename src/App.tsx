@@ -1,13 +1,12 @@
 import Footer from "./components/Footer";
-import Input from "./components/Input";
+import Navbar from "./components/Navbar";
 import GlobalStyle from "./styles/global";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Input placeholder="placeholder" label="label" />
-      <Input placeholder="placeholder" type="textarea" label="label" />
+      <Navbar />
       <Footer />
     </>
   );
