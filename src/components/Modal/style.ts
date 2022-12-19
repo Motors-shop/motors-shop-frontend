@@ -38,7 +38,7 @@ export const ModalHeader = styled.header`
 
   h1 {
     font-size: 1rem;
-    font-family: "Lexend", sans-serif;
+    font-family: var(--lexend);
     font-weight: 500;
   }
 `;

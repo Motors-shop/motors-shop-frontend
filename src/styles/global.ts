@@ -50,6 +50,7 @@ export default createGlobalStyle`
     --random12: #5700E3;
 
     --inter: 'Inter', sans-serif;
+    --lexend: 'Lexend', sans-serif;
   }
   body {
     min-width: 100%;
@@ -58,6 +59,6 @@ export default createGlobalStyle`
   }
 
   button, div, label, select, h1, h2, h3, h4, h5, h6, input {
-    font-family: 'Lexend', sans-serif;
+    font-family: var(--lexend);
   }
 `;
