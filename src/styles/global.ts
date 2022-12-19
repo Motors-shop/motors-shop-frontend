@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;700&family=Lexend:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;700&family=Lexend:wght@400;500;600;700&family=Inter:wght@400;600&display=swap');
 
   * {
     margin: 0;
