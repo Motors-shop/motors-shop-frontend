@@ -50,6 +50,13 @@ export default createGlobalStyle`
     --random10: #6100FF;
     --random11: #5700E3;
     --random12: #5700E3;
+
+    --inter: 'Inter', sans-serif;
+  }
+  body {
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: var(--whiteFixed);
   }
 
   button, div, label, select, h1, h2, h3, h4, h5, h6, input {
