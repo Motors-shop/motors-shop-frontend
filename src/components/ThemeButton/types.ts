@@ -17,6 +17,5 @@ export interface IStyledButtonProps {
   extend?: boolean;
 }
 
-export type IButtonProps =
-  | ButtonHTMLAttributes<HTMLButtonElement>
-  | IStyledButtonProps;
+export type IButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  IStyledButtonProps;
