@@ -12,8 +12,8 @@ export const ThemeNav = styled.header`
   border-bottom: calc(0.1vh + 0.1vw) solid var(--grey6);
 
   width: 100%;
-  min-height: 10vh;
-  max-height: 10vh;
+  min-height: 7vh;
+  max-height: 7vh;
 
   > img {
     height: calc(1.8vh + 1vw);
@@ -26,7 +26,7 @@ export const ThemeNav = styled.header`
     > ul {
       display: flex;
       align-items: center;
-      height: 10vh;
+      height: 7vh;
       border-right: calc(0.1vh + 0.1vw) solid var(--grey6);
       margin-right: calc(2vh + 2vw);
 
@@ -49,9 +49,15 @@ export const ThemeNav = styled.header`
     }
 
     > div {
-      height: 10vh;
+      height: 7vh;
       display: flex;
       align-items: center;
+      gap: calc(2vh + 2vw);
+
+      > button:nth-child(1):hover {
+        color: var(--brand1);
+        background-color: var(--grey10);
+      }
     }
   }
 
@@ -67,7 +73,7 @@ export const ThemeNav = styled.header`
 
     > nav {
       position: absolute;
-      top: 10vh;
+      top: 7vh;
       left: 0;
 
       width: 100%;
@@ -98,7 +104,7 @@ export const ThemeNav = styled.header`
           &:hover {
             cursor: pointer;
             color: var(--brand2);
-            border-bottom: none;
+            border-bottom: calc(0.03vh + 0.03vw) solid transparent;
           }
         }
       }
@@ -107,6 +113,22 @@ export const ThemeNav = styled.header`
         height: max-content;
         flex-direction: column;
         align-items: flex-start;
+
+        padding: calc(2vh + 2vw) calc(3vh + 2.6vw);
+
+        > button {
+          width: 100%;
+        }
+
+        > button:nth-child(1) {
+          justify-content: flex-start;
+          padding-left: 0;
+
+          &:hover {
+            color: var(--brand1);
+            background-color: var(--grey10);
+          }
+        }
       }
     }
   }

@@ -3,12 +3,12 @@ import logo from "../../assets/motors_shop_logo_color.svg";
 import Dropbox from "./Dropbox";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
+import ThemeButton from "../ThemeButton";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token") || true;
-  // const mobile = window.innerWidth <= 425 ? true : false;
+  const token = localStorage.getItem("@motorsShop:token");
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
@@ -43,9 +43,10 @@ const Navbar = () => {
         </ul>
         {!token ? (
           <div className="buttons">
-            {/* substituir pelo componente de botão */}
-            <button>Fazer Login</button>
-            <button>Cadastrar</button>
+            <ThemeButton variant="light">Fazer Login</ThemeButton>
+            <ThemeButton outlined variant="negative">
+              Cadastrar
+            </ThemeButton>
           </div>
         ) : (
           <Dropbox />

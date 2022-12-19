@@ -28,7 +28,7 @@ export const ThemeDropBox = styled.div`
 
   > ul {
     position: absolute;
-    top: 9vh;
+    top: 6vh;
     left: -10%;
     overflow: hidden;
     transition: height 0.4s;
@@ -37,7 +37,7 @@ export const ThemeDropBox = styled.div`
     height: 0;
     background-color: var(--grey9);
     border-radius: calc(0.2vh + 0.2vw);
-    box-shadow: 0 calc(0.3vh + 0.3vw) calc(2vh + 2vw) calc(-0.5vh + -0.5vw) var(--grey5);
+    box-shadow: 0 calc(0.2vh + 0.2vw) calc(1.5vh + 1.5vw) calc(-0.4vh + -0.4vw) var(--grey5);
 
     > li {
       padding: calc(1vh + 1vw);
