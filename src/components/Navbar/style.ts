@@ -34,6 +34,7 @@ export const ThemeNav = styled.header`
         font-family: var(--inter);
         font-weight: 600;
         font-size: calc(0.7vh + 0.7vw + 0.1vmin);
+        border-bottom: calc(0.03vh + 0.03vw) solid transparent;
 
         margin-right: calc(2vh + 2vw);
         color: var(--grey2);
