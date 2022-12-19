@@ -4,7 +4,7 @@ import { IStyledButtonProps } from "./types";
 
 export const Btn = styled.button<IStyledButtonProps>`
   font-size: 0.9rem;
-  font-family: "Inter", "Lexend", sans-serif;
+  font-family: var(--inter), var(--lexend);
   font-weight: 600;
   text-align: center;
 
