@@ -4,18 +4,23 @@ import { Container } from "./style";
 import ProductInfo from "./ProductInfo";
 import Comments from "./Comments/indext";
 import CommentArea from "../../components/CommentArea";
+import UserCard from "./UserCard";
+import Gallery from "./Gallery";
 
 const Product = () => {
   return (
     <>
       <Navbar />
       <Container>
-        <section>
+        <div>
           <ProductInfo />
-          <Comments />
-          <CommentArea />
-        </section>
-        <aside></aside>
+          <div>
+            <Gallery />
+            <UserCard />
+          </div>
+        </div>
+        <Comments />
+        <CommentArea />
       </Container>
       <Footer />
     </>

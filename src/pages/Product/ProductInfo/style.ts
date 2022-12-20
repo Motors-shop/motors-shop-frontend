@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
+  max-width: 60%;
+  min-width: 60%;
+
   > .capeImage {
     background-color: var(--grey10);
     padding: calc(1vh + 1vw) 0;
@@ -18,6 +21,9 @@ export const Content = styled.div`
   }
 
   @media (max-width: 425px) {
+    max-width: 100%;
+    min-width: 100%;
+
     > .capeImage {
       padding: calc(6vh + 6vw) 0;
 

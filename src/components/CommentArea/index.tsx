@@ -22,26 +22,31 @@ const CommentArea = () => {
 
   return (
     <ContainerComment>
+      <p>
+        <span>SL</span> Samuel Leão
+      </p>
+      <form onSubmit={handleSubmit(onSubmitFunction)}>
+        <Input
+          type="textarea"
+          name="comment"
+          register={register}
+          placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+        />
+        <ThemeButton variant="primary" type="submit">
+          Comentar
+        </ThemeButton>
+        {errors.comment && (
+          <span>
+            {
+              // errors.comment.message
+            }
+          </span>
+        )}
+      </form>
       <div>
-        <p>
-          <span>SL</span> Samuel Leão
-        </p>
-        <form onSubmit={handleSubmit(onSubmitFunction)}>
-          <Input type="textarea" name="comment" register={register} />
-          <ThemeButton variant="primary" type="submit">Comentar</ThemeButton>
-          {errors.comment && (
-            <span>
-              {
-                // errors.comment.message
-              }
-            </span>
-          )}
-        </form>
-        <div>
-          <span>Gostei muito!</span>
-          <span>Incrível</span>
-          <span>Recomendável para amigos!</span>
-        </div>
+        <span>Gostei muito!</span>
+        <span>Incrível</span>
+        <span>Recomendável para amigos!</span>
       </div>
     </ContainerComment>
   );
