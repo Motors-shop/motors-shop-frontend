@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ThemeDetailCard = styled.div`
   padding: calc(2vh + 2vw);
   background-color: var(--grey10);
+  border-radius: calc(0.2vh + 0.2vw);
   min-width: 50%;
-  max-width: 50%;
 
   > h2 {
     color: var(--grey1);
@@ -48,7 +48,6 @@ export const ThemeDetailCard = styled.div`
 
   @media (max-width: 425px) {
     padding: calc(2vh + 2vw);
-    max-width: 90%;
 
     > h2 {
       font-size: calc(1.6vh + 1.6vw + 1vmin);
