@@ -17,7 +17,6 @@ export const ThemeGallery = styled.div`
   > ul {
     display: flex;
     flex-wrap: wrap;
-    gap: calc(0.65vh + 0.65vw);
     justify-content: space-between;
 
     > li {
@@ -26,6 +25,7 @@ export const ThemeGallery = styled.div`
       border-radius: calc(0.2vh + 0.2vw);
       padding: calc(1.25vh + 1.2vw) calc(0.3vh + 0.3vw);
       border: calc(0.1vh + 0.1vw) solid transparent;
+      margin-top: calc(0.65vh + 0.65vw);
 
       display: flex;
       justify-content: center;
