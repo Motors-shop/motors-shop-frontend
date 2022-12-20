@@ -13,5 +13,9 @@ export const Container = styled.main`
 
   @media (max-width: 425px) {
     padding: calc(3vh + 3vw) calc(2vh + 2vw);
+
+    > div:nth-child(1) {
+      flex-direction: column;
+    }
   }
 `;
