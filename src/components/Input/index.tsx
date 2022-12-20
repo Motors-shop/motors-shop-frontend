@@ -1,7 +1,7 @@
 import { ThemeInput } from "./style";
 import { IInputProps } from "./type";
 
-const Input = ({ label, placeholder, type, cols, rows, name, id, register }: IInputProps) => {
+const Input = ({ label, placeholder, type, cols, rows, name, id }: IInputProps) => {
   return (
     <ThemeInput>
       {label && <p>{label}</p>}
@@ -14,7 +14,6 @@ const Input = ({ label, placeholder, type, cols, rows, name, id, register }: IIn
           cols={cols ? cols : 25}
           rows={rows ? rows : 5}
           placeholder={placeholder}
-          {...register(name)}
         ></textarea>
       )}
     </ThemeInput>
