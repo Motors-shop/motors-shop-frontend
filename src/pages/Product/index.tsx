@@ -3,17 +3,22 @@ import Navbar from "../../components/Navbar";
 import { Container } from "./style";
 import ProductInfo from "./ProductInfo";
 import Comments from "./Comments/indext";
+import UserCard from "./UserCard";
+import Gallery from "./Gallery";
 
 const Product = () => {
   return (
     <>
       <Navbar />
       <Container>
-        <section>
+        <div>
           <ProductInfo />
-          <Comments />
-        </section>
-        <aside></aside>
+          <div>
+            <Gallery />
+            <UserCard />
+          </div>
+        </div>
+        <Comments />
       </Container>
       <Footer />
     </>

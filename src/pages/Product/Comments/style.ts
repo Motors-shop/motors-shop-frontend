@@ -6,6 +6,9 @@ export const ContainerComments = styled.div`
   margin-top: calc(1.8vh + 1.8vw);
   padding: calc(1.65vh + 1.65vw) calc(2.05vh + 2.05vw);
 
+  max-width: 60%;
+  min-width: 60%;
+
   > h3 {
     font-family: var(--lexend);
     font-weight: 600;
@@ -25,6 +28,9 @@ export const ContainerComments = styled.div`
     border-radius: calc(0.2vh + 0.2vw);
     margin-top: calc(1.8vh + 1.8vw);
     padding: calc(1.65vh + 1.65vw) calc(2.05vh + 2.05vw);
+
+    max-width: 100%;
+    min-width: 100%;
 
     > h3 {
       font-size: calc(1.5vh + 1.5vw + 1vmin);
