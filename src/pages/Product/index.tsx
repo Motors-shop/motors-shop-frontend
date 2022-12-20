@@ -1,12 +1,18 @@
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { Contaier } from "./style";
+import { Container } from "./style";
+import ProductInfo from "./ProductInfo";
 
 const Product = () => {
   return (
     <>
       <Navbar />
-      <Contaier></Contaier>
+      <Container>
+        <section>
+          <ProductInfo />
+        </section>
+        <aside></aside>
+      </Container>
       <Footer />
     </>
   );
