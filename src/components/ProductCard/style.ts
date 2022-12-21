@@ -5,10 +5,7 @@ import { Btn } from "../ThemeButton/style";
 import { IOwnerBadge } from "./types";
 
 export const ProductCardContainer = styled(Link)`
-  padding-top: 800px;
-  margin: 30px 30px 0;
-  padding-bottom: 30px;
-  width: 312px;
+  max-width: 312px;
 
   display: flex;
   flex-direction: column;
