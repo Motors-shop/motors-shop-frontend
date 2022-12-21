@@ -56,7 +56,7 @@ export const ThemeDropBox = styled.div`
   @media (max-width: 425px) {
     > p {
       font-size: calc(1.2vh + 1.2vw + 0.5vmin);
-      padding: calc(2vh + 2vw) calc(3vh + 2.6vw);
+      padding: calc(2vh + 2vw) calc(3vh + 2.6vw) calc(2vh + 2vw) 0;
 
       > span {
         padding: calc(0.5vh + 0.5vw);
@@ -82,7 +82,7 @@ export const ThemeDropBox = styled.div`
       background-color: transparent;
 
       > li {
-        padding: calc(1.4vh + 1.4vw) calc(3vh + 2.6vw);
+        padding: calc(1.4vh + 1.4vw) calc(3vh + 2.6vw) calc(1.4vh + 1.4vw) 0;
         font-size: calc(1.1vh + 1.1vw + 0.5vmin);
       }
     }

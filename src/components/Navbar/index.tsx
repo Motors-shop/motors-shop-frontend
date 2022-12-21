@@ -8,7 +8,7 @@ import ThemeButton from "../ThemeButton";
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token");
+  const token = localStorage.getItem("@motorsShop:token") || true;
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
