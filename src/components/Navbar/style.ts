@@ -52,7 +52,14 @@ export const ThemeNav = styled.header`
       height: 7vh;
       display: flex;
       align-items: center;
-      gap: calc(2vh + 2vw);
+      gap: calc(1vh + 1vw);
+
+      > button {
+        font-size: calc(0.6vh + 0.6vw + 0.2vmin);
+        border-radius: calc(0.2vh + 0.2vw);
+        padding: calc(0.5vh + 0.5vw) calc(1.05vh + 1.05vw);
+        gap: calc(0.2vh + 0.2vw);
+      }
 
       > button:nth-child(1):hover {
         color: var(--brand1);
@@ -118,6 +125,8 @@ export const ThemeNav = styled.header`
 
         > button {
           width: 100%;
+          font-size: calc(1.1vh + 1.1vw + 0.6vmin);
+          padding: calc(1vh + 1vw) calc(1.45vh + 1.45vw);
         }
 
         > button:nth-child(1) {

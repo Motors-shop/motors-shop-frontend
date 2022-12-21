@@ -20,7 +20,7 @@ export const ThemeGallery = styled.div`
     justify-content: space-between;
 
     > li {
-      width: 30%;
+      width: 29%;
       background-color: var(--grey7);
       border-radius: calc(0.2vh + 0.2vw);
       padding: calc(1.25vh + 1.2vw) calc(0.3vh + 0.3vw);

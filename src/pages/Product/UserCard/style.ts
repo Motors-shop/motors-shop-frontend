@@ -39,6 +39,13 @@ export const ThemeUserCard = styled.div`
     flex-direction: column;
   }
 
+  > button {
+    font-size: calc(0.6vh + 0.6vw + 0.2vmin);
+    border-radius: calc(0.2vh + 0.2vw);
+    padding: calc(0.5vh + 0.5vw) calc(1.05vh + 1.05vw);
+    gap: calc(0.2vh + 0.2vw);
+  }
+
   @media (max-width: 425px) {
     padding: calc(3vh + 3vw) calc(2vh + 2vw);
 
@@ -53,6 +60,11 @@ export const ThemeUserCard = styled.div`
 
     > p {
       font-size: calc(1.7vh + 1.7vw + 0.7vmin);
+    }
+
+    > button {
+      font-size: calc(1.1vh + 1.1vw + 0.6vmin);
+      padding: calc(1vh + 1vw) calc(1.45vh + 1.45vw);
     }
   }
 `;
