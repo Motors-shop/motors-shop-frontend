@@ -1,12 +1,27 @@
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { Contaier } from "./style";
+import { Container } from "./style";
+import ProductInfo from "./ProductInfo";
+import Comments from "./Comments/indext";
+import CommentArea from "../../components/CommentArea";
+import UserCard from "./UserCard";
+import Gallery from "./Gallery";
 
 const Product = () => {
   return (
     <>
       <Navbar />
-      <Contaier></Contaier>
+      <Container>
+        <div>
+          <ProductInfo />
+          <div>
+            <Gallery />
+            <UserCard />
+          </div>
+        </div>
+        <Comments />
+        <CommentArea />
+      </Container>
       <Footer />
     </>
   );

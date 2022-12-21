@@ -58,6 +58,10 @@ export default createGlobalStyle`
     background-color: var(--whiteFixed);
   }
 
+  html{
+    scroll-behavior: smooth;
+  }
+
   button, div, label, select, h1, h2, h3, h4, h5, h6, input {
     font-family: var(--lexend);
   }

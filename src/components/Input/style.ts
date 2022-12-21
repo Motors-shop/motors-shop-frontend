@@ -16,6 +16,8 @@ export const ThemeInput = styled.div`
     border-radius: calc(0.2vh + 0.2vw);
     padding: calc(0.4vh + 0.4vw) calc(0.5vh + 0.5vw);
     transition: background 0.3s, border 0.3s;
+    width: 100%;
+    display: flex;
 
     font-family: var(--inter);
     font-weight: 400;
