@@ -32,6 +32,8 @@ export const ContainerComment = styled.div`
 
     button {
       width: fit-content;
+      font-size: calc(1.1vh + 1.1vw + 0.6vmin);
+      padding: calc(1vh + 1vw) calc(1.45vh + 1.45vw);
     }
   }
 
@@ -75,6 +77,11 @@ export const ContainerComment = styled.div`
         position: absolute;
         align-self: flex-end;
         margin: calc(0.5vh + 0.5vw);
+
+        font-size: calc(0.6vh + 0.6vw + 0.2vmin);
+        border-radius: calc(0.2vh + 0.2vw);
+        padding: calc(0.5vh + 0.5vw) calc(1.05vh + 1.05vw);
+        gap: calc(0.2vh + 0.2vw);
       }
     }
 

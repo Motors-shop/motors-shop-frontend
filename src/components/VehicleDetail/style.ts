@@ -39,7 +39,13 @@ export const ThemeDetailCard = styled.div`
       font-size: calc(0.6vh + 0.6vw + 0.4vmin);
     }
   }
+
   > button {
+    font-size: calc(0.6vh + 0.6vw + 0.2vmin);
+    border-radius: calc(0.2vh + 0.2vw);
+    padding: calc(0.5vh + 0.5vw) calc(1.05vh + 1.05vw);
+    gap: calc(0.2vh + 0.2vw);
+
     &:hover {
       background-color: var(--brand4);
       color: var(--brand1);
@@ -71,6 +77,11 @@ export const ThemeDetailCard = styled.div`
         font-size: calc(1.3vh + 1.3vw + 1vmin);
         margin-bottom: calc(2vh + 2vw);
       }
+    }
+
+    > button {
+      font-size: calc(1.1vh + 1.1vw + 0.6vmin);
+      padding: calc(1vh + 1vw) calc(1.45vh + 1.45vw);
     }
   }
 `;
