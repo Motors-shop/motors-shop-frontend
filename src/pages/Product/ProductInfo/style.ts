@@ -8,6 +8,7 @@ export const Content = styled.div`
     background-color: var(--grey10);
     padding: calc(1vh + 1vw) 0;
     border-radius: calc(0.2vh + 0.2vw);
+    min-height: 31vh;
 
     display: flex;
     justify-content: center;
@@ -40,6 +41,7 @@ export const ThemeDescription = styled.div`
   border-radius: calc(0.2vh + 0.2vw);
   margin-top: calc(1.8vh + 1.8vw);
   padding: calc(1.65vh + 1.65vw) calc(2.05vh + 2.05vw);
+  min-height: 26vh;
 
   > h3 {
     font-family: var(--lexend);

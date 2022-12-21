@@ -4,11 +4,13 @@ import Dropbox from "./Dropbox";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import ThemeButton from "../ThemeButton";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token") || true;
+  const token = localStorage.getItem("@motorsShop:token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
@@ -43,8 +45,10 @@ const Navbar = () => {
         </ul>
         {!token ? (
           <div className="buttons">
-            <ThemeButton variant="light">Fazer Login</ThemeButton>
-            <ThemeButton outlined variant="negative">
+            <ThemeButton variant="light" onClick={() => navigate("/login")}>
+              Fazer Login
+            </ThemeButton>
+            <ThemeButton outlined variant="negative" onClick={() => navigate("/register")}>
               Cadastrar
             </ThemeButton>
           </div>

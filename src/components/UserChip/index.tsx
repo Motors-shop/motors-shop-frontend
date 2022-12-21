@@ -19,22 +19,11 @@ const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText }) => {
       .join("");
   }
 
-  function generateRandomColorNumberByNameSeed(name: string): number {
-    const randomNumber = Math.ceil(name.length ** 2 % 12);
-
-    if (randomNumber <= 0 || randomNumber > 12) return 1;
-    else return randomNumber;
-  }
-
   return (
     <UserChipContainer whiteText={whiteText}>
-      <AvatarContainer randomColor={generateRandomColorNumberByNameSeed(name)}>
+      <AvatarContainer randomColor={Math.floor(Math.random() * 12 + 1)}>
         {avatar ? (
-          <img
-            src={avatar}
-            alt={`Foto de perfil de ${name}`}
-            draggable={false}
-          />
+          <img src={avatar} alt={`Foto de perfil de ${name}`} draggable={false} />
         ) : (
           <Initials>{getNameInitials(name)}</Initials>
         )}

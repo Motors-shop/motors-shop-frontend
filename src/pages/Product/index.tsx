@@ -1,26 +1,53 @@
-import Footer from "../../components/Footer";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import Navbar from "../../components/Navbar";
-import { Container } from "./style";
-import ProductInfo from "./ProductInfo";
-import Comments from "./Comments/indext";
+import Footer from "../../components/Footer";
 import CommentArea from "../../components/CommentArea";
-import UserCard from "./UserCard";
+import Comments from "./Comments/indext";
+import ProductInfo from "./ProductInfo";
+import UserCard from "../../components/UserCard";
 import Gallery from "./Gallery";
 
+import { Container } from "./style";
+import { api } from "../../service/api";
+import { IProductProps } from "./types";
+
 const Product = () => {
+  const [productData, setProductData] = useState<IProductProps>();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    api
+      .get(`/vehicles/${id}`)
+      .then((res) => {
+        setLoading(false);
+        setProductData(res.data);
+      })
+      .catch((_) => navigate("/"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Navbar />
       <Container>
-        <div>
-          <ProductInfo />
-          <div>
-            <Gallery />
-            <UserCard />
-          </div>
-        </div>
-        <Comments />
-        <CommentArea />
+        {!loading && (
+          <>
+            <div>
+              <ProductInfo data={productData!} />
+              <div>
+                <Gallery data={productData!} />
+                <UserCard />
+              </div>
+            </div>
+            <Comments />
+            <CommentArea />
+          </>
+        )}
       </Container>
       <Footer />
     </>

@@ -6,7 +6,11 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" element={<Home />} />
-      <Route path="/product" element={<Product />} />
+      <Route path="/product/:id" element={<Product />} />
+      {/* <Route path="/login" element={} /> */}
+      {/* <Route path="/register" element={} /> */}
+      {/* <Route path="/:user_id/products" element={} /> */}
+      {/* <Route path="*" element={} /> */}
     </Switch>
   );
 };
