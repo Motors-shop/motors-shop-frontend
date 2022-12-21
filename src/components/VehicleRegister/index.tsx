@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from "react";
+import React, { useState } from "react";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,31 +12,28 @@ const VehicleRegister: React.FC = () => {
   const [sellType, setSellType] = useState("VENDA");
   const [type, setType] = useState("CARRO");
   const [gallery, setGallery] = useState([""]);
+  const [cantSend, setCantSend] = useState(true);
+  const maxGalleryImages = 5;
 
   const vehicleRegisterSchema = yup.object().shape({
-    title: yup.string().required("Campo requerido!"),
+    title: yup.string(),
 
-    year: yup
-      .number()
-      .required("Campo requerido!")
-      .typeError("Deve preencher com um numero"),
+    year: yup.string(),
 
-    km: yup
-      .number()
-      .required("Campo requerido!")
-      .typeError("Deve preencher com um numero"),
+    km: yup.string(),
 
-    price: yup.string().required("Campo requerido!"),
+    price: yup.string(),
 
-    description: yup.string().required("Campo requerido!"),
+    description: yup.string(),
 
-    capeImage: yup.string().required("Campo requerido!"),
+    capeImage: yup.string(),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({ resolver: yupResolver(vehicleRegisterSchema) });
 
   const sendForm = (data: FieldValues) => {
@@ -46,11 +43,34 @@ const VehicleRegister: React.FC = () => {
     console.log(data);
   };
 
+  const verifyInputs = () => {
+    watch("capeImage") &&
+    watch("description") &&
+    watch("km") &&
+    watch("price") &&
+    watch("title") &&
+    watch("year")
+      ? setCantSend(false)
+      : setCantSend(true);
+  };
+
   return (
-    <StyledForm onSubmit={handleSubmit(sendForm)}>
+    <StyledForm onChange={verifyInputs} onSubmit={handleSubmit(sendForm)}>
       <div>
-        <ThemeButton onClick={() => setSellType("VENDA")}>Venda</ThemeButton>
-        <ThemeButton onClick={() => setSellType("LEILAO")}>Leilão</ThemeButton>
+        <ThemeButton
+          variant={sellType === "VENDA" ? "primary" : "normal"}
+          outlined={sellType !== "VENDA"}
+          onClick={() => setSellType("VENDA")}
+        >
+          Venda
+        </ThemeButton>
+        <ThemeButton
+          variant={sellType === "LEILAO" ? "primary" : "normal"}
+          outlined={sellType !== "LEILAO"}
+          onClick={() => setSellType("LEILAO")}
+        >
+          Leilão
+        </ThemeButton>
       </div>
 
       <Input
@@ -84,6 +104,7 @@ const VehicleRegister: React.FC = () => {
           label="Preço"
           placeholder="Digitar preço"
           name="price"
+          type="number"
           register={register}
           error={errors.price?.message as string}
         />
@@ -99,8 +120,20 @@ const VehicleRegister: React.FC = () => {
       />
 
       <div>
-        <ThemeButton onClick={() => setType("CARRO")}>Carro</ThemeButton>
-        <ThemeButton onClick={() => setType("MOTO")}>Moto</ThemeButton>
+        <ThemeButton
+          variant={type === "CARRO" ? "primary" : "normal"}
+          outlined={type !== "CARRO"}
+          onClick={() => setType("CARRO")}
+        >
+          Carro
+        </ThemeButton>
+        <ThemeButton
+          variant={type === "MOTO" ? "primary" : "normal"}
+          outlined={type !== "MOTO"}
+          onClick={() => setType("MOTO")}
+        >
+          Moto
+        </ThemeButton>
       </div>
 
       <Input
@@ -128,13 +161,19 @@ const VehicleRegister: React.FC = () => {
         );
       })}
 
-      <ThemeButton onClick={() => setGallery([...gallery, ""])}>
+      <ThemeButton
+        disabled={gallery.length > maxGalleryImages}
+        onClick={() => setGallery([...gallery, ""])}
+        variant="primaryLight"
+      >
         Adicionar Campo para imagem da galeria
       </ThemeButton>
 
       <div>
-        <ThemeButton>Cancelar</ThemeButton>
-        <ThemeButton type="submit">Criar anúncio</ThemeButton>
+        <ThemeButton variant="negative">Cancelar</ThemeButton>
+        <ThemeButton disabled={cantSend} variant="primary" type="submit">
+          Criar anúncio
+        </ThemeButton>
       </div>
     </StyledForm>
   );
