@@ -11,12 +11,12 @@ export const UserChipContainer = styled.div<IUserChipContainer>`
   font-family: var(--inter);
   font-weight: 500;
 
-  color: var(--grey2)
-    ${({ whiteText }) =>
-      whiteText &&
-      css`
-        color: var(--whiteFixed);
-      `};
+  color: var(--grey2);
+  ${({ whiteText }) =>
+    whiteText &&
+    css`
+      color: var(--whiteFixed);
+    `};
 `;
 
 export const AvatarContainer = styled.figure<IAvatarContainer>`
