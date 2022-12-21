@@ -1,7 +1,10 @@
-import ThemeButton from "../../../components/ThemeButton";
+import { useNavigate } from "react-router-dom";
+import ThemeButton from "../ThemeButton";
 import { ThemeUserCard } from "./style";
 
 const UserCard = () => {
+  const navigate = useNavigate();
+
   return (
     <ThemeUserCard>
       <span>SL</span>
@@ -10,7 +13,9 @@ const UserCard = () => {
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
         been the industry's
       </span>
-      <ThemeButton>Ver todos anuncios</ThemeButton>
+      <ThemeButton onClick={() => navigate("/samuel_leão/products")}>
+        Ver todos anuncios
+      </ThemeButton>
     </ThemeUserCard>
   );
 };

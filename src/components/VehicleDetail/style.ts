@@ -5,6 +5,7 @@ export const ThemeDetailCard = styled.div`
   background-color: var(--grey10);
   border-radius: calc(0.2vh + 0.2vw);
   min-width: 50%;
+  min-height: 32vh;
 
   > h2 {
     color: var(--grey1);

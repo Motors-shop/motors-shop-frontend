@@ -1,16 +1,19 @@
+import { IProductInfoProps } from "../../pages/Product/types";
 import ThemeButton from "../ThemeButton";
 import { ThemeDetailCard } from "./style";
 
-const VehicleDetail = () => {
+const VehicleDetail = ({ data }: IProductInfoProps) => {
+  const { title, year, km, price } = data;
+
   return (
     <ThemeDetailCard>
-      <h2>Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </h2>
+      <h2>{title}</h2>
       <div>
         <div className="tags">
-          <span>2013</span>
-          <span>0 KM</span>
+          <span>{year}</span>
+          <span>{km} KM</span>
         </div>
-        <p>R$ 00.000,00</p>
+        <p>R$ {price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
       </div>
       <ThemeButton variant="primary">Comprar</ThemeButton>
     </ThemeDetailCard>

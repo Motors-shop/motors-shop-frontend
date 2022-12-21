@@ -7,7 +7,7 @@ const Footer = () => {
     <ThemeFooter>
       <img src={logo} alt="Motors Shop Logo" />
       <span>© 2022 - Todos os direitos reservados.</span>
-      <button>
+      <button onClick={() => window.scrollTo(0, 0)}>
         <IoIosArrowUp />
       </button>
     </ThemeFooter>

@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { ThemeDropBox } from "./style";
 
 const Dropbox = () => {
+  const navigate = useNavigate();
+
+  const exit = () => {
+    localStorage.clear();
+    return navigate("/");
+  };
+
   return (
     <ThemeDropBox>
       <p>
@@ -10,7 +18,7 @@ const Dropbox = () => {
         <li>Editar Perfil</li>
         <li>Editar endereço</li>
         <li>Minhas Compras</li>
-        <li>Sair</li>
+        <li onClick={exit}>Sair</li>
       </ul>
     </ThemeDropBox>
   );

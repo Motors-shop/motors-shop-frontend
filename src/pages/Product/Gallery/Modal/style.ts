@@ -39,6 +39,7 @@ export const ThemeGalleryModal = styled.div`
       background-color: var(--grey7);
       border-radius: calc(0.2vh + 0.2vw);
       margin: calc(1.15vh + 1.15vw);
+      margin-top: 0;
 
       display: flex;
       align-items: center;
