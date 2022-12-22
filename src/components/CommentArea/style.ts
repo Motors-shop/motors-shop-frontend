@@ -11,16 +11,6 @@ export const ContainerComment = styled.div`
   flex-direction: column;
   gap: calc(1.5vh + 1.5vw);
 
-  > p {
-    font-family: var(--inter);
-    > span {
-      background-color: var(--brand2);
-      border-radius: 50%;
-      color: var(--whiteFixed);
-      padding: 0.6vw;
-    }
-  }
-
   > form {
     display: flex;
     flex-direction: column;
@@ -37,7 +27,7 @@ export const ContainerComment = styled.div`
     }
   }
 
-  > div {
+  > .recommendations {
     display: flex;
     flex-wrap: wrap;
     gap: 2vw;
@@ -56,13 +46,8 @@ export const ContainerComment = styled.div`
 
   @media (max-width: 425px) {
     font-size: calc(1.2vh + 1.2vw + 0.5vmin);
-
-    > p {
-      > span {
-        padding: 1.5vw;
-      }
-    }
   }
+
   border-radius: calc(0.2vh + 0.2vw);
   margin-top: calc(1.8vh + 1.8vw);
   padding: calc(1.65vh + 1.65vw) calc(2.05vh + 2.05vw);
@@ -85,9 +70,10 @@ export const ContainerComment = styled.div`
       }
     }
 
-    > div {
+    > .recommendations {
       gap: 0.8vw;
       font-size: calc(0.5vh + 0.4vw + 0.5vmin);
+
       > span {
         padding: 0.2vw 0.6vw;
       }

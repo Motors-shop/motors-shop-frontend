@@ -1,10 +1,12 @@
 export interface OwnerChip {
   name: string;
   avatar?: string;
+  user?: boolean;
 }
 
 export interface IAvatarContainer {
   randomColor?: number;
+  user?: boolean;
 }
 
 export interface IUserChipContainer {

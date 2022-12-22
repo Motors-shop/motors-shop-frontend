@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token");
+  const token = localStorage.getItem("@motorsShop:token") || true;
   const navigate = useNavigate();
 
   useEffect(() => {

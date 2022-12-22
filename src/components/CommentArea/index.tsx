@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserChip from "../UserChip";
 
 const CommentArea = () => {
   const [canSend, setCanSend] = useState<boolean>(true);
@@ -35,9 +36,8 @@ const CommentArea = () => {
 
   return (
     <ContainerComment>
-      <p>
-        <span>SL</span> Samuel Leão
-      </p>
+      <UserChip name="Samuel Leão" user />
+
       <form onChange={verifyComment} onSubmit={handleSubmit(onSubmitFunction)}>
         <Input
           type="textarea"
@@ -49,7 +49,7 @@ const CommentArea = () => {
           Comentar
         </ThemeButton>
       </form>
-      <div>
+      <div className="recommendations">
         <span>Gostei muito!</span>
         <span>Incrível</span>
         <span>Recomendável para amigos!</span>
