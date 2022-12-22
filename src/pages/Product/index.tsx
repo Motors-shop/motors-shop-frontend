@@ -41,7 +41,7 @@ const Product = () => {
               <ProductInfo data={productData!} />
               <div>
                 <Gallery data={productData!} />
-                <UserCard />
+                <UserCard product />
               </div>
             </div>
             <Comments />
