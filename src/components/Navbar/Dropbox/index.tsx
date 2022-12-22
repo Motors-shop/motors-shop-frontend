@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import UserChip from "../../UserChip";
 import { ThemeDropBox } from "./style";
 
 const Dropbox = () => {
@@ -11,9 +12,8 @@ const Dropbox = () => {
 
   return (
     <ThemeDropBox>
-      <p>
-        <span>SL</span> Samuel Leão
-      </p>
+      <UserChip name="Samuel Leão" user />
+
       <ul>
         <li>Editar Perfil</li>
         <li>Editar endereço</li>

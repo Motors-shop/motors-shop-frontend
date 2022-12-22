@@ -3,7 +3,7 @@ import React from "react";
 import { AvatarContainer, Initials, Name, UserChipContainer } from "./style";
 import { type IUserChipProps } from "./types";
 
-const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText }) => {
+const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText, user = false }) => {
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");
 
@@ -19,9 +19,16 @@ const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText }) => {
       .join("");
   }
 
+  function generateRandomColorNumberByNameSeed(name: string): number {
+    const randomNumber = Math.ceil(name.length ** 2 % 12);
+
+    if (randomNumber <= 0 || randomNumber > 12) return 1;
+    else return randomNumber;
+  }
+
   return (
     <UserChipContainer whiteText={whiteText}>
-      <AvatarContainer randomColor={Math.floor(Math.random() * 12 + 1)}>
+      <AvatarContainer user={user} randomColor={generateRandomColorNumberByNameSeed(name)}>
         {avatar ? (
           <img src={avatar} alt={`Foto de perfil de ${name}`} draggable={false} />
         ) : (

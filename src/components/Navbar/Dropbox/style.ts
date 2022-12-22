@@ -3,25 +3,6 @@ import styled from "styled-components";
 export const ThemeDropBox = styled.div`
   position: relative;
 
-  > p {
-    color: var(--grey2);
-    font-family: var(--inter);
-    font-weight: 400;
-    font-size: calc(0.65vh + 0.65vw + 0.25vmin);
-
-    > span {
-      color: var(--whiteFixed);
-      background-color: var(--brand2);
-      border-radius: 50%;
-      padding: calc(0.3vh + 0.3vw);
-      margin-right: calc(0.1vh + 0.1vw);
-
-      font-family: var(--inter);
-      font-weight: 700;
-      font-size: calc(0.6vh + 0.6vw + 0.2vmin);
-    }
-  }
-
   &:hover ul {
     height: max-content;
   }
@@ -54,18 +35,6 @@ export const ThemeDropBox = styled.div`
   }
 
   @media (max-width: 425px) {
-    > p {
-      font-size: calc(1.2vh + 1.2vw + 0.5vmin);
-      padding: calc(2vh + 2vw) calc(3vh + 2.6vw) calc(2vh + 2vw) 0;
-
-      > span {
-        padding: calc(0.5vh + 0.5vw);
-        margin-right: calc(0.2vh + 0.2vw);
-
-        font-size: calc(1vh + 1vw + 0.4vmin);
-      }
-    }
-
     &:hover ul {
       height: max-content;
     }

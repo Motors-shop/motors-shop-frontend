@@ -30,8 +30,8 @@ export const AvatarContainer = styled.figure<IAvatarContainer>`
   border-radius: 50%;
   overflow: hidden;
 
-  ${({ randomColor }) => css`
-    background-color: var(${"--random" + randomColor});
+  ${({ randomColor, user }) => css`
+    background-color: var(${user ? "--brand2" : "--random" + randomColor});
   `}
 
   img {
