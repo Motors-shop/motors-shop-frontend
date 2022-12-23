@@ -6,14 +6,16 @@ export const ThemeNav = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 calc(3vh + 2.6vw);
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 999;
 
   background-color: var(--grey10);
   border-bottom: calc(0.1vh + 0.1vw) solid var(--grey6);
 
   width: 100%;
-  min-height: 7vh;
-  max-height: 7vh;
+  min-height: 9vh;
+  max-height: 9vh;
 
   > img {
     height: calc(1.8vh + 1vw);
