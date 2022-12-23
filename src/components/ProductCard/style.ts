@@ -28,13 +28,18 @@ export const CoverContainer = styled.figure`
   justify-content: center;
 
   transition: 0.04s ease outline-width;
+  overflow: hidden;
 
   img {
     height: 100%;
+    transition: transform 0.4s;
   }
 
   ${ProductCardContainer}:hover & {
     outline-width: 2px;
+    img {
+      transform: scale(1.2);
+    }
   }
 `;
 
@@ -103,5 +108,10 @@ export const TagList = styled.ul`
   ${Btn} {
     font-size: 0.8rem;
     padding: 8px 10px;
+  }
+
+  > li button:hover {
+    background-color: var(--brand4);
+    color: var(--brand1);
   }
 `;
