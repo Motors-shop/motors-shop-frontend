@@ -1,6 +1,7 @@
 import { Routes as Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import NotFound from "../pages/NotFound";
 import Product from "../pages/Product";
 
 const Routes = () => {
@@ -11,7 +12,7 @@ const Routes = () => {
       <Route path="/login" element={<Login />} />
       {/* <Route path="/register" element={} /> */}
       {/* <Route path="/:user_id/products" element={} /> */}
-      {/* <Route path="*" element={} /> */}
+      <Route path="*" element={<NotFound />} />
     </Switch>
   );
 };
