@@ -19,6 +19,11 @@ export const ThemeSection = styled.section`
     gap: calc(2.2vh + 2.2vw);
     overflow-x: auto;
 
+    &:active {
+      cursor: grabbing;
+      user-select: none;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
