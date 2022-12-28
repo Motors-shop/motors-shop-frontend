@@ -1,13 +1,40 @@
+import { useEffect, useRef } from "react";
 import ProductAuctionCard from "../ProductAuctionCard";
 import ProductCard from "../ProductCard";
 import { ThemeSection } from "./style";
 import { IVehicleSectionProps } from "./types";
 
 const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
+  const carousel: any = useRef();
+
+  useEffect(() => {
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    carousel.current.addEventListener("mousedown", (e: any) => {
+      isDown = true;
+      startX = e.pageX - carousel.current.offsetLeft;
+      scrollLeft = carousel.current.scrollLeft;
+    });
+    carousel.current.addEventListener("mouseleave", () => {
+      isDown = false;
+    });
+    carousel.current.addEventListener("mouseup", () => {
+      isDown = false;
+    });
+    carousel.current.addEventListener("mousemove", (e: any) => {
+      if (!isDown) return;
+      const x = e.pageX - carousel.current.offsetLeft;
+      const walk = x - startX;
+      carousel.current.scrollLeft = scrollLeft - walk;
+    });
+  }, []);
+
   return (
     <ThemeSection>
       <h2>{title}</h2>
-      <ul>
+      <ul ref={carousel}>
         {data.map((data) => (
           <li key={data.id}>
             {type === "products" && (
