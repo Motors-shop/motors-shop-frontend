@@ -11,7 +11,7 @@ import { api } from "../../service/api";
 import { CommentContext } from "../../contexts/CommentProvider";
 
 const CommentArea = () => {
-  const [canSend, setCanSend] = useState<boolean>(true);
+  const [canSend, setCanSend] = useState<boolean>(false);
   const token = localStorage.getItem("@motorsShop:token");
   const { setComments } = useContext(CommentContext);
 
@@ -22,15 +22,15 @@ const CommentArea = () => {
     commentary: yup.string().required("Digite algum texto para comentar"),
   });
 
-  const { register, handleSubmit, watch, resetField } = useForm({
+  const { register, handleSubmit, watch, resetField, setValue } = useForm({
     resolver: yupResolver(formSchema),
   });
 
   const verifyComment = () => {
     if (watch("commentary").length >= 3) {
-      setCanSend(false);
-    } else {
       setCanSend(true);
+    } else {
+      setCanSend(false);
     }
   };
 
@@ -43,10 +43,17 @@ const CommentArea = () => {
       .post(`/comments/${id}`, data)
       .then((_) => {
         resetField("commentary");
+        setCanSend(false);
 
         api.get(`/comments/${id}`).then((res) => setComments(res.data));
       })
       .catch((err) => console.log(err));
+  };
+
+  const addSuggestion = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const suggestion = e.currentTarget.innerText;
+    setValue("commentary", suggestion);
+    setCanSend(true);
   };
 
   return (
@@ -60,14 +67,14 @@ const CommentArea = () => {
           register={register}
           placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
         />
-        <ThemeButton variant="primary" disabled={canSend} type="submit">
+        <ThemeButton variant="primary" disabled={!canSend} type="submit">
           Comentar
         </ThemeButton>
       </form>
       <div className="recommendations">
-        <span>Gostei muito!</span>
-        <span>Incrível</span>
-        <span>Recomendável para amigos!</span>
+        <span onClick={(e) => addSuggestion(e)}>Gostei muito!</span>
+        <span onClick={(e) => addSuggestion(e)}>Incrível</span>
+        <span onClick={(e) => addSuggestion(e)}>Recomendável para amigos!</span>
       </div>
     </ContainerComment>
   );
