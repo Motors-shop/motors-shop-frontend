@@ -8,8 +8,8 @@ const CommentCard = ({ user, commentary, createdAt }: IProductCommentProps) => {
   const minutes = Math.floor(time / 60000);
   const hours = Math.floor(time / 3.6e6);
   const days = Math.floor(time / 8.64e7);
-  const months = new Date().getMonth() - new Date(createdAt).getMonth();
-  const years = new Date().getFullYear() - new Date(createdAt).getFullYear();
+  const months = Math.floor(time / 2.628e9);
+  const years = Math.floor(time / 3.154e10);
 
   return (
     <ThemeCard>
