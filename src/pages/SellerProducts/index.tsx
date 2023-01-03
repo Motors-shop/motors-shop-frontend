@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
+
+import Modal from "../../components/Modal";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import UserCard from "../../components/UserCard";
+import VehicleSection from "../../components/VehicleSection";
+import VehicleRegister from "../../components/VehicleRegister";
+
+import { api } from "../../service/api";
+import { IProductData } from "../Home/types";
 import {
   StyledBody,
   StyledPurpleBackground,
   StyledTypeShowCase,
   StyledUserCard,
 } from "./styles";
-import { api } from "../../service/api";
-import { IProductData } from "../Home/types";
-import VehicleSection from "../../components/VehicleSection";
-import Modal from "../../components/Modal";
-import VehicleRegister from "../../components/VehicleRegister";
 
 const SellerProducts = () => {
   const [isProfile, setIsProfile] = useState(true);

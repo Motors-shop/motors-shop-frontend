@@ -1,8 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import CommentCard from "../../../components/CommentCard";
-import { CommentContext } from "../../../contexts/CommentProvider";
+
 import { api } from "../../../service/api";
+import { CommentContext } from "../../../contexts/CommentProvider";
 import { ContainerComments } from "./style";
 
 const Comments = () => {

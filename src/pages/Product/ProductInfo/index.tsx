@@ -1,4 +1,5 @@
 import VehicleDetail from "../../../components/VehicleDetail";
+
 import { IProductInfoProps } from "../types";
 import { Content, ThemeDescription } from "./style";
 

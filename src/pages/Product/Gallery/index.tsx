@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
-import { IProductInfoProps } from "../types";
+
 import Modal from "./Modal";
+
+import { IProductInfoProps } from "../types";
 import { ThemeGallery } from "./style";
 
 const Gallery = ({ data }: IProductInfoProps) => {
@@ -25,7 +27,12 @@ const Gallery = ({ data }: IProductInfoProps) => {
         ))}
       </ul>
       {openModal && (
-        <Modal reference={modal} openModal={openModal} setOpenModal={setOpenModal} url={modalImg} />
+        <Modal
+          reference={modal}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          url={modalImg}
+        />
       )}
     </ThemeGallery>
   );

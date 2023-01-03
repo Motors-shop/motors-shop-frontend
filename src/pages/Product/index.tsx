@@ -9,9 +9,9 @@ import ProductInfo from "./ProductInfo";
 import UserCard from "../../components/UserCard";
 import Gallery from "./Gallery";
 
-import { Container } from "./style";
 import { api } from "../../service/api";
 import { IProductProps } from "./types";
+import { Container } from "./style";
 
 const Product = () => {
   const [productData, setProductData] = useState<IProductProps>();

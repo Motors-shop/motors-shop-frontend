@@ -1,9 +1,15 @@
 import { useEffect } from "react";
 import { IoIosClose } from "react-icons/io";
-import { ThemeGalleryModal } from "./style";
-import { IGalleryModalProps } from "./types";
 
-const Modal = ({ url, openModal, setOpenModal, reference }: IGalleryModalProps) => {
+import { IGalleryModalProps } from "./types";
+import { ThemeGalleryModal } from "./style";
+
+const Modal = ({
+  url,
+  openModal,
+  setOpenModal,
+  reference,
+}: IGalleryModalProps) => {
   useEffect(() => {
     const handleEvent = (e: MouseEvent) => {
       if (!reference.current?.contains(e.target)) {
