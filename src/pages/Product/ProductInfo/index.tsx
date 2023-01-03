@@ -9,7 +9,7 @@ const ProductInfo = ({ data }: IProductInfoProps) => {
   return (
     <Content>
       <div className="capeImage">
-        <img src={capeImage} alt="silver car" />
+        <img src={capeImage} alt="Veículo anunciado" />
       </div>
       <VehicleDetail data={data} />
       <ThemeDescription>

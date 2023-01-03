@@ -34,7 +34,7 @@ const Modal = ({
           </span>
         </h2>
         <div>
-          <img src={url} alt="vehicle" />
+          <img src={url} alt="Veículo anunciado" />
         </div>
       </div>
     </ThemeGalleryModal>
