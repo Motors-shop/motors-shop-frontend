@@ -11,7 +11,7 @@ export const Contaier = styled.main`
     background-color: var(--brand2);
 
     margin: 0 auto;
-    margin-bottom: calc(4.5vh + 4.5vw);
+    margin-bottom: calc(4vh + 4vw);
     text-align: center;
 
     display: flex;
@@ -41,7 +41,7 @@ export const Contaier = styled.main`
       margin-top: calc(0.5vh + 0.5vw);
       padding: 0 calc(15vh + 15vw);
 
-      > button {
+      > a {
         min-width: 90%;
       }
     }

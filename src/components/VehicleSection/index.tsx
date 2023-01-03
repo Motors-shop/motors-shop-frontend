@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
+
 import ProductAuctionCard from "../ProductAuctionCard";
 import ProductCard from "../ProductCard";
+
 import { ThemeSection } from "./style";
 import { IVehicleSectionProps } from "./types";
 
@@ -56,7 +58,7 @@ const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
                 price={+data.price}
                 coverImage={data.capeImage}
                 owner={{ name: "Samuel Leão" }}
-                dueDate={new Date(2022, 12, 31)}
+                dueDate={new Date(2023, 12, 31)}
                 to={`/product/${data.id}`}
               />
             )}

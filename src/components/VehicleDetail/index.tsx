@@ -1,5 +1,5 @@
-import { IProductInfoProps } from "../../pages/Product/types";
 import ThemeButton from "../ThemeButton";
+import { IProductInfoProps } from "../../pages/Product/types";
 import { ThemeDetailCard } from "./style";
 
 const VehicleDetail = ({ data }: IProductInfoProps) => {
@@ -15,7 +15,9 @@ const VehicleDetail = ({ data }: IProductInfoProps) => {
         </div>
         <p>R$ {price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
       </div>
-      <ThemeButton variant="primary">Comprar</ThemeButton>
+      <ThemeButton disabled variant="primary">
+        Comprar
+      </ThemeButton>
     </ThemeDetailCard>
   );
 };

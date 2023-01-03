@@ -24,7 +24,7 @@ export const Btn = styled.button<IStyledButtonProps>`
   &:disabled {
     background-color: var(--grey5);
     color: var(--whiteFixed);
-    cursor: default;
+    cursor: not-allowed;
 
     &:hover {
       background-color: var(--grey5);
