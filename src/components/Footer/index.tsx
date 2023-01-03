@@ -1,6 +1,7 @@
-import { ThemeFooter } from "./style";
 import { IoIosArrowUp } from "react-icons/io";
+
 import logo from "../../assets/motors_shop_logo_white.svg";
+import { ThemeFooter } from "./style";
 
 const Footer = () => {
   return (
