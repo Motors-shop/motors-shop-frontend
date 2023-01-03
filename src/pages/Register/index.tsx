@@ -3,13 +3,16 @@ import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import ThemeButton from "../../components/ThemeButton";
-import { ThemeLogin } from "./style";
+import { StyledHorizontalDisplay, ThemeRegister } from "./style";
 
 import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 const Register = () => {
+  const [userType, setUserType] = useState("COMPRADOR");
+
   const navigate = useNavigate();
   const schema = yup.object().shape({
     name: yup.string().required(),
@@ -23,7 +26,6 @@ const Register = () => {
     phone: yup.string().required(),
     birthDate: yup.string().required(),
     biography: yup.string().required(),
-    accountType: yup.string().required(),
 
     cep: yup.string().required(),
     state: yup.string().required(),
@@ -40,14 +42,37 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    console.log(data);
+    const {
+      name,
+      password,
+      email,
+      cpf,
+      phone,
+      birthDate,
+      biography,
+      ...adress
+    } = data;
+
+    const dataForAPI = {
+      name,
+      password,
+      email,
+      cpf,
+      phone,
+      birthDate,
+      biography,
+      accountType: userType,
+      adress: adress,
+    };
+
+    console.log(dataForAPI);
     // enviar dados para API e devolver uma resposta
   };
 
   return (
     <>
       <Navbar />
-      <ThemeLogin>
+      <ThemeRegister>
         <form onSubmit={handleSubmit(sendForm)}>
           <h2>Cadastro</h2>
 
@@ -117,14 +142,73 @@ const Register = () => {
             name="cep"
           />
 
+          <StyledHorizontalDisplay>
+            <Input
+              register={register}
+              error={errors.user?.message as string}
+              placeholder="Digitar Estado"
+              type="text"
+              label="Estado"
+              name="state"
+            />
+
+            <Input
+              register={register}
+              error={errors.user?.message as string}
+              placeholder="Digitar Cidade"
+              type="text"
+              label="Cidade"
+              name="city"
+            />
+          </StyledHorizontalDisplay>
+
           <Input
             register={register}
             error={errors.user?.message as string}
-            placeholder="00000-000"
+            placeholder="Digitar rua"
             type="text"
-            label="CEP"
-            name="cep"
+            label="Rua"
+            name="street"
           />
+
+          <StyledHorizontalDisplay>
+            <Input
+              register={register}
+              error={errors.user?.message as string}
+              placeholder="Digitar número"
+              type="text"
+              label="Número"
+              name="number"
+            />
+
+            <Input
+              register={register}
+              error={errors.user?.message as string}
+              placeholder="Ex. apto 309"
+              type="text"
+              label="Complemento"
+              name="complement"
+            />
+          </StyledHorizontalDisplay>
+
+          <h4>Tipo de conta</h4>
+
+          <StyledHorizontalDisplay>
+            <ThemeButton
+              variant={userType === "COMPRADOR" ? "primary" : "normal"}
+              outlined={userType !== "COMPRADOR"}
+              onClick={() => setUserType("COMPRADOR")}
+            >
+              Comprador
+            </ThemeButton>
+            <ThemeButton
+              variant={userType === "ANUNCIANTE" ? "primary" : "normal"}
+              outlined={userType !== "ANUNCIANTE"}
+              onClick={() => setUserType("ANUNCIANTE")}
+            >
+              Anunciante
+            </ThemeButton>
+          </StyledHorizontalDisplay>
 
           <Input
             register={register}
@@ -135,19 +219,20 @@ const Register = () => {
             name="password"
           />
 
+          <Input
+            register={register}
+            error={errors.password?.message as string}
+            placeholder="Digitar senha"
+            type="password"
+            label="Confirmar Senha"
+            name="confirmPassword"
+          />
+
           <ThemeButton variant="primary" type="submit">
-            Entrar
-          </ThemeButton>
-          <span>Ainda não possui conta?</span>
-          <ThemeButton
-            outlined
-            variant="negative"
-            onClick={() => navigate("/register")}
-          >
-            Cadastrar
+            Finalizar Cadastro
           </ThemeButton>
         </form>
-      </ThemeLogin>
+      </ThemeRegister>
       <Footer />
     </>
   );
