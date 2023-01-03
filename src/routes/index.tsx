@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Product from "../pages/Product";
+import SellerProducts from "../pages/SellerProducts";
 
 const Routes = () => {
   return (
@@ -11,7 +12,7 @@ const Routes = () => {
       <Route path="/product/:id" element={<Product />} />
       <Route path="/login" element={<Login />} />
       {/* <Route path="/register" element={} /> */}
-      {/* <Route path="/:user_id/products" element={} /> */}
+      <Route path="/:user_id/products" element={<SellerProducts />} />
       <Route path="*" element={<NotFound />} />
     </Switch>
   );
