@@ -58,6 +58,20 @@ export const ThemeLogin = styled.main`
       span {
         font-size: calc(1.1vh + 1.1vw + 0.6vmin);
       }
+
+      > div > input,
+      > div > div {
+        > p {
+          margin-bottom: calc(0.8vh + 0.8vw);
+        }
+        > input {
+          padding: calc(1.1vh + 1.1vw) calc(0.8vh + 0.8vw);
+        }
+      }
+
+      > div > span {
+        margin-top: calc(1vh + 1vw);
+      }
     }
   }
 `;

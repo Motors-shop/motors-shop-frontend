@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import UserCard from "../../components/UserCard";
-import {
-  StyledBody,
-  StyledPurpleBackground,
-  StyledTypeShowCase,
-  StyledUserCard,
-} from "./styles";
+import { StyledBody, StyledPurpleBackground, StyledTypeShowCase, StyledUserCard } from "./styles";
 import { api } from "../../service/api";
 import { IProductData } from "../Home/types";
 import VehicleSection from "../../components/VehicleSection";

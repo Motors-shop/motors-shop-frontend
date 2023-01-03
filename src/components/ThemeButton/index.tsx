@@ -3,10 +3,7 @@ import { FC, PropsWithChildren } from "react";
 import { Btn } from "./style";
 import { IButtonProps } from "./types";
 
-const ThemeButton: FC<PropsWithChildren<IButtonProps>> = ({
-  children,
-  ...buttonProps
-}) => {
+const ThemeButton: FC<PropsWithChildren<IButtonProps>> = ({ children, ...buttonProps }) => {
   return (
     <Btn type="button" {...buttonProps}>
       {children}
