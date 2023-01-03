@@ -12,7 +12,7 @@ import { api } from "../../service/api";
 import { ContainerComment } from "./style";
 import { CommentContext } from "../../contexts/CommentProvider";
 
-const CommentArea = () => {
+const NewCommentArea = () => {
   const [canSend, setCanSend] = useState<boolean>(false);
   const token = localStorage.getItem("@motorsShop:token");
   const { setComments } = useContext(CommentContext);
@@ -82,4 +82,4 @@ const CommentArea = () => {
   );
 };
 
-export default CommentArea;
+export default NewCommentArea;

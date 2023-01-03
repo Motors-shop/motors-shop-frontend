@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import Modal from "./Modal";
 
-import { IProductInfoProps } from "../types";
+import { IProductInfoProps } from "../../pages/Product/types";
 import { ThemeGallery } from "./style";
 
 const Gallery = ({ data }: IProductInfoProps) => {

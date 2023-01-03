@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import CommentArea from "../../components/CommentArea";
-import Comments from "./Comments/indext";
-import ProductInfo from "./ProductInfo";
+import NewCommentArea from "../../components/NewCommentArea";
+import Comments from "../../components/Comments";
+import ProductInfo from "../../components/ProductInfo";
 import UserCard from "../../components/UserCard";
-import Gallery from "./Gallery";
+import Gallery from "../../components/Gallery";
 
 import { api } from "../../service/api";
 import { IProductProps } from "./types";
@@ -45,7 +45,7 @@ const Product = () => {
               </div>
             </div>
             <Comments />
-            <CommentArea />
+            <NewCommentArea />
           </>
         )}
       </Container>

@@ -1,6 +1,6 @@
-import VehicleDetail from "../../../components/VehicleDetail";
+import VehicleDetail from "../VehicleDetail";
 
-import { IProductInfoProps } from "../types";
+import { IProductInfoProps } from "../../pages/Product/types";
 import { Content, ThemeDescription } from "./style";
 
 const ProductInfo = ({ data }: IProductInfoProps) => {
