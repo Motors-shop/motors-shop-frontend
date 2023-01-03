@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 
 import Dropbox from "./Dropbox";
-import ThemeButton from "../ThemeButton";
+import ThemeLinkButton from "../ThemeLinkButton";
 
 import logo from "../../assets/motors_shop_logo_color.svg";
 import { ThemeNav } from "./style";
@@ -12,7 +11,6 @@ const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
   const token = localStorage.getItem("@motorsShop:token");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
@@ -49,16 +47,12 @@ const Navbar = () => {
         </ul>
         {!token ? (
           <div className="buttons">
-            <ThemeButton variant="light" onClick={() => navigate("/login")}>
+            <ThemeLinkButton variant="light" to="/login">
               Fazer Login
-            </ThemeButton>
-            <ThemeButton
-              outlined
-              variant="negative"
-              onClick={() => navigate("/register")}
-            >
+            </ThemeLinkButton>
+            <ThemeLinkButton outlined variant="negative" to="/register">
               Cadastrar
-            </ThemeButton>
+            </ThemeLinkButton>
           </div>
         ) : (
           <Dropbox />
