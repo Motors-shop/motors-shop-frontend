@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import UserCard from "../../components/UserCard";
 import { StyledBody, StyledPurpleBackground, StyledTypeShowCase, StyledUserCard } from "./styles";
-import { vehicleData } from "../../Data/vehicleData";
-import ProductCard from "../../components/ProductCard";
+import { api } from "../../service/api";
+import { IProductData } from "../Home/types";
+import VehicleSection from "../../components/VehicleSection";
+import Modal from "../../components/Modal";
+import VehicleRegister from "../../components/VehicleRegister";
 
 const SellerProducts = () => {
   const [isProfile, setIsProfile] = useState(true);
   const [isAdmin, setIsAdmin] = useState(true);
+  const [data, setData] = useState<IProductData[]>([]);
+
+  useEffect(() => {
+    api
+      .get("/vehicles")
+      .then((res) => {
+        const data: IProductData[] = res.data;
+        setData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
+      <Modal name="vehicleRegister" title="Criar Anuncio">
+        <VehicleRegister />
+      </Modal>
       <Navbar />
 
       <StyledPurpleBackground />
@@ -21,48 +40,18 @@ const SellerProducts = () => {
       </StyledUserCard>
 
       <StyledBody>
-        <h2>Carros</h2>
+        {/* <h2>Carros</h2> */}
         <StyledTypeShowCase>
-          {vehicleData.map((vehicle, index) => {
-            if (vehicle.type === "CARRO") {
-              return (
-                <ProductCard
-                  key={index}
-                  coverImage={vehicle.capeImage}
-                  description={vehicle.description}
-                  owner={{ name: "Samuel" }}
-                  price={vehicle.price}
-                  title={vehicle.title}
-                  isOwner={true}
-                  to={`/product/${vehicle.id}`}
-                  tags={[`${vehicle.km}`, `${vehicle.year}`]}
-                  isPublished={vehicle.isPublished}
-                />
-              );
-            }
-          })}
-        </StyledTypeShowCase>
-
-        <h2>Motos</h2>
-        <StyledTypeShowCase>
-          {vehicleData.map((vehicle, index) => {
-            if (vehicle.type === "MOTO") {
-              return (
-                <ProductCard
-                  key={index}
-                  coverImage={vehicle.capeImage}
-                  description={vehicle.description}
-                  owner={{ name: "Samuel" }}
-                  price={vehicle.price}
-                  title={vehicle.title}
-                  isOwner={true}
-                  to={`/product/${vehicle.id}`}
-                  tags={[`${vehicle.km}`, `${vehicle.year}`]}
-                  isPublished={vehicle.isPublished}
-                />
-              );
-            }
-          })}
+          <VehicleSection
+            type="products"
+            title="Carros"
+            data={data.filter(({ type }) => type === "car")}
+          />
+          <VehicleSection
+            type="products"
+            title="Motos"
+            data={data.filter(({ type }) => type === "motorbike")}
+          />
         </StyledTypeShowCase>
       </StyledBody>
       <Footer />

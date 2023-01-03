@@ -11,7 +11,7 @@ export const Contaier = styled.main`
     background-color: var(--brand2);
 
     margin: 0 auto;
-    margin-bottom: calc(4.5vh + 4.5vw);
+    margin-bottom: calc(4vh + 4vw);
     text-align: center;
 
     display: flex;

@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import ThemeButton from "../ThemeButton";
-import { ThemeUserCard } from "./style";
-import { IUSerCardProps } from "./types";
+import ThemeLinkButton from "../ThemeLinkButton";
+import { useModalControls } from "../Modal";
 
-const UserCard = ({ admin, product, profile }: IUSerCardProps) => {
-  const navigate = useNavigate();
+import { IUSerCardProps } from "./types";
+import { ThemeUserCard } from "./style";
+
+const UserCard = ({ admin, product, profile, data }: IUSerCardProps) => {
+  const { id, name, biography } = data;
+  const { openModal, closeModal } = useModalControls();
 
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");
@@ -24,19 +27,13 @@ const UserCard = ({ admin, product, profile }: IUSerCardProps) => {
   return (
     <ThemeUserCard type={profile ? "profile" : "product"}>
       <span>{getNameInitials("Samuel Leão")}</span>
-      <p>Samuel Leão {profile && <span>Anunciante</span>}</p>
-      <span>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s
-      </span>
-      {product && (
-        <ThemeButton onClick={() => navigate("/samuel_leão/products")}>
-          Ver todos anuncios
-        </ThemeButton>
-      )}
+      <p>
+        {name} {profile && <span>Anunciante</span>}
+      </p>
+      <span>{biography}</span>
+      {product && <ThemeLinkButton to={`/${id}/products`}>Ver todos anuncios</ThemeLinkButton>}
       {profile && admin && (
-        <ThemeButton outlined variant="primary">
+        <ThemeButton outlined variant="primary" onClick={() => openModal("vehicleRegister")}>
           Criar anuncio
         </ThemeButton>
       )}
