@@ -1,6 +1,6 @@
-import VehicleDetail from "../../../components/VehicleDetail";
+import VehicleDetail from "../VehicleDetail";
 
-import { IProductInfoProps } from "../types";
+import { IProductInfoProps } from "../../pages/Product/types";
 import { Content, ThemeDescription } from "./style";
 
 const ProductInfo = ({ data }: IProductInfoProps) => {
@@ -9,7 +9,7 @@ const ProductInfo = ({ data }: IProductInfoProps) => {
   return (
     <Content>
       <div className="capeImage">
-        <img src={capeImage} alt="silver car" />
+        <img src={capeImage} alt="Veículo anunciado" />
       </div>
       <VehicleDetail data={data} />
       <ThemeDescription>

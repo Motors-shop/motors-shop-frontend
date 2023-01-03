@@ -5,3 +5,9 @@ export interface IProductCommentProps {
   updatedAt: string;
   user: string;
 }
+
+export interface ICommentProps {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+}

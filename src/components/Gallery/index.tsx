@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import Modal from "./Modal";
 
-import { IProductInfoProps } from "../types";
+import { IProductInfoProps } from "../../pages/Product/types";
 import { ThemeGallery } from "./style";
 
 const Gallery = ({ data }: IProductInfoProps) => {
@@ -22,7 +22,7 @@ const Gallery = ({ data }: IProductInfoProps) => {
       <ul>
         {photos.map((photo) => (
           <li key={photo.id} onClick={() => openImage(photo.url)}>
-            <img src={photo.url} alt="vehicle" />
+            <img src={photo.url} alt="Veículo anunciado" />
           </li>
         ))}
       </ul>

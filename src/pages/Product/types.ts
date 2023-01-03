@@ -1,12 +1,8 @@
+import { ICommentProps } from "../../components/Comments/types";
+
 export interface IPhotoProps {
   id: string;
   url: string;
-  updatedAt: string;
-}
-
-export interface ICommentProps {
-  id: string;
-  createdAt: string;
   updatedAt: string;
 }
 

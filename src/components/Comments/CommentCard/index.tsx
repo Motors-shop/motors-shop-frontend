@@ -1,6 +1,6 @@
-import UserChip from "../UserChip";
+import UserChip from "../../UserChip";
 
-import { IProductCommentProps } from "../../pages/Product/Comments/types";
+import { IProductCommentProps } from "../types";
 import { ThemeCard } from "./style";
 
 const CommentCard = ({ user, commentary, createdAt }: IProductCommentProps) => {
