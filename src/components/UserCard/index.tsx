@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useModalControls } from "../Modal";
 import ThemeButton from "../ThemeButton";
 import { ThemeUserCard } from "./style";
 import { IUSerCardProps } from "./types";
 
 const UserCard = ({ admin, product, profile }: IUSerCardProps) => {
   const navigate = useNavigate();
+  const { openModal, closeModal } = useModalControls();
 
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");
@@ -36,7 +38,11 @@ const UserCard = ({ admin, product, profile }: IUSerCardProps) => {
         </ThemeButton>
       )}
       {profile && admin && (
-        <ThemeButton outlined variant="primary">
+        <ThemeButton
+          outlined
+          variant="primary"
+          onClick={() => openModal("vehicleRegister")}
+        >
           Criar anuncio
         </ThemeButton>
       )}
