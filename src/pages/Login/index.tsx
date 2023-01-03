@@ -1,13 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
-import Navbar from "../../components/Navbar";
 import ThemeButton from "../../components/ThemeButton";
+import ThemeLinkButton from "../../components/ThemeLinkButton";
+
 import { ThemeLogin } from "./style";
+import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../service/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,8 +26,12 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    console.log(data);
-    // enviar dados para API e devolver uma resposta
+    api
+      .post("/login", data)
+      .then((res) => {
+        return navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -58,9 +65,9 @@ const Login = () => {
             Entrar
           </ThemeButton>
           <span>Ainda não possui conta?</span>
-          <ThemeButton outlined variant="negative" onClick={() => navigate("/register")}>
+          <ThemeLinkButton outlined variant="negative" to="/register">
             Cadastrar
-          </ThemeButton>
+          </ThemeLinkButton>
         </form>
       </ThemeLogin>
       <Footer />

@@ -15,6 +15,7 @@ export const ThemeNotFound = styled.main`
     font-family: var(--lexend);
     font-size: calc(2vh + 2vw + 1vmin);
     transform: translateY(-50%);
+    user-select: none;
 
     > h1 {
       color: var(--brand1);

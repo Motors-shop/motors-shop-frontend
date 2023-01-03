@@ -31,9 +31,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
       <CoverContainer>
         <img src={coverImage} alt={`${title} product`} />
         {isOwner && (
-          <OwnerBadge isPublished={isPublished}>
-            {isPublished ? "Ativo" : "Inativo"}
-          </OwnerBadge>
+          <OwnerBadge isPublished={isPublished}>{isPublished ? "Ativo" : "Inativo"}</OwnerBadge>
         )}
       </CoverContainer>
       <ProductTitle>{title}</ProductTitle>
