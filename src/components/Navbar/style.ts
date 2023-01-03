@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { IThemeProps } from "./types";
 
 export const ThemeNav = styled.header`
@@ -90,7 +91,8 @@ export const ThemeNav = styled.header`
       overflow: hidden;
 
       flex-direction: column;
-      box-shadow: 0 calc(0.3vh + 0.3vw) calc(2vh + 2vw) calc(-0.5vh + -0.5vw) var(--grey5);
+      box-shadow: 0 calc(0.3vh + 0.3vw) calc(2vh + 2vw) calc(-0.5vh + -0.5vw)
+        var(--grey5);
       z-index: 999;
 
       > ul {

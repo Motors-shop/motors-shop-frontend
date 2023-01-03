@@ -1,10 +1,12 @@
-import { ThemeNav } from "./style";
-import logo from "../../assets/motors_shop_logo_color.svg";
-import Dropbox from "./Dropbox";
-import { HiMenu, HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import ThemeButton from "../ThemeButton";
+import { HiMenu, HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+
+import Dropbox from "./Dropbox";
+import ThemeButton from "../ThemeButton";
+
+import logo from "../../assets/motors_shop_logo_color.svg";
+import { ThemeNav } from "./style";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
@@ -50,7 +52,11 @@ const Navbar = () => {
             <ThemeButton variant="light" onClick={() => navigate("/login")}>
               Fazer Login
             </ThemeButton>
-            <ThemeButton outlined variant="negative" onClick={() => navigate("/register")}>
+            <ThemeButton
+              outlined
+              variant="negative"
+              onClick={() => navigate("/register")}
+            >
               Cadastrar
             </ThemeButton>
           </div>

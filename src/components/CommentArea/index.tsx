@@ -1,13 +1,15 @@
-import Input from "../Input";
-import ThemeButton from "../ThemeButton";
-import { ContainerComment } from "./style";
+import { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+
+import Input from "../Input";
+import ThemeButton from "../ThemeButton";
 import UserChip from "../UserChip";
+
 import { api } from "../../service/api";
+import { ContainerComment } from "./style";
 import { CommentContext } from "../../contexts/CommentProvider";
 
 const CommentArea = () => {
