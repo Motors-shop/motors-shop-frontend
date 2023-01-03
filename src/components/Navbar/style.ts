@@ -17,7 +17,7 @@ export const ThemeNav = styled.header`
   min-height: 9vh;
   max-height: 9vh;
 
-  > img {
+  > a img {
     height: calc(1.8vh + 1vw);
   }
 
@@ -28,7 +28,7 @@ export const ThemeNav = styled.header`
     > ul {
       display: flex;
       align-items: center;
-      height: 7vh;
+      height: 9vh;
       border-right: calc(0.1vh + 0.1vw) solid var(--grey6);
       margin-right: calc(2vh + 2vw);
 
@@ -51,7 +51,7 @@ export const ThemeNav = styled.header`
     }
 
     > div {
-      height: 7vh;
+      height: 9vh;
       display: flex;
       align-items: center;
       gap: calc(1vh + 1vw);
@@ -71,7 +71,7 @@ export const ThemeNav = styled.header`
   }
 
   @media (max-width: 425px) {
-    > img {
+    > a img {
       height: calc(2.2vh + 1.4vw);
     }
 

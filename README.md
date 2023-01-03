@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# Motors Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre o projeto
 
-## Available Scripts
+Motors Shop é uma aplicação de venda de veículos,
+nela o usuário pode navegar pelos anúncios e caso algo chame a atenção poderá ver os detalhes do produto. Caso o usuário queira comprar o veículo ou deixar um comentário ele precissará entrar em sua conta.
 
-In the project directory, you can run:
+Existem 3 tipos de usuários possíveis:
 
-### `yarn start`
+### Visitantes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Esse tipo de usuário pode apenas navegar pelos anúncios e ver suas informações, bem como seu preço, descrição, outros detalhes e os comentários.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Usuário Comprador
 
-### `yarn test`
+Esse tipo de usuário consegue fazer tudo que um `Visitante` pode fazer, com a diferença que ele é capaz de deixar comentários nos produtos e fazer a compra do mesmo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Usuário Vendedor
 
-### `yarn build`
+Por ultimo temos o usuário vendedor, e ele como pode imaginar é quem faz o anúncio com o veículo que pretende vender, alem de poder criar anúncios e administrá-los ele é capaz de tudo que um usuário comprador pode fazer.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Iniciando a aplicação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+No diretório do projeto, use o comando:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+yarn ou yarn install
+```
 
-### `yarn eject`
+Para baixar as dependências, em seguida use:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para executar o aplicativo no modo de desenvolvimento.\
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para para a execução precione `Ctrl + c`

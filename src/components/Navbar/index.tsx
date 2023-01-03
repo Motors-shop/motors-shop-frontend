@@ -33,7 +33,9 @@ const Navbar = () => {
 
   return (
     <ThemeNav menu={menu}>
-      <img src={logo} alt="Motors Shop Logo" />
+      <a href="/">
+        <img src={logo} alt="Motors Shop Logo" />
+      </a>
       {mobile && !menu && <HiMenu onClick={() => setMenu(true)} />}
       {mobile && menu && <HiX onClick={() => setMenu(false)} />}
 
