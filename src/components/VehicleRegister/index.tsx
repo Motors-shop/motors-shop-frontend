@@ -6,7 +6,7 @@ import { FieldValues, useForm } from "react-hook-form";
 
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
-import { StyledForm } from "./styles";
+import { StyledForm, StyledHorizontalDisplay } from "./styles";
 
 const VehicleRegister: React.FC = () => {
   const [sellType, setSellType] = useState("VENDA");
@@ -56,7 +56,7 @@ const VehicleRegister: React.FC = () => {
 
   return (
     <StyledForm onChange={verifyInputs} onSubmit={handleSubmit(sendForm)}>
-      <div>
+      <StyledHorizontalDisplay>
         <ThemeButton
           variant={sellType === "VENDA" ? "primary" : "normal"}
           outlined={sellType !== "VENDA"}
@@ -71,7 +71,7 @@ const VehicleRegister: React.FC = () => {
         >
           Leilão
         </ThemeButton>
-      </div>
+      </StyledHorizontalDisplay>
 
       <Input
         label="Título"
@@ -81,7 +81,7 @@ const VehicleRegister: React.FC = () => {
         error={errors.title?.message as string}
       />
 
-      <div>
+      <StyledHorizontalDisplay>
         <Input
           label="Ano"
           placeholder="Digitar ano"
@@ -108,7 +108,7 @@ const VehicleRegister: React.FC = () => {
           register={register}
           error={errors.price?.message as string}
         />
-      </div>
+      </StyledHorizontalDisplay>
 
       <Input
         label="Descrição"
@@ -119,7 +119,7 @@ const VehicleRegister: React.FC = () => {
         error={errors.description?.message as string}
       />
 
-      <div>
+      <StyledHorizontalDisplay>
         <ThemeButton
           variant={type === "CARRO" ? "primary" : "normal"}
           outlined={type !== "CARRO"}
@@ -134,7 +134,7 @@ const VehicleRegister: React.FC = () => {
         >
           Moto
         </ThemeButton>
-      </div>
+      </StyledHorizontalDisplay>
 
       <Input
         label="Imagem de capa"
@@ -169,12 +169,12 @@ const VehicleRegister: React.FC = () => {
         Adicionar Campo para imagem da galeria
       </ThemeButton>
 
-      <div>
+      <StyledHorizontalDisplay>
         <ThemeButton variant="negative">Cancelar</ThemeButton>
         <ThemeButton disabled={cantSend} variant="primary" type="submit">
           Criar anúncio
         </ThemeButton>
-      </div>
+      </StyledHorizontalDisplay>
     </StyledForm>
   );
 };
