@@ -49,7 +49,8 @@ const VehicleRegister: React.FC = () => {
     watch("km") &&
     watch("price") &&
     watch("title") &&
-    watch("year")
+    watch("year") &&
+    gallery[0].length >= 1
       ? setCantSend(false)
       : setCantSend(true);
   };
