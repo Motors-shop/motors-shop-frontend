@@ -12,9 +12,13 @@ import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../service/api";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserProvider";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setUser, setLoadingUser } = useContext(UserContext);
+
   const schema = yup.object().shape({
     user: yup.string().required(),
     password: yup.string().required(),
@@ -33,7 +37,13 @@ const Login = () => {
         localStorage.setItem("@motorsShop:token", res.data.token);
         toast.success("Login efetuado com sucesso!");
 
-        return navigate("/");
+        api
+          .get("/users/profile", { headers: { Authorization: `Bearer ${res.data.token}` } })
+          .then((res) => {
+            setUser(res.data);
+            setLoadingUser(false);
+            return navigate("/");
+          });
       })
       .catch((err) => toast.error("Email ou senha incorreto."));
   };

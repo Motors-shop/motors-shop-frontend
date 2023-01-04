@@ -1,20 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../contexts/UserProvider";
 
 import UserChip from "../../UserChip";
 
 import { ThemeDropBox } from "./style";
 
 const Dropbox = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
 
   const exit = () => {
     localStorage.clear();
+
+    if (location.pathname === "/") {
+      window.location.reload();
+    }
+
     return navigate("/");
   };
 
   return (
     <ThemeDropBox>
-      <UserChip name="Samuel Leão" user />
+      <UserChip name={user.name} user />
 
       <ul>
         <li>Editar Perfil</li>
