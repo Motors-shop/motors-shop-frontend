@@ -9,17 +9,16 @@ import VehicleRegister from "../../components/VehicleRegister";
 
 import { api } from "../../service/api";
 import { IProductData } from "../Home/types";
-import {
-  StyledBody,
-  StyledPurpleBackground,
-  StyledTypeShowCase,
-  StyledUserCard,
-} from "./styles";
+import { StyledBody, StyledPurpleBackground, StyledTypeShowCase, StyledUserCard } from "./styles";
+import { useParams } from "react-router-dom";
+import { IUserData } from "../../contexts/types";
 
 const SellerProducts = () => {
-  const [isProfile, setIsProfile] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(true);
+  const [userData, setUserData] = useState<IUserData>({} as IUserData);
   const [data, setData] = useState<IProductData[]>([]);
+
+  const { user_id } = useParams();
 
   useEffect(() => {
     api
@@ -31,6 +30,9 @@ const SellerProducts = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    api.get(`/users/${user_id}`).then((res) => setUserData(res.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -43,23 +45,20 @@ const SellerProducts = () => {
       <StyledPurpleBackground />
 
       <StyledUserCard>
-        <UserCard profile={isProfile} admin={isAdmin} />
+        <UserCard profile admin={isAdmin} data={userData} />
       </StyledUserCard>
 
       <StyledBody>
-        {/* <h2>Carros</h2> */}
-        <StyledTypeShowCase>
-          <VehicleSection
-            type="products"
-            title="Carros"
-            data={data.filter(({ type }) => type === "car")}
-          />
-          <VehicleSection
-            type="products"
-            title="Motos"
-            data={data.filter(({ type }) => type === "motorbike")}
-          />
-        </StyledTypeShowCase>
+        <VehicleSection
+          type="products"
+          title="Carros"
+          data={data.filter(({ type }) => type === "CARRO")}
+        />
+        <VehicleSection
+          type="products"
+          title="Motos"
+          data={data.filter(({ type }) => type === "MOTO")}
+        />
       </StyledBody>
       <Footer />
     </>
