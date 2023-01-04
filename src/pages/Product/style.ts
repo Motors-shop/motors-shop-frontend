@@ -9,6 +9,12 @@ export const Container = styled.main`
   > div:nth-child(1) {
     display: flex;
     gap: calc(1.4vh + 1.4vw);
+
+    > div {
+      &:last-child {
+        text-align: center;
+      }
+    }
   }
 
   @media (max-width: 425px) {

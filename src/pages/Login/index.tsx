@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../service/api";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,11 +28,14 @@ const Login = () => {
 
   const sendForm = (data: FieldValues) => {
     api
-      .post("/login", data)
+      .post("/session", data)
       .then((res) => {
+        localStorage.setItem("@motorsShop:token", res.data.token);
+        toast.success("Login efetuado com sucesso!");
+
         return navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Email ou senha incorreto."));
   };
 
   return (

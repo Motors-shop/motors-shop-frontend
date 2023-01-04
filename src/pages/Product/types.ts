@@ -1,4 +1,5 @@
 import { ICommentProps } from "../../components/Comments/types";
+import { IUserData } from "../../contexts/types";
 
 export interface IPhotoProps {
   id: string;
@@ -15,6 +16,7 @@ export interface IProductProps {
   km: number;
   price: number;
   type: string;
+  owner: IUserData;
   isPublished: boolean;
   capeImage: string;
   createdAt: string;
