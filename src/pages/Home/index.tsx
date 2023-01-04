@@ -20,8 +20,8 @@ const Home = () => {
       .then((res) => {
         const data: IProductData[] = res.data;
 
-        setCars(data.filter(({ type }) => type === "car"));
-        setMotorbikes(data.filter(({ type }) => type === "motorbike"));
+        setCars(data.filter(({ type }) => type === "CARRO"));
+        setMotorbikes(data.filter(({ type }) => type === "MOTO"));
       })
       .catch((err) => {
         console.log(err);
