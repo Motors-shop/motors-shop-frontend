@@ -7,6 +7,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./styles";
+import { useModalControls } from "../Modal";
 
 const VehicleRegister: React.FC = () => {
   const [sellType, setSellType] = useState("VENDA");
@@ -14,6 +15,8 @@ const VehicleRegister: React.FC = () => {
   const [gallery, setGallery] = useState([""]);
   const [cantSend, setCantSend] = useState(true);
   const maxGalleryImages = 5;
+
+  const { openModal } = useModalControls();
 
   const vehicleRegisterSchema = yup.object().shape({
     title: yup.string(),
@@ -40,7 +43,10 @@ const VehicleRegister: React.FC = () => {
     data.sellType = sellType;
     data.type = type;
     data.gallery = gallery;
+
     console.log(data);
+
+    openModal("vehicleRegisterSucess");
   };
 
   const verifyInputs = () => {

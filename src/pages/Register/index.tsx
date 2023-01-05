@@ -9,11 +9,15 @@ import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import Modal, { useModalControls } from "../../components/Modal";
 
 const Register = () => {
   const [userType, setUserType] = useState("COMPRADOR");
 
+  const { openModal } = useModalControls();
+
   const navigate = useNavigate();
+
   const schema = yup.object().shape({
     name: yup.string().required(),
     password: yup.string().required(),
@@ -67,10 +71,18 @@ const Register = () => {
 
     console.log(dataForAPI);
     // enviar dados para API e devolver uma resposta
+
+    openModal("registerSucess");
   };
 
   return (
     <>
+      <Modal name="registerSucess" title="Sucesso!">
+        <ThemeButton variant="primary" onClick={() => navigate("/login")}>
+          Ir para o login
+        </ThemeButton>
+      </Modal>
+
       <Navbar />
       <ThemeRegister>
         <form onSubmit={handleSubmit(sendForm)}>
