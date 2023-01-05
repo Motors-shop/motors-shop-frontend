@@ -50,6 +50,8 @@ const SellerProducts = () => {
       <Modal name="vehicleRegister" title="Criar Anuncio">
         <VehicleRegister />
       </Modal>
+
+      {isAdmin && <Modal name="editProfile" title="Editar Perfil"></Modal>}
       <Navbar />
 
       <StyledPurpleBackground />
@@ -59,7 +61,9 @@ const SellerProducts = () => {
       </StyledUserCard>
 
       <StyledBody>
-        {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} />}
+        {isAdmin && (
+          <VehicleSection title="Leilão" type="auction" data={cars} />
+        )}
 
         <VehicleSection type="products" title="Carros" data={cars} />
         <VehicleSection type="products" title="Motos" data={motorbikes} />
