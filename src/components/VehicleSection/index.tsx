@@ -7,7 +7,7 @@ import ProductCard from "../ProductCard";
 import { ThemeSection } from "./style";
 import { IVehicleSectionProps } from "./types";
 
-const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
+const VehicleSection = ({ data, title, type, id }: IVehicleSectionProps) => {
   const { user_id } = useParams();
 
   const carousel: any = useRef();
@@ -37,7 +37,7 @@ const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
   }, []);
 
   return (
-    <ThemeSection>
+    <ThemeSection id={id}>
       <h2>{title}</h2>
       <ul ref={carousel}>
         {data.map((vehicle) => (

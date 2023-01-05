@@ -11,16 +11,16 @@ export const ModalBackground = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  z-index: 9999;
 
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const ModalContainer = styled.aside`
-  width: 95vmin;
+  width: 95vh;
   max-width: 520px;
-  margin-top: 80px;
 
   background-color: var(--whiteFixed);
   border-radius: 8px;

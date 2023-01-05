@@ -41,7 +41,7 @@ export const Contaier = styled.main`
       margin-top: calc(0.5vh + 0.5vw);
       padding: 0 calc(15vh + 15vw);
 
-      > a {
+      > button {
         min-width: 90%;
       }
     }
