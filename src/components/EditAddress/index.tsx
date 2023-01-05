@@ -7,21 +7,23 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./style";
-import { IEditAdress, IValidData } from "./type";
+import { IEditAddress, IValidData } from "./type";
 import { api } from "../../service/api";
 
-const EditAdress: React.FC = () => {
-  const [adressData, setAdressData] = useState<IEditAdress>({} as IEditAdress);
+const EditAddress: React.FC = () => {
+  const [addressData, setAddressData] = useState<IEditAddress>(
+    {} as IEditAddress
+  );
 
   useEffect(() => {
     api.get("").then((res) => {
-      const { cep, state, city, street, complement, number } = res.data;
+      const { cep, state, city, street, complement, number } = res.data.address;
 
-      setAdressData({ cep, state, city, street, number, complement });
+      setAddressData({ cep, state, city, street, number, complement });
     });
   });
 
-  const editAdressSchema = yup.object().shape({
+  const editAddressSchema = yup.object().shape({
     cep: yup.string(),
     state: yup.string(),
     city: yup.string(),
@@ -34,7 +36,7 @@ const EditAdress: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(editAdressSchema) });
+  } = useForm({ resolver: yupResolver(editAddressSchema) });
 
   const sendForm = (data: FieldValues) => {
     const validData = {} as IValidData;
@@ -53,7 +55,7 @@ const EditAdress: React.FC = () => {
       <h4>Informações de endereço</h4>
       <Input
         label="CEP"
-        placeholder={adressData.cep}
+        placeholder={addressData.cep}
         name="cep"
         register={register}
         error={errors.cep?.message as string}
@@ -62,14 +64,14 @@ const EditAdress: React.FC = () => {
       <StyledHorizontalDisplay>
         <Input
           label="Estado"
-          placeholder={adressData.state}
+          placeholder={addressData.state}
           name="state"
           register={register}
           error={errors.state?.message as string}
         />
         <Input
           label="Cidade"
-          placeholder={adressData.city}
+          placeholder={addressData.city}
           name="city"
           register={register}
           error={errors.city?.message as string}
@@ -78,7 +80,7 @@ const EditAdress: React.FC = () => {
 
       <Input
         label="Rua"
-        placeholder={adressData.street}
+        placeholder={addressData.street}
         name="street"
         register={register}
         error={errors.street?.message as string}
@@ -87,14 +89,14 @@ const EditAdress: React.FC = () => {
       <StyledHorizontalDisplay>
         <Input
           label="Número"
-          placeholder={adressData.number}
+          placeholder={addressData.number}
           name="number"
           register={register}
           error={errors.number?.message as string}
         />
         <Input
           label="Complemento"
-          placeholder={adressData.complement}
+          placeholder={addressData.complement}
           name="complement"
           register={register}
           error={errors.complement?.message as string}
@@ -111,4 +113,4 @@ const EditAdress: React.FC = () => {
   );
 };
 
-export default EditAdress;
+export default EditAddress;

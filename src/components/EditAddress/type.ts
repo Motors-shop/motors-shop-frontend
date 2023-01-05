@@ -1,4 +1,4 @@
-export interface IEditAdress {
+export interface IEditAddress {
   cep: string;
   state: string;
   city: string;
