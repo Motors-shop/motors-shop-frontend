@@ -18,6 +18,7 @@ export const ThemeSection = styled.section`
     padding-top: calc(0.1vh + 0.1vw);
     gap: calc(2.2vh + 2.2vw);
     overflow-x: auto;
+    cursor: grab;
 
     &:active {
       cursor: grabbing;

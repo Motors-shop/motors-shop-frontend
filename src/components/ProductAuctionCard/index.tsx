@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiChevronRight, FiClock } from "react-icons/fi";
+import { UserContext } from "../../contexts/UserProvider";
 
 import ThemeButton from "../ThemeButton";
 import ThemeLinkButton from "../ThemeLinkButton";
@@ -29,6 +30,7 @@ const ProductAuctionCard: React.FC<IProductAuctionProps> = ({
   dueDate,
   ...linkProps
 }) => {
+  const { user } = useContext(UserContext);
   const [nowTime, setNowTime] = useState(new Date());
 
   useEffect(() => {
@@ -57,7 +59,12 @@ const ProductAuctionCard: React.FC<IProductAuctionProps> = ({
           <Content>
             <ProductTitle>{title}</ProductTitle>
             <ProductDescription>{description}</ProductDescription>
-            <UserChip name={owner.name} avatar={owner.avatar} whiteText />
+            <UserChip
+              name={owner.name}
+              avatar={owner.avatar}
+              whiteText
+              user={owner.id === user.id ? true : false}
+            />
             <ProductFooter>
               {tags && (
                 <TagsList>

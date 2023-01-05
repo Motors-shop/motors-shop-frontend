@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../contexts/UserProvider";
 
 import ThemeButton from "../ThemeButton";
 import UserChip from "../UserChip";
@@ -26,6 +27,8 @@ const ProductCard: React.FC<IProductCardProps> = ({
   isPublished = false,
   ...linkProps
 }) => {
+  const { user } = useContext(UserContext);
+
   return (
     <ProductCardContainer {...linkProps} draggable="false">
       <CoverContainer>
@@ -36,7 +39,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
       </CoverContainer>
       <ProductTitle>{title}</ProductTitle>
       <ProductDescription>{description}</ProductDescription>
-      <UserChip name={owner.name} avatar={owner.avatar} />
+      <UserChip
+        name={owner.name}
+        avatar={owner.avatar}
+        user={user.id === owner.id ? true : false}
+      />
       <ProductFooter>
         {tags && (
           <TagList>

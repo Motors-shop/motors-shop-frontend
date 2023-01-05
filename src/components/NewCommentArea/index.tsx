@@ -11,10 +11,11 @@ import UserChip from "../UserChip";
 import { api } from "../../service/api";
 import { ContainerComment } from "./style";
 import { CommentContext } from "../../contexts/CommentProvider";
+import { UserContext } from "../../contexts/UserProvider";
 
 const NewCommentArea = () => {
   const [canSend, setCanSend] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token");
+  const { token } = useContext(UserContext);
   const { setComments } = useContext(CommentContext);
 
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const NewCommentArea = () => {
     }
 
     api
-      .post(`/comments/${id}`, data)
+      .post(`/comments/${id}`, data, { headers: { Authorization: `Bearer ${token}` } })
       .then((_) => {
         resetField("commentary");
         setCanSend(false);

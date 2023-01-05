@@ -29,14 +29,14 @@ const SellerProducts = () => {
       setIsAdmin(true);
     }
 
-    api.get("/vehicles").then((res) => {
-      const data: IProductData[] = res.data;
-      setCars(data.filter(({ type }) => type === "CARRO"));
-      setMotorbikes(data.filter(({ type }) => type === "MOTO"));
-    });
-
     api.get(`/users/${user_id}`).then((res) => {
-      setUserData(res.data);
+      const data: IUserData = res.data;
+      const vehicles = data.vehicles.map((vehicle) => ({ ...vehicle, owner: data }));
+
+      setUserData(data);
+
+      setCars(vehicles.filter(({ type }) => type === "CARRO"));
+      setMotorbikes(vehicles.filter(({ type }) => type === "MOTO"));
 
       setLoading(false);
     });
@@ -61,8 +61,13 @@ const SellerProducts = () => {
       <StyledBody>
         {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} />}
 
-        <VehicleSection type="products" title="Carros" data={cars} />
-        <VehicleSection type="products" title="Motos" data={motorbikes} />
+        {!loading && cars.length > 0 && (
+          <VehicleSection type="products" title="Carros" data={cars} />
+        )}
+
+        {!loading && motorbikes.length > 0 && (
+          <VehicleSection type="products" title="Motos" data={motorbikes} />
+        )}
       </StyledBody>
       <Footer />
     </>

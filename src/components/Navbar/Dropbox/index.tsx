@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserProvider";
 
 import UserChip from "../../UserChip";
@@ -9,7 +9,6 @@ import { ThemeDropBox } from "./style";
 const Dropbox = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { user } = useContext(UserContext);
 
   const exit = () => {
@@ -29,7 +28,9 @@ const Dropbox = () => {
       <ul>
         <li>Editar Perfil</li>
         <li>Editar endereço</li>
-        <li>Minhas Compras</li>
+        <li>
+          <Link to={`/${user.id}/products`}>Meus Anúncios</Link>
+        </li>
         <li onClick={exit}>Sair</li>
       </ul>
     </ThemeDropBox>

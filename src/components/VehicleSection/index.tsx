@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 
 import ProductAuctionCard from "../ProductAuctionCard";
 import ProductCard from "../ProductCard";
@@ -7,6 +8,8 @@ import { ThemeSection } from "./style";
 import { IVehicleSectionProps } from "./types";
 
 const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
+  const { user_id } = useParams();
+
   const carousel: any = useRef();
 
   useEffect(() => {
@@ -37,29 +40,31 @@ const VehicleSection = ({ data, title, type }: IVehicleSectionProps) => {
     <ThemeSection>
       <h2>{title}</h2>
       <ul ref={carousel}>
-        {data.map((data) => (
-          <li key={data.id}>
+        {data.map((vehicle) => (
+          <li key={vehicle.id}>
             {type === "products" && (
               <ProductCard
-                title={data.title}
-                description={data.description}
-                tags={[data.year, `${data.km} KM`]}
-                price={+data.price}
-                coverImage={data.capeImage}
-                owner={{ name: "Samuel Leão" }}
-                to={`/product/${data.id}`}
+                title={vehicle.title}
+                description={vehicle.description}
+                tags={[vehicle.year, `${vehicle.km} KM`]}
+                price={+vehicle.price}
+                isOwner={!!user_id ? true : false}
+                isPublished={vehicle.isPublished}
+                coverImage={vehicle.capeImage}
+                owner={{ name: vehicle.owner.name, id: vehicle.owner.id }}
+                to={`/product/${vehicle.id}`}
               />
             )}
             {type === "auction" && (
               <ProductAuctionCard
-                title={data.title}
-                description={data.description}
-                tags={[data.year, `${data.km} KM`]}
-                price={+data.price}
-                coverImage={data.capeImage}
-                owner={{ name: "Samuel Leão" }}
+                title={vehicle.title}
+                description={vehicle.description}
+                tags={[vehicle.year, `${vehicle.km} KM`]}
+                price={+vehicle.price}
+                coverImage={vehicle.capeImage}
+                owner={{ name: vehicle.owner.name, id: vehicle.owner.id }}
                 dueDate={new Date(2023, 12, 31)}
-                to={`/product/${data.id}`}
+                to={`/product/${vehicle.id}`}
               />
             )}
           </li>

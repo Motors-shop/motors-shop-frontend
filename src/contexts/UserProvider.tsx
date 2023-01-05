@@ -28,7 +28,7 @@ const UserProvider = ({ children }: IProviderProps) => {
         setUser(res.data);
         setLoadingUser(false);
       })
-      .catch();
+      .catch(() => localStorage.clear());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
