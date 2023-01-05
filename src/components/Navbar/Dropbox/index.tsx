@@ -30,7 +30,7 @@ const Dropbox = () => {
 
       <ul>
         <li onClick={() => openModal("editProfile")}>Editar Perfil</li>
-        <li>Editar endereço</li>
+        <li onClick={() => openModal("editAdress")}>Editar endereço</li>
         <li>Minhas Compras</li>
         <li onClick={exit}>Sair</li>
       </ul>

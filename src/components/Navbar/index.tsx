@@ -10,6 +10,7 @@ import { UserContext } from "../../contexts/UserProvider";
 import { Link } from "react-router-dom";
 import Modal from "../Modal";
 import EditProfile from "../EditProfile";
+import EditAdress from "../EditAdress";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
@@ -40,6 +41,11 @@ const Navbar = () => {
       <Modal name="editProfile" title="Editar Perfil">
         <EditProfile />
       </Modal>
+
+      <Modal name="editAdress" title="Editar Endereço">
+        <EditAdress />
+      </Modal>
+
       <ThemeNav menu={menu}>
         <Link to="/">
           <img src={logo} alt="Motors Shop Logo" />
