@@ -36,6 +36,16 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", checkMenu);
   }, []);
 
+  const scrollTo = (name: string) => {
+    const section = window.document.getElementById(name);
+    const rect = section!.getBoundingClientRect();
+
+    const position = rect.top + window.scrollY;
+    const navBar = 15 * (window.innerHeight / 100);
+
+    window.scrollTo(0, position - navBar);
+  };
+
   return (
     <>
       <Modal name="editProfile" title="Editar Perfil">
@@ -55,9 +65,9 @@ const Navbar = () => {
 
         <nav>
           <ul>
-            <li>Carros</li>
-            <li>Motos</li>
-            <li>Leilão</li>
+            <li onClick={() => scrollTo("cars")}>Carros</li>
+            <li onClick={() => scrollTo("motorbikes")}>Motos</li>
+            <li onClick={() => scrollTo("auction")}>Leilão</li>
           </ul>
           {!token || loadingUser ? (
             <div className="buttons">

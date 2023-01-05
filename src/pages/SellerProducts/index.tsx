@@ -61,16 +61,14 @@ const SellerProducts = () => {
       </StyledUserCard>
 
       <StyledBody>
-        {isAdmin && (
-          <VehicleSection title="Leilão" type="auction" data={cars} />
-        )}
+        {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />}
 
         {!loading && cars.length > 0 && (
-          <VehicleSection type="products" title="Carros" data={cars} />
+          <VehicleSection type="products" title="Carros" data={cars} id="cars" />
         )}
 
         {!loading && motorbikes.length > 0 && (
-          <VehicleSection type="products" title="Motos" data={motorbikes} />
+          <VehicleSection type="products" title="Motos" data={motorbikes} id="motorbikes" />
         )}
       </StyledBody>
       <Footer />
