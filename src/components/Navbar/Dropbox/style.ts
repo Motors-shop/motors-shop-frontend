@@ -27,6 +27,10 @@ export const ThemeDropBox = styled.div`
       font-weight: 400;
       font-size: calc(0.7vh + 0.7vw + 0.1vmin);
 
+      > a {
+        color: inherit;
+      }
+
       &:hover {
         cursor: pointer;
         background-color: var(--grey7);

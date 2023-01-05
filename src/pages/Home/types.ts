@@ -1,3 +1,5 @@
+import { IUserData } from "../../contexts/types";
+
 interface IPhotoProps {
   id: string;
   url: string;
@@ -21,6 +23,7 @@ export interface IProductData {
   price: string;
   type: string;
   isPublished: boolean;
+  owner: IUserData;
   capeImage: string;
   createdAt: string;
   updatedAt: string;

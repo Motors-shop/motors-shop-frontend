@@ -4,6 +4,7 @@ export const StyledBody = styled.main`
   background-color: var(--grey8);
   padding-top: 250px;
   padding-bottom: 1px;
+  min-height: 55vh;
 `;
 
 export const StyledTypeShowCase = styled.div`
@@ -32,5 +33,5 @@ export const StyledUserCard = styled.div`
 export const StyledPurpleBackground = styled.div`
   background-color: var(--brand1);
   width: 100%;
-  height: 280px;
+  height: 35vh;
 `;
