@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 
 import Dropbox from "./Dropbox";
@@ -6,11 +6,13 @@ import ThemeLinkButton from "../ThemeLinkButton";
 
 import logo from "../../assets/motors_shop_logo_color.svg";
 import { ThemeNav } from "./style";
+import { UserContext } from "../../contexts/UserProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const token = localStorage.getItem("@motorsShop:token");
+  const { token, loadingUser } = useContext(UserContext);
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
@@ -33,9 +35,9 @@ const Navbar = () => {
 
   return (
     <ThemeNav menu={menu}>
-      <a href="/">
+      <Link to="/">
         <img src={logo} alt="Motors Shop Logo" />
-      </a>
+      </Link>
       {mobile && !menu && <HiMenu onClick={() => setMenu(true)} />}
       {mobile && menu && <HiX onClick={() => setMenu(false)} />}
 
@@ -45,7 +47,7 @@ const Navbar = () => {
           <li>Motos</li>
           <li>Leilão</li>
         </ul>
-        {!token ? (
+        {!token || loadingUser ? (
           <div className="buttons">
             <ThemeLinkButton variant="light" to="/login">
               Fazer Login

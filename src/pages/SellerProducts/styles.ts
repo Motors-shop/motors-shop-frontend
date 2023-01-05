@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
-export const StyledBody = styled.div`
-  margin: 4%;
-  margin-top: 250px;
-
-  h2 {
-    margin-top: 200px;
-  }
+export const StyledBody = styled.main`
+  background-color: var(--grey8);
+  padding-top: 250px;
+  padding-bottom: 1px;
 `;
 
 export const StyledTypeShowCase = styled.div`
@@ -16,10 +13,20 @@ export const StyledTypeShowCase = styled.div`
 `;
 
 export const StyledUserCard = styled.div`
-  width: 75%;
-  margin: 12%;
-  position: absolute;
-  margin-top: -150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > div {
+    width: 75%;
+    position: absolute;
+  }
+
+  @media (max-width: 425px) {
+    > div {
+      width: 90%;
+    }
+  }
 `;
 
 export const StyledPurpleBackground = styled.div`

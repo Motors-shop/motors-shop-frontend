@@ -26,7 +26,7 @@ const UserCard = ({ admin, product, profile, data }: IUSerCardProps) => {
 
   return (
     <ThemeUserCard type={profile ? "profile" : "product"}>
-      <span>{getNameInitials("Samuel Leão")}</span>
+      <span>{getNameInitials(name)}</span>
       <p>
         {name} {profile && <span>Anunciante</span>}
       </p>

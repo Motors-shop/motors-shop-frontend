@@ -9,7 +9,7 @@ export const ThemeDropBox = styled.div`
 
   > ul {
     position: absolute;
-    top: 6vh;
+    top: 8vh;
     left: -10%;
     overflow: hidden;
     transition: height 0.4s;
