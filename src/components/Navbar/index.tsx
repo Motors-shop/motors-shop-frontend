@@ -7,6 +7,7 @@ import ThemeLinkButton from "../ThemeLinkButton";
 import logo from "../../assets/motors_shop_logo_color.svg";
 import { ThemeNav } from "./style";
 import { UserContext } from "../../contexts/UserProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
@@ -34,9 +35,9 @@ const Navbar = () => {
 
   return (
     <ThemeNav menu={menu}>
-      <a href="/">
+      <Link to="/">
         <img src={logo} alt="Motors Shop Logo" />
-      </a>
+      </Link>
       {mobile && !menu && <HiMenu onClick={() => setMenu(true)} />}
       {mobile && menu && <HiX onClick={() => setMenu(false)} />}
 

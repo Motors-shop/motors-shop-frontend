@@ -27,9 +27,9 @@ const ProductCard: React.FC<IProductCardProps> = ({
   ...linkProps
 }) => {
   return (
-    <ProductCardContainer {...linkProps}>
+    <ProductCardContainer {...linkProps} draggable="false">
       <CoverContainer>
-        <img src={coverImage} alt={`${title} product`} />
+        <img src={coverImage} alt={`${title} product`} draggable="false" />
         {isOwner && (
           <OwnerBadge isPublished={isPublished}>{isPublished ? "Ativo" : "Inativo"}</OwnerBadge>
         )}
