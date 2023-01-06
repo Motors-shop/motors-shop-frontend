@@ -8,9 +8,11 @@ import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./styles";
 import { api } from "../../service/api";
-import { IProductData } from "./type";
+import { IProductData, IProductIdProps } from "./type";
 
-const EditVehicle: React.FC = () => {
+const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
+  vehicleId,
+}) => {
   const [sellType, setSellType] = useState("VENDA");
   const [type, setType] = useState("CARRO");
   const [isPublish, setIsPublish] = useState<boolean>(false);
@@ -20,7 +22,7 @@ const EditVehicle: React.FC = () => {
   const maxGalleryImages = 5;
 
   useEffect(() => {
-    api.get("/vehicles/").then((res) => {
+    api.get("/vehicles/" + vehicleId).then((res) => {
       const data: IProductData = res.data;
 
       setIsPublish(data.isPublished);

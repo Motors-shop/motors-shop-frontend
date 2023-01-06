@@ -14,4 +14,5 @@ export interface IProductCardProps extends LinkProps, IOwnerBadge {
   coverImage: string;
   owner: OwnerChip;
   isOwner?: boolean;
+  vehicleId: string;
 }
