@@ -21,5 +21,5 @@ export interface IProductData {
 }
 
 export interface IProductIdProps {
-  vehicleId: string;
+  vehicleData: IProductData;
 }
