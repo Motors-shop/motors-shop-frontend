@@ -30,6 +30,7 @@ const VehicleSection = ({ data, title, type, id }: IVehicleSectionProps) => {
             <li key={vehicle.id}>
               {type === "products" && (
                 <ProductCard
+                  vehicleId={vehicle.id}
                   title={vehicle.title}
                   description={vehicle.description}
                   tags={[vehicle.year, `${vehicle.km} KM`]}
