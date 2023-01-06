@@ -123,7 +123,7 @@ export const TagList = styled.ul`
 
 export const StyledAdminButtons = styled.div`
   display: flex;
-  justify-content: space-between;
-
+  gap: calc(1vh + 1vw);
+  margin: calc(0.6vh + 0.6vw) auto;
   align-items: center;
 `;

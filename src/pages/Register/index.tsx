@@ -12,11 +12,14 @@ import { useState } from "react";
 import Modal, { useModalControls } from "../../components/Modal";
 
 const Register = () => {
+  if (!!localStorage.getItem("@motorsShop:token")) {
+    window.location.href = "/";
+  }
+
   const [userType, setUserType] = useState("COMPRADOR");
+  const navigate = useNavigate();
 
   const { openModal } = useModalControls();
-
-  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     name: yup.string().required(),
@@ -46,16 +49,7 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    const {
-      name,
-      password,
-      email,
-      cpf,
-      phone,
-      birthDate,
-      biography,
-      ...adress
-    } = data;
+    const { name, password, email, cpf, phone, birthDate, biography, ...adress } = data;
 
     const dataForAPI = {
       name,

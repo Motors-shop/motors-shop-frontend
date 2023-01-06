@@ -8,6 +8,8 @@ export const ThemeRegister = styled.main`
   justify-content: center;
   align-items: center;
 
+  padding: 14vh 0 10vh 0;
+
   > form {
     width: 400px;
     background-color: var(--grey10);
@@ -17,6 +19,10 @@ export const ThemeRegister = styled.main`
     display: flex;
     flex-direction: column;
     gap: calc(1.1vh + 1.1vw);
+
+    > div > button {
+      width: 50%;
+    }
   }
 
   @media (max-width: 425px) {
