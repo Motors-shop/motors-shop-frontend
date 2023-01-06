@@ -16,6 +16,10 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserProvider";
 
 const Login = () => {
+  if (!!localStorage.getItem("@motorsShop:token")) {
+    window.location.href = "/";
+  }
+
   const navigate = useNavigate();
   const { setUser, setLoadingUser } = useContext(UserContext);
 

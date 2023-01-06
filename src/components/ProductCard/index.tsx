@@ -31,10 +31,10 @@ const ProductCard: React.FC<IProductCardProps> = ({
   ...linkProps
 }) => {
   const { user } = useContext(UserContext);
-  const { openModal } = useModalControls();
+  // const { openModal } = useModalControls();
 
   return (
-    <>
+    <div>
       <Modal name="editVehicle" title="Editar anúncio">
         <EditVehicle />
       </Modal>
@@ -43,9 +43,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
         <CoverContainer>
           <img src={coverImage} alt={`${title} product`} draggable="false" />
           {isOwner && (
-            <OwnerBadge isPublished={isPublished}>
-              {isPublished ? "Ativo" : "Inativo"}
-            </OwnerBadge>
+            <OwnerBadge isPublished={isPublished}>{isPublished ? "Ativo" : "Inativo"}</OwnerBadge>
           )}
         </CoverContainer>
         <ProductTitle>{title}</ProductTitle>
@@ -72,22 +70,18 @@ const ProductCard: React.FC<IProductCardProps> = ({
             })}
           </ProductPrice>
         </ProductFooter>
-        {user.id === owner.id && (
-          <StyledAdminButtons>
-            <ThemeButton
-              variant="normal"
-              outlined={true}
-              onClick={() => openModal("editVehicle")}
-            >
-              Editar
-            </ThemeButton>
-            <ThemeButton variant="normal" outlined={true}>
-              Ver como
-            </ThemeButton>
-          </StyledAdminButtons>
-        )}
       </ProductCardContainer>
-    </>
+      {user.id === owner.id && isOwner && (
+        <StyledAdminButtons>
+          <ThemeButton variant="normal" outlined={true}>
+            Editar
+          </ThemeButton>
+          <ThemeButton variant="normal" outlined={true}>
+            Ver como
+          </ThemeButton>
+        </StyledAdminButtons>
+      )}
+    </div>
   );
 };
 

@@ -4,9 +4,21 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 5px;
-  gap: 10px;
+  gap: 30px;
   height: 700px;
   overflow-y: scroll;
+
+  > div > button {
+    width: 50%;
+    padding: 1rem auto;
+  }
+
+  > div:last-child {
+    justify-content: flex-end;
+    > button {
+      width: auto;
+    }
+  }
 
   ::-webkit-scrollbar {
     width: 4px;
