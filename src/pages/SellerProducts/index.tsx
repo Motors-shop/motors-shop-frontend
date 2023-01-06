@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import { UserContext } from "../../contexts/UserProvider";
 import FeedbackMenssage from "../../components/FeedbackMenssage";
+import EditVehicle from "../../components/EditVehicle";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -62,6 +63,10 @@ const SellerProducts = () => {
         />
       </Modal>
 
+      <Modal name="editVehicle" title="Editar anúncio">
+        <EditVehicle />
+      </Modal>
+
       {isAdmin && <Modal name="editProfile" title="Editar Perfil"></Modal>}
       <Navbar />
 
@@ -72,14 +77,31 @@ const SellerProducts = () => {
       </StyledUserCard>
 
       <StyledBody>
-        {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />}
+        {isAdmin && (
+          <VehicleSection
+            title="Leilão"
+            type="auction"
+            data={cars}
+            id="auction"
+          />
+        )}
 
         {!loading && cars.length > 0 && (
-          <VehicleSection type="products" title="Carros" data={cars} id="cars" />
+          <VehicleSection
+            type="products"
+            title="Carros"
+            data={cars}
+            id="cars"
+          />
         )}
 
         {!loading && motorbikes.length > 0 && (
-          <VehicleSection type="products" title="Motos" data={motorbikes} id="motorbikes" />
+          <VehicleSection
+            type="products"
+            title="Motos"
+            data={motorbikes}
+            id="motorbikes"
+          />
         )}
       </StyledBody>
       <Footer />
