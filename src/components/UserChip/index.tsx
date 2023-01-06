@@ -20,10 +20,11 @@ const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText, user = fa
   }
 
   function generateRandomColorNumberByNameSeed(name: string): number {
-    const randomNumber = Math.ceil(name.length ** 2 % 12);
+    const firstName = name.split(" ")[0];
+    const lastName = name.split(" ")[name.split(" ").length - 1];
 
-    if (randomNumber <= 0 || randomNumber > 12) return 1;
-    else return randomNumber;
+    if (firstName.length > 6 && firstName.length <= 12) return firstName.length;
+    else return Math.abs(firstName.length - lastName.length);
   }
 
   return (

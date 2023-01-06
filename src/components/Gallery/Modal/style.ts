@@ -17,6 +17,8 @@ export const ThemeGalleryModal = styled.div`
     background-color: var(--whiteFixed);
     border-radius: calc(0.4vh + 0.4vw);
     max-width: 40%;
+    position: absolute;
+    top: 9vh;
 
     > h2 {
       font-family: var(--lexend);

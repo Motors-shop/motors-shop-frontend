@@ -15,7 +15,7 @@ import EditAddress from "../EditAddress";
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
-  const { token, loadingUser } = useContext(UserContext);
+  const { loadingUser } = useContext(UserContext);
 
   useEffect(() => {
     if (window.innerWidth <= 425) {
@@ -69,7 +69,7 @@ const Navbar = () => {
             <li onClick={() => scrollTo("motorbikes")}>Motos</li>
             <li onClick={() => scrollTo("auction")}>Leilão</li>
           </ul>
-          {!token || loadingUser ? (
+          {loadingUser ? (
             <div className="buttons">
               <ThemeLinkButton variant="light" to="/login">
                 Fazer Login

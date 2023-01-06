@@ -16,6 +16,28 @@ export const ProductCardContainer = styled(Link)`
   color: currentColor;
 `;
 
+export const OwnerBadge = styled.span<IOwnerBadge>`
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  font-size: 0.8rem;
+  font-family: var(--inter);
+  font-weight: 500;
+  line-height: 1.6rem;
+
+  padding: 0 8px;
+
+  background-color: var(--grey4);
+  color: var(--whiteFixed);
+
+  ${({ isPublished }) =>
+    isPublished &&
+    css`
+      background-color: var(--brand1);
+    `}
+`;
+
 export const CoverContainer = styled.figure`
   position: relative;
   width: 312px;
@@ -40,29 +62,12 @@ export const CoverContainer = styled.figure`
     img {
       transform: scale(1.2);
     }
+
+    > ${OwnerBadge} {
+      transition: opacity 0.4s;
+      opacity: 0;
+    }
   }
-`;
-
-export const OwnerBadge = styled.span<IOwnerBadge>`
-  position: absolute;
-  top: 12px;
-  left: 12px;
-
-  font-size: 0.8rem;
-  font-family: var(--inter);
-  font-weight: 500;
-  line-height: 1.6rem;
-
-  padding: 0 8px;
-
-  background-color: var(--grey4);
-  color: var(--whiteFixed);
-
-  ${({ isPublished }) =>
-    isPublished &&
-    css`
-      background-color: var(--brand1);
-    `}
 `;
 
 export const ProductTitle = styled.h3`
