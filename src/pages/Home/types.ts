@@ -19,7 +19,7 @@ export interface IProductData {
   title: string;
   description: string;
   year: string;
-  km: number;
+  km: string;
   price: string;
   type: string;
   isPublished: boolean;

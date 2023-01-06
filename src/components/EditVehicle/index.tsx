@@ -11,7 +11,7 @@ import { api } from "../../service/api";
 import { IProductData, IProductIdProps } from "./type";
 
 const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
-  vehicleId,
+  vehicleData,
 }) => {
   const [sellType, setSellType] = useState("VENDA");
   const [type, setType] = useState("CARRO");
@@ -22,15 +22,11 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
   const maxGalleryImages = 5;
 
   useEffect(() => {
-    api.get("/vehicles/" + vehicleId).then((res) => {
-      const data: IProductData = res.data;
-
-      setIsPublish(data.isPublished);
-      setSellType(data.sellType);
-      setType(data.type);
-      setGallery(data.photos.map((photo) => photo.url));
-      setVehicle(data);
-    });
+    setIsPublish(vehicleData.isPublished);
+    setSellType(vehicleData.sellType);
+    setType(vehicleData.type);
+    setGallery(vehicleData.photos.map((photo) => photo.url));
+    setVehicle(vehicleData);
   }, []);
 
   const vehicleRegisterSchema = yup.object().shape({
