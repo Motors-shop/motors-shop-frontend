@@ -120,3 +120,10 @@ export const TagList = styled.ul`
     color: var(--brand1);
   }
 `;
+
+export const StyledAdminButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+`;
