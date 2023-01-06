@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../contexts/UserProvider";
-import { useModalControls } from "../Modal";
+import EditVehicle from "../EditVehicle";
+import Modal, { useModalControls } from "../Modal";
 
 import ThemeButton from "../ThemeButton";
 import UserChip from "../UserChip";
@@ -27,6 +28,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
   owner,
   isOwner,
   isPublished = false,
+  vehicleId,
   ...linkProps
 }) => {
   const { user } = useContext(UserContext);
@@ -34,6 +36,9 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
   return (
     <div>
+      <Modal name="editVehicle" title="Editar anúncio">
+        <EditVehicle vehicleId={vehicleId} />
+      </Modal>
       <ProductCardContainer {...linkProps} draggable="false">
         <CoverContainer>
           <img src={coverImage} alt={`${title} product`} draggable="false" />

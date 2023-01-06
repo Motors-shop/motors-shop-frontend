@@ -14,7 +14,6 @@ import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import { UserContext } from "../../contexts/UserProvider";
 import FeedbackMenssage from "../../components/FeedbackMenssage";
-import EditVehicle from "../../components/EditVehicle";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -61,10 +60,6 @@ const SellerProducts = () => {
           title="Seu anúncio foi criado com sucesso!"
           menssage="Agora você poderá ver negócios crescendo em grande escala"
         />
-      </Modal>
-
-      <Modal name="editVehicle" title="Editar anúncio">
-        <EditVehicle />
       </Modal>
 
       {isAdmin && <Modal name="editProfile" title="Editar Perfil"></Modal>}
