@@ -10,9 +10,7 @@ import { StyledForm, StyledHorizontalDisplay } from "./styles";
 import { api } from "../../service/api";
 import { IProductData, IProductIdProps } from "./type";
 
-const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
-  vehicleId,
-}) => {
+const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehicleId }) => {
   const [sellType, setSellType] = useState("VENDA");
   const [type, setType] = useState("CARRO");
   const [isPublish, setIsPublish] = useState<boolean>(false);
