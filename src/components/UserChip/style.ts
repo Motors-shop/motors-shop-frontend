@@ -44,4 +44,6 @@ export const Initials = styled.span`
   color: var(--whiteFixed);
 `;
 
-export const Name = styled.p``;
+export const Name = styled.p`
+  text-transform: capitalize;
+`;

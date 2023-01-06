@@ -20,7 +20,7 @@ const Login = () => {
   const { setUser, setLoadingUser } = useContext(UserContext);
 
   const schema = yup.object().shape({
-    user: yup.string().required(),
+    email: yup.string().required(),
     password: yup.string().required(),
   });
 
@@ -57,11 +57,11 @@ const Login = () => {
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.email?.message as string}
             placeholder="Digitar usuário"
             type="text"
             label="Usuário"
-            name="user"
+            name="email"
           />
           <div>
             <Input
