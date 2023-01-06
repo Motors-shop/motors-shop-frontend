@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserProvider";
 import { useModalControls } from "../../Modal";
 
@@ -9,7 +9,6 @@ import { ThemeDropBox } from "./style";
 
 const Dropbox = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { openModal } = useModalControls();
 
   const { user, setLoadingUser } = useContext(UserContext);
@@ -22,7 +21,7 @@ const Dropbox = () => {
       window.location.reload();
     }
 
-    return navigate("/");
+    return (window.location.href = "/");
   };
 
   return (
