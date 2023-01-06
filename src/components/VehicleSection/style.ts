@@ -14,14 +14,11 @@ export const ThemeSection = styled.section`
   }
 
   > ul {
-    display: flex;
     padding-top: calc(0.1vh + 0.1vw);
-    gap: calc(2.2vh + 2.2vw);
     overflow-x: auto;
     cursor: grab;
 
     &:active {
-      cursor: grabbing;
       user-select: none;
     }
 
@@ -29,14 +26,19 @@ export const ThemeSection = styled.section`
       display: none;
     }
 
-    > li {
-      padding: 0 calc(0.1vh + 0.1vw);
+    > div {
+      display: flex;
+      gap: calc(2.2vh + 2.2vw);
 
-      &:first-child {
-        margin-left: calc(3vh + 2.6vw);
-      }
-      &:last-child {
-        margin-right: calc(3vh + 2.6vw);
+      > li {
+        padding: 0 calc(0.1vh + 0.1vw);
+
+        &:first-child {
+          margin-left: calc(3vh + 2.6vw);
+        }
+        &:last-child {
+          margin-right: calc(3vh + 2.6vw);
+        }
       }
     }
   }
@@ -51,7 +53,7 @@ export const ThemeSection = styled.section`
     > ul {
       padding-top: calc(0.2vh + 0.2vw);
 
-      > li {
+      > div > li {
         &:first-child {
           margin-left: calc(2vh + 2vw);
         }
