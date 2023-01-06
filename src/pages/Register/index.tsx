@@ -122,7 +122,7 @@ const Register = () => {
           <Input
             register={register}
             error={errors.user?.message as string}
-            placeholder="(DDD) 90000-0000"
+            placeholder="31/12/2023"
             type="text"
             label="Data de Nascimeto"
             name="birthDate"
