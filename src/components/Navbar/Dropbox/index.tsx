@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { IUserData } from "../../../contexts/types";
 import { UserContext } from "../../../contexts/UserProvider";
 import { useModalControls } from "../../Modal";
 
