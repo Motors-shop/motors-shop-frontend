@@ -3,7 +3,10 @@ export interface IProductCommentProps {
   commentary: string;
   createdAt: string;
   updatedAt: string;
-  user: string;
+  user: {
+    id: string;
+    name: string;
+  };
 }
 
 export interface ICommentProps {

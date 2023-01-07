@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/UserProvider";
 import UserChip from "../../UserChip";
 
 import { IProductCommentProps } from "../types";
 import { ThemeCard } from "./style";
 
 const CommentCard = ({ user, commentary, createdAt }: IProductCommentProps) => {
+  const userData = useContext(UserContext).user;
+
   const time = new Date().getTime() - new Date(createdAt).getTime();
   const seconds = Math.floor(time / 1000);
   const minutes = Math.floor(time / 60000);
@@ -15,7 +19,7 @@ const CommentCard = ({ user, commentary, createdAt }: IProductCommentProps) => {
   return (
     <ThemeCard>
       <div>
-        <UserChip name={user} />
+        <UserChip name={user.name} user={userData.id === user.id ? true : false} />
         {seconds < 60 && (
           <span>
             há {seconds} {seconds === 1 ? "segundo" : "segundos"}

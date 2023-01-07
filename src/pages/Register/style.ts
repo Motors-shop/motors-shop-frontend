@@ -20,6 +20,23 @@ export const ThemeRegister = styled.main`
     flex-direction: column;
     gap: calc(1.1vh + 1.1vw);
 
+    > span {
+      display: flex;
+      flex-wrap: wrap;
+
+      p {
+        display: inline;
+        font-size: 24px;
+        position: relative;
+        color: var(--grey2);
+        bottom: 3px;
+        margin-left: 4px;
+        text-transform: capitalize;
+        font-style: italic;
+        font-weight: bold;
+      }
+    }
+
     > div > button {
       width: 50%;
     }

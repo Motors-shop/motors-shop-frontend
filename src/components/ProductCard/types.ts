@@ -1,4 +1,5 @@
 import { LinkProps } from "react-router-dom";
+import { IProductData } from "../EditVehicle/type";
 
 import { OwnerChip } from "../UserChip/types";
 
@@ -14,5 +15,5 @@ export interface IProductCardProps extends LinkProps, IOwnerBadge {
   coverImage: string;
   owner: OwnerChip;
   isOwner?: boolean;
-  vehicleId: string;
+  vehicleData: IProductData;
 }

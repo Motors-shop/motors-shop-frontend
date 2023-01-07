@@ -39,7 +39,7 @@ const Register = () => {
     city: yup.string().required(),
     street: yup.string().required(),
     number: yup.string().required(),
-    complement: yup.string().required(),
+    complement: yup.string().notRequired(),
   });
 
   const {
@@ -64,10 +64,13 @@ const Register = () => {
     };
 
     console.log(dataForAPI);
+    console.log(errors);
     // enviar dados para API e devolver uma resposta
 
     openModal("registerSucess");
   };
+
+  console.log(errors);
 
   return (
     <>
@@ -82,116 +85,121 @@ const Register = () => {
         <form onSubmit={handleSubmit(sendForm)}>
           <h2>Cadastro</h2>
 
+          <span>
+            ATENÇÃO - campos marcados com <p>*</p> são obrigatórios
+          </span>
+
           <h4>Informações Pessoais</h4>
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.name && "Campo obrigatório"}
             placeholder="Ex. Samuel Leão"
-            type="text"
             label="Nome"
             name="name"
+            required
           />
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.email && "Campo obrigatório"}
             placeholder="Ex. samuel@kenzie.com.br"
-            type="text"
+            type="email"
             label="Email"
             name="email"
+            required
           />
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.cpf && "Campo obrigatório"}
             placeholder="000.000.000-00"
-            type="text"
             label="CPF"
             name="cpf"
+            required
           />
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.phone && "Campo obrigatório"}
             placeholder="(DDD) 90000-0000"
-            type="text"
             label="Celular"
             name="phone"
+            required
           />
 
           <Input
             register={register}
-            error={errors.user?.message as string}
-            placeholder="31/12/2023"
-            type="text"
+            error={errors.birthDate && "Campo obrigatório"}
+            placeholder="00/00/0000"
             label="Data de Nascimeto"
             name="birthDate"
+            required
           />
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.biography && "Campo obrigatório"}
             placeholder="Digitar Descrição"
             type="textarea"
             label="Descrição"
             name="biography"
+            required
           />
 
           <h4>Informações de endereço</h4>
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.cep && "Campo obrigatório"}
             placeholder="00000-000"
-            type="text"
             label="CEP"
             name="cep"
+            required
           />
 
           <StyledHorizontalDisplay>
             <Input
               register={register}
-              error={errors.user?.message as string}
+              error={errors.state && "Campo obrigatório"}
               placeholder="Digitar Estado"
-              type="text"
               label="Estado"
               name="state"
+              required
             />
 
             <Input
               register={register}
-              error={errors.user?.message as string}
+              error={errors.city && "Campo obrigatório"}
               placeholder="Digitar Cidade"
-              type="text"
               label="Cidade"
               name="city"
+              required
             />
           </StyledHorizontalDisplay>
 
           <Input
             register={register}
-            error={errors.user?.message as string}
+            error={errors.street && "Campo obrigatório"}
             placeholder="Digitar rua"
-            type="text"
             label="Rua"
             name="street"
+            required
           />
 
           <StyledHorizontalDisplay>
             <Input
               register={register}
-              error={errors.user?.message as string}
+              error={errors.number && "Campo obrigatório"}
               placeholder="Digitar número"
-              type="text"
               label="Número"
               name="number"
+              required
             />
 
             <Input
               register={register}
-              error={errors.user?.message as string}
+              error={errors.complement && "Campo obrigatório"}
               placeholder="Ex. apto 309"
-              type="text"
               label="Complemento"
               name="complement"
             />
@@ -218,20 +226,22 @@ const Register = () => {
 
           <Input
             register={register}
-            error={errors.password?.message as string}
+            error={errors.password && "Campo obrigatório"}
             placeholder="Digitar senha"
             type="password"
             label="Senha"
             name="password"
+            required
           />
 
           <Input
             register={register}
-            error={errors.password?.message as string}
+            error={errors.confirmPassword && "Campo obrigatório"}
             placeholder="Digitar senha"
             type="password"
             label="Confirmar Senha"
             name="confirmPassword"
+            required
           />
 
           <ThemeButton variant="primary" type="submit">

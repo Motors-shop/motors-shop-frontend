@@ -18,6 +18,7 @@ import {
 const Modal: React.FC<React.PropsWithChildren<IModalProps>> = ({
   name,
   title,
+  feedback = false,
   actions,
   children,
   closeable = true,
@@ -30,11 +31,7 @@ const Modal: React.FC<React.PropsWithChildren<IModalProps>> = ({
   const { closeModal } = useModalControls();
 
   useEffect(() => {
-    if (
-      !supressCloseableModalWarning &&
-      !closeable &&
-      (!actions || actions.length < 1)
-    ) {
+    if (!supressCloseableModalWarning && !closeable && (!actions || actions.length < 1)) {
       throw new Error(
         `[Modal ${name}] A modal that is not closeable must have at least one action (preferably a closing action), since it can keep the user stuck in place if not handled correctly. If this behaviour is intentional, you can set \`supressCloseableModalWarning\` prop to true.`
       );
@@ -84,8 +81,8 @@ const Modal: React.FC<React.PropsWithChildren<IModalProps>> = ({
   if (!isOpen || name !== currentModalName) return <></>;
   return (
     <Portal>
-      <ModalBackground>
-        <ModalContainer ref={modalReference}>
+      <ModalBackground feedBack={feedback}>
+        <ModalContainer ref={modalReference} feedBack={feedback}>
           <ModalHeader>
             <h1>{title}</h1>
             <HeaderActions>

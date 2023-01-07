@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,19 +7,15 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./style";
-import { IEditProfile, IValidData } from "./type";
+import { UserContext } from "../../contexts/UserProvider";
+import { ModalContext } from "../../contexts/ModalProvider";
 import { api } from "../../service/api";
+import { useModalControls } from "../Modal";
 
 const EditProfile: React.FC = () => {
-  const [userData, setUserData] = useState<IEditProfile>({} as IEditProfile);
-
-  useEffect(() => {
-    api.get("").then((res) => {
-      const { name, email, cpf, phone, birthDate, biography } = res.data;
-
-      setUserData({ name, email, cpf, phone, biography, birthDate });
-    });
-  });
+  const { user, token } = useContext(UserContext);
+  const { setIsOpen } = useContext(ModalContext);
+  const { openModal } = useModalControls();
 
   const editProfileSchema = yup.object().shape({
     name: yup.string(),
@@ -30,73 +26,61 @@ const EditProfile: React.FC = () => {
     birthDate: yup.string(),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(editProfileSchema) });
+  const { register, handleSubmit, setValue, resetField } = useForm({
+    resolver: yupResolver(editProfileSchema),
+  });
+
+  useEffect(() => {
+    const formFields = Object.keys(editProfileSchema.fields);
+    const formatedData = user.birthDate.split("T")[0].split("-").reverse().join("/");
+    const userData = { ...user, birthDate: formatedData };
+
+    const userKeys = Object.keys(userData);
+    const userValues = Object.values(userData);
+
+    formFields.forEach((field) => setValue(field, userValues[userKeys.indexOf(field)]));
+
+    return () => formFields.forEach((field) => resetField(field));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sendForm = (data: FieldValues) => {
-    const validData = {} as IValidData;
-    const dataFields = Object.keys(data);
-
-    dataFields.forEach((field) => {
-      if (data[field] !== "") {
-        validData[field] = data[field];
-      }
-    });
-    console.log(validData);
+    api
+      .patch("/users/profile", data, { headers: { Authorization: `Bearer ${token}` } })
+      .then(() => {
+        openModal("editProfileSucess");
+      })
+      .catch(() => {
+        openModal("actionError");
+      });
   };
 
   return (
     <StyledForm onSubmit={handleSubmit(sendForm)}>
       <h4>Informações pessoais</h4>
-      <Input
-        label="Nome"
-        placeholder={userData.name}
-        name="name"
-        register={register}
-        error={errors.name?.message as string}
-      />
-      <Input
-        label="Email"
-        placeholder={userData.email}
-        name="email"
-        register={register}
-        error={errors.email?.message as string}
-      />
-      <Input
-        label="CPF"
-        placeholder={userData.cpf}
-        name="cpf"
-        register={register}
-        error={errors.cpf?.message as string}
-      />
-      <Input
-        label="Celular"
-        placeholder={userData.phone}
-        name="phone"
-        register={register}
-        error={errors.phone?.message as string}
-      />
+      <Input label="Nome" placeholder={user.name} name="name" register={register} />
+      <Input label="Email" placeholder={user.email} name="email" register={register} />
+      <Input label="CPF" placeholder={user.cpf} name="cpf" register={register} />
+      <Input label="Celular" placeholder={user.phone} name="phone" register={register} />
       <Input
         label="Data de nascimento"
-        placeholder={userData.birthDate}
+        placeholder={user.birthDate}
         name="birthDate"
+        type="text"
         register={register}
-        error={errors.birthDate?.message as string}
       />
       <Input
         label="Descrição"
-        placeholder={userData.biography}
+        placeholder={user.biography}
         name="biography"
         register={register}
-        error={errors.biography?.message as string}
         type="textarea"
       />
 
       <StyledHorizontalDisplay>
-        <ThemeButton variant="negative">Cancelar</ThemeButton>
+        <ThemeButton variant="negative" onClick={() => setIsOpen(false)}>
+          Cancelar
+        </ThemeButton>
         <ThemeButton variant="primary" type="submit">
           Salvar alterações
         </ThemeButton>

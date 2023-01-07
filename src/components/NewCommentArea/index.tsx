@@ -15,7 +15,7 @@ import { UserContext } from "../../contexts/UserProvider";
 
 const NewCommentArea = () => {
   const [canSend, setCanSend] = useState<boolean>(false);
-  const { token } = useContext(UserContext);
+  const { user, token, loadingUser } = useContext(UserContext);
   const { setComments } = useContext(CommentContext);
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const NewCommentArea = () => {
 
   return (
     <ContainerComment>
-      <UserChip name="Samuel Leão" user />
+      {!loadingUser && <UserChip name={user.name} user />}
 
       <form onChange={verifyComment} onSubmit={handleSubmit(onSubmitFunction)}>
         <Input

@@ -7,6 +7,12 @@ export const ThemeInput = styled.div`
     font-weight: 500;
     font-size: calc(0.6vh + 0.6vw + 0.4vmin);
     margin-bottom: calc(0.3vh + 0.3vw);
+    transition: color 0.4s;
+
+    > span {
+      font-family: var(--inter);
+      color: var(--grey2);
+    }
   }
 
   > input,
@@ -23,6 +29,7 @@ export const ThemeInput = styled.div`
     font-weight: 400;
     font-size: calc(0.6vh + 0.6vw + 0.5vmin);
     resize: none;
+    transition: border 0.4s;
 
     &::placeholder {
       color: var(--grey3);

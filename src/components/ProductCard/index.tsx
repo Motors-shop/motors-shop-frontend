@@ -28,7 +28,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
   owner,
   isOwner,
   isPublished = false,
-  vehicleId,
+  vehicleData,
   ...linkProps
 }) => {
   const { user } = useContext(UserContext);
@@ -37,7 +37,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
   return (
     <div>
       <Modal name="editVehicle" title="Editar anúncio">
-        <EditVehicle vehicleId={vehicleId} />
+        <EditVehicle vehicleData={vehicleData} />
       </Modal>
       <ProductCardContainer {...linkProps} draggable="false">
         <CoverContainer>

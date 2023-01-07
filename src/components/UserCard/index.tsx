@@ -7,7 +7,7 @@ import { ThemeUserCard } from "./style";
 
 const UserCard = ({ admin, product, profile, data }: IUSerCardProps) => {
   const { id, name, biography } = data;
-  const { openModal, closeModal } = useModalControls();
+  const { openModal } = useModalControls();
 
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");
