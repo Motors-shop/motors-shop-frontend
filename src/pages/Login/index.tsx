@@ -17,7 +17,7 @@ import { useModalControls } from "../../components/Modal";
 
 const Login = () => {
   const { setUser, setLoadingUser } = useContext(UserContext);
-  const { openModal } = useModalControls();
+  const { openModal, closeModal } = useModalControls();
 
   const schema = yup.object().shape({
     email: yup.string().required(),
@@ -56,7 +56,7 @@ const Login = () => {
         menssage="Login efetuado com sucesso."
         closeable={false}
       >
-        <ThemeLinkButton variant="primary" to="/">
+        <ThemeLinkButton variant="primary" to="/" onClick={() => closeModal()}>
           Ver Produtos
         </ThemeLinkButton>
       </FeedbackMenssage>
