@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import Navbar from "../../components/Navbar";
@@ -11,14 +10,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import Modal, { useModalControls } from "../../components/Modal";
 import { api } from "../../service/api";
+import ThemeLinkButton from "../../components/ThemeLinkButton";
 
 const Register = () => {
-  if (!!localStorage.getItem("@motorsShop:token")) {
-    window.location.href = "/";
-  }
-
   const [userType, setUserType] = useState("COMPRADOR");
-  const navigate = useNavigate();
 
   const { openModal } = useModalControls();
 
@@ -69,7 +64,7 @@ const Register = () => {
       .post("/users", dataForAPI)
       .then((_) => {
         openModal("registerSucess");
-        Object.keys(schema).forEach((field) => resetField(field));
+        Object.keys(schema.fields).forEach((field) => resetField(field));
       })
       .then((err) => console.log(err));
   };
@@ -81,9 +76,9 @@ const Register = () => {
           <h4>Sua conta foi criada com sucesso!</h4>
           <p>Agora você poderá ver seus negócios crescendo em grande escala</p>
         </StyledMessageSucess>
-        <ThemeButton variant="primary" onClick={() => navigate("/login")}>
+        <ThemeLinkButton variant="primary" to="/login">
           Ir para o login
-        </ThemeButton>
+        </ThemeLinkButton>
       </Modal>
 
       <Navbar />

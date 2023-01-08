@@ -20,7 +20,7 @@ const UserCard = ({ product, profile, data }: IUSerCardProps) => {
       setIsAdmin(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");

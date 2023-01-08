@@ -9,9 +9,16 @@ const FeedbackMenssage: React.FC<React.PropsWithChildren<IFeedbackMessage>> = ({
   name,
   subtitle,
   menssage,
+  closeable = true,
 }) => {
   return (
-    <Modal name={name} title={title} feedback>
+    <Modal
+      name={name}
+      title={title}
+      feedback
+      closeable={closeable}
+      supressCloseableModalWarning={!closeable ? true : false}
+    >
       <StyledContainer>
         {!!subtitle && <h4>{subtitle}</h4>}
         <p>{menssage}</p>

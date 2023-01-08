@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { useModalControls } from "../components/Modal";
 import { api } from "../service/api";
 import { IUserData } from "./types";
 
@@ -22,20 +22,13 @@ const UserProvider = ({ children }: IProviderProps) => {
   const [loadingUser, setLoadingUser] = useState<boolean>(true);
   const token: string = localStorage.getItem("@motorsShop:token") || "";
   const [tokenCheck, setTokenCheck] = useState<boolean>(true);
+  const { openModal } = useModalControls();
 
   const parseJwt = (token: string) => {
     const decode = JSON.parse(atob(token.split(".")[1]));
     if (decode.exp * 1000 < new Date().getTime()) {
       localStorage.clear();
-      toast.warning("sessão expirada");
-
-      setTimeout(() => {
-        toast.warning("redirecionando para a página de login");
-
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 3000);
-      }, 2000);
+      openModal("sessionExpired");
     }
   };
 

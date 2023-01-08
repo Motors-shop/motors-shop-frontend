@@ -5,23 +5,19 @@ import ThemeButton from "../../components/ThemeButton";
 import ThemeLinkButton from "../../components/ThemeLinkButton";
 
 import { ThemeLogin } from "./style";
-import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../service/api";
-import { toast } from "react-toastify";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserProvider";
+import FeedbackMenssage from "../../components/FeedbackMenssage";
+import { useModalControls } from "../../components/Modal";
 
 const Login = () => {
-  if (!!localStorage.getItem("@motorsShop:token")) {
-    window.location.href = "/";
-  }
-
-  const navigate = useNavigate();
   const { setUser, setLoadingUser } = useContext(UserContext);
+  const { openModal } = useModalControls();
 
   const schema = yup.object().shape({
     email: yup.string().required(),
@@ -39,22 +35,34 @@ const Login = () => {
       .post("/session", data)
       .then((res) => {
         localStorage.setItem("@motorsShop:token", res.data.token);
-        toast.success("Login efetuado com sucesso!");
+
+        openModal("sessionSuccess");
 
         api
           .get("/users/profile", { headers: { Authorization: `Bearer ${res.data.token}` } })
           .then((res) => {
             setUser(res.data);
             setLoadingUser(false);
-
-            return navigate("/");
           });
       })
-      .catch((err) => toast.error("Email ou senha incorreto."));
+      .catch((_) => openModal("sessionError"));
   };
 
   return (
     <>
+      <FeedbackMenssage
+        name="sessionSuccess"
+        title="Sucesso"
+        menssage="Login efetuado com sucesso."
+        closeable={false}
+      >
+        <ThemeLinkButton variant="primary" to="/">
+          Ver Produtos
+        </ThemeLinkButton>
+      </FeedbackMenssage>
+
+      <FeedbackMenssage name="sessionError" title="Error" menssage="Email ou senha incorreto." />
+
       <Navbar />
       <ThemeLogin>
         <form onSubmit={handleSubmit(sendForm)}>

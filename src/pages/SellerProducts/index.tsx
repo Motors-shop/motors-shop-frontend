@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Modal from "../../components/Modal";
 import Footer from "../../components/Footer";
@@ -13,13 +13,14 @@ import { StyledBody, StyledPurpleBackground, StyledUserCard } from "./styles";
 import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import FeedbackMenssage from "../../components/FeedbackMenssage";
+import { UserContext } from "../../contexts/UserProvider";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
   const [motorbikes, setMotorbikes] = useState<IProductData[]>([]);
   const [cars, setCars] = useState<IProductData[]>([]);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const { user } = useContext(UserContext);
 
   const { user_id } = useParams();
 
@@ -33,9 +34,6 @@ const SellerProducts = () => {
 
       setUserData(data);
 
-      if (data.id === user_id) {
-        setIsAdmin(true);
-      }
       setCars(vehicles.filter(({ type }) => type === "CARRO"));
       setMotorbikes(vehicles.filter(({ type }) => type === "MOTO"));
 
@@ -72,7 +70,9 @@ const SellerProducts = () => {
       <StyledUserCard>{!loading && <UserCard profile data={userData} />}</StyledUserCard>
 
       <StyledBody>
-        {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />}
+        {user.id === user_id && (
+          <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />
+        )}
 
         {!loading && cars.length > 0 && (
           <VehicleSection type="products" title="Carros" data={cars} id="cars" />
