@@ -3,13 +3,14 @@ import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import ThemeButton from "../../components/ThemeButton";
-import { StyledHorizontalDisplay, ThemeRegister } from "./style";
+import { StyledHorizontalDisplay, StyledMessageSucess, ThemeRegister } from "./style";
 
 import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import Modal, { useModalControls } from "../../components/Modal";
+import { api } from "../../service/api";
 
 const Register = () => {
   if (!!localStorage.getItem("@motorsShop:token")) {
@@ -45,11 +46,12 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    const { name, password, email, cpf, phone, birthDate, biography, ...adress } = data;
+    const { name, password, email, cpf, phone, birthDate, biography, ...address } = data;
 
     const dataForAPI = {
       name,
@@ -57,24 +59,28 @@ const Register = () => {
       email,
       cpf,
       phone,
-      birthDate,
+      birthDate: birthDate.split("/").reverse().join("-"),
       biography,
       accountType: userType,
-      adress: adress,
+      address: address,
     };
 
-    console.log(dataForAPI);
-    console.log(errors);
-    // enviar dados para API e devolver uma resposta
-
-    openModal("registerSucess");
+    api
+      .post("/users", dataForAPI)
+      .then((_) => {
+        openModal("registerSucess");
+        Object.keys(schema).forEach((field) => resetField(field));
+      })
+      .then((err) => console.log(err));
   };
-
-  console.log(errors);
 
   return (
     <>
       <Modal name="registerSucess" title="Sucesso!">
+        <StyledMessageSucess>
+          <h4>Sua conta foi criada com sucesso!</h4>
+          <p>Agora você poderá ver seus negócios crescendo em grande escala</p>
+        </StyledMessageSucess>
         <ThemeButton variant="primary" onClick={() => navigate("/login")}>
           Ir para o login
         </ThemeButton>

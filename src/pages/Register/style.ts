@@ -56,3 +56,26 @@ export const StyledHorizontalDisplay = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const StyledMessageSucess = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  margin: 30px auto;
+
+  > h4 {
+    font-family: var(--lexend);
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--grey1);
+  }
+
+  > p {
+    font-family: var(--inter);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--grey2);
+  }
+`;

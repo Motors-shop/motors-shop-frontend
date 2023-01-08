@@ -32,10 +32,10 @@ const SellerProducts = () => {
       }));
 
       setUserData(data);
+
       if (data.id === user_id) {
         setIsAdmin(true);
       }
-
       setCars(vehicles.filter(({ type }) => type === "CARRO"));
       setMotorbikes(vehicles.filter(({ type }) => type === "MOTO"));
 
@@ -69,9 +69,7 @@ const SellerProducts = () => {
 
       <StyledPurpleBackground />
 
-      <StyledUserCard>
-        {!loading && <UserCard profile admin={isAdmin} data={userData} />}
-      </StyledUserCard>
+      <StyledUserCard>{!loading && <UserCard profile data={userData} />}</StyledUserCard>
 
       <StyledBody>
         {isAdmin && <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />}
