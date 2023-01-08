@@ -4,10 +4,23 @@ import { useModalControls } from "../Modal";
 
 import { IUSerCardProps } from "./types";
 import { ThemeUserCard } from "./style";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../contexts/UserProvider";
 
-const UserCard = ({ admin, product, profile, data }: IUSerCardProps) => {
+const UserCard = ({ product, profile, data }: IUSerCardProps) => {
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const { id, name, biography } = data;
-  const { openModal, closeModal } = useModalControls();
+  const { openModal } = useModalControls();
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user.id === id) {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function getNameInitials(name: string): string {
     const splittedName = name.split(" ");
@@ -32,7 +45,7 @@ const UserCard = ({ admin, product, profile, data }: IUSerCardProps) => {
       </p>
       <span>{biography}</span>
       {product && <ThemeLinkButton to={`/${id}/products`}>Ver todos anuncios</ThemeLinkButton>}
-      {profile && admin && (
+      {profile && isAdmin && (
         <ThemeButton outlined variant="primary" onClick={() => openModal("vehicleRegister")}>
           Criar anuncio
         </ThemeButton>

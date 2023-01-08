@@ -12,11 +12,15 @@ import { api } from "../../service/api";
 import { ContainerComment } from "./style";
 import { CommentContext } from "../../contexts/CommentProvider";
 import { UserContext } from "../../contexts/UserProvider";
+import { ICommentAreaProps } from "./types";
+import { useModalControls } from "../Modal";
+import FeedbackMenssage from "../FeedbackMenssage";
 
-const NewCommentArea = () => {
+const NewCommentArea = ({ productOwnerId }: ICommentAreaProps) => {
   const [canSend, setCanSend] = useState<boolean>(false);
-  const { token } = useContext(UserContext);
+  const { user, token, loadingUser } = useContext(UserContext);
   const { setComments } = useContext(CommentContext);
+  const { openModal } = useModalControls();
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -50,7 +54,13 @@ const NewCommentArea = () => {
 
         api.get(`/comments/${id}`).then((res) => setComments(res.data));
       })
-      .catch((err) => console.log(err));
+      .catch((_) => {
+        if (productOwnerId === user.id) {
+          openModal("ownerCommentError");
+        } else {
+          openModal("userCommentError");
+        }
+      });
   };
 
   const addSuggestion = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -60,26 +70,38 @@ const NewCommentArea = () => {
   };
 
   return (
-    <ContainerComment>
-      <UserChip name="Samuel Leão" user />
+    <>
+      <FeedbackMenssage
+        name="ownerCommentError"
+        title="Aviso"
+        menssage="Voçê não pode deixar um comentário no próprio produto"
+      />
+      <FeedbackMenssage
+        name="userCommentError"
+        title="Aviso"
+        menssage="Você já deixou seu comentário nesse produto"
+      />
+      <ContainerComment>
+        {!loadingUser && <UserChip name={user.name} user />}
 
-      <form onChange={verifyComment} onSubmit={handleSubmit(onSubmitFunction)}>
-        <Input
-          type="textarea"
-          name="commentary"
-          register={register}
-          placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
-        />
-        <ThemeButton variant="primary" disabled={!canSend} type="submit">
-          Comentar
-        </ThemeButton>
-      </form>
-      <div className="recommendations">
-        <span onClick={(e) => addSuggestion(e)}>Gostei muito!</span>
-        <span onClick={(e) => addSuggestion(e)}>Incrível</span>
-        <span onClick={(e) => addSuggestion(e)}>Recomendável para amigos!</span>
-      </div>
-    </ContainerComment>
+        <form onChange={verifyComment} onSubmit={handleSubmit(onSubmitFunction)}>
+          <Input
+            type="textarea"
+            name="commentary"
+            register={register}
+            placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+          />
+          <ThemeButton variant="primary" disabled={!canSend} type="submit">
+            Comentar
+          </ThemeButton>
+        </form>
+        <div className="recommendations">
+          <span onClick={(e) => addSuggestion(e)}>Gostei muito!</span>
+          <span onClick={(e) => addSuggestion(e)}>Incrível</span>
+          <span onClick={(e) => addSuggestion(e)}>Recomendável para amigos!</span>
+        </div>
+      </ContainerComment>
+    </>
   );
 };
 

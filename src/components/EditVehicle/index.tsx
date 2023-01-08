@@ -7,12 +7,9 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./styles";
-import { api } from "../../service/api";
 import { IProductData, IProductIdProps } from "./type";
 
-const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
-  vehicleData,
-}) => {
+const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehicleData }) => {
   const [sellType, setSellType] = useState("VENDA");
   const [type, setType] = useState("CARRO");
   const [isPublish, setIsPublish] = useState<boolean>(false);
@@ -27,6 +24,7 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
     setType(vehicleData.type);
     setGallery(vehicleData.photos.map((photo) => photo.url));
     setVehicle(vehicleData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const vehicleRegisterSchema = yup.object().shape({

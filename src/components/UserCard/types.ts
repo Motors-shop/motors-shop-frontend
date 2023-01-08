@@ -7,7 +7,6 @@ export interface IUserCardData {
 export interface IUSerCardProps {
   product?: boolean;
   profile?: boolean;
-  admin?: boolean;
   data: IUserCardData;
 }
 

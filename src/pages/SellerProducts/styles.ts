@@ -24,6 +24,7 @@ export const StyledUserCard = styled.div`
   }
 
   @media (max-width: 425px) {
+    padding-top: 50px;
     > div {
       width: 90%;
     }

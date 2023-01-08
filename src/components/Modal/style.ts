@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { IModalStyledProps } from "./types";
 
-export const ModalBackground = styled.div`
+export const ModalBackground = styled.div<IModalStyledProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -16,10 +17,17 @@ export const ModalBackground = styled.div`
   z-index: 9999;
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  ${({ feedBack }) =>
+    feedBack &&
+    css`
+      justify-content: flex-start;
+    `}
 `;
 
-export const ModalContainer = styled.aside`
-  width: 95vh;
+export const ModalContainer = styled.aside<IModalStyledProps>`
+  max-height: 95vh;
+  min-width: 520px;
   max-width: 520px;
 
   background-color: var(--whiteFixed);
@@ -27,6 +35,17 @@ export const ModalContainer = styled.aside`
 
   display: flex;
   flex-direction: column;
+
+  ${({ feedBack }) =>
+    feedBack &&
+    css`
+      margin-top: 10vh;
+    `}
+
+  @media (max-width: 425px) {
+    min-width: 90%;
+    max-width: 90%;
+  }
 `;
 
 export const ModalHeader = styled.header`

@@ -18,7 +18,7 @@ export const ThemeLogin = styled.main`
     gap: calc(1.1vh + 1.1vw);
 
     > h2 {
-      font-family: "Lexend";
+      font-family: var(--lexend);
       font-weight: 500;
       font-size: calc(1vh + 1vw + 0.2vmin);
       color: #000;

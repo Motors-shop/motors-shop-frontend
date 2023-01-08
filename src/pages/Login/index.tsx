@@ -46,6 +46,7 @@ const Login = () => {
           .then((res) => {
             setUser(res.data);
             setLoadingUser(false);
+
             return navigate("/");
           });
       })
@@ -61,16 +62,16 @@ const Login = () => {
 
           <Input
             register={register}
-            error={errors.email?.message as string}
+            error={errors.email && "Campo obrigatório"}
             placeholder="Digitar usuário"
-            type="text"
+            type="email"
             label="Usuário"
             name="email"
           />
           <div>
             <Input
               register={register}
-              error={errors.password?.message as string}
+              error={errors.password && "Campo obrigatório"}
               placeholder="Digitar senha"
               type="password"
               label="Senha"

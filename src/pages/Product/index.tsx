@@ -45,7 +45,7 @@ const Product = () => {
               </div>
             </div>
             <Comments />
-            <NewCommentArea />
+            <NewCommentArea productOwnerId={productData!.owner.id} />
           </>
         )}
       </Container>

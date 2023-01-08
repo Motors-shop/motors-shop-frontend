@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,8 @@ import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./styles";
 import { useModalControls } from "../Modal";
+import { api } from "../../service/api";
+import { UserContext } from "../../contexts/UserProvider";
 
 const VehicleRegister: React.FC = () => {
   const [sellType, setSellType] = useState("VENDA");
@@ -17,36 +19,30 @@ const VehicleRegister: React.FC = () => {
   const maxGalleryImages = 5;
 
   const { openModal } = useModalControls();
+  const { token } = useContext(UserContext);
 
   const vehicleRegisterSchema = yup.object().shape({
     title: yup.string(),
-
     year: yup.string(),
-
     km: yup.string(),
-
     price: yup.string(),
-
     description: yup.string(),
-
     capeImage: yup.string(),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm({ resolver: yupResolver(vehicleRegisterSchema) });
+  const { register, handleSubmit, watch } = useForm({
+    resolver: yupResolver(vehicleRegisterSchema),
+  });
 
   const sendForm = (data: FieldValues) => {
     data.sellType = sellType;
     data.type = type;
-    data.gallery = gallery;
+    data.photos = gallery.filter((img) => img !== "");
 
-    console.log(data);
-
-    openModal("vehicleRegisterSucess");
+    api
+      .post("/vehicles", data, { headers: { Authorization: `Bearer ${token}` } })
+      .then((_) => openModal("vehicleRegisterSucess"))
+      .catch((_) => openModal("vehicleRegisterError"));
   };
 
   const verifyInputs = () => {
@@ -63,6 +59,8 @@ const VehicleRegister: React.FC = () => {
 
   return (
     <StyledForm onChange={verifyInputs} onSubmit={handleSubmit(sendForm)}>
+      <h4>Tipo de anuncio</h4>
+
       <StyledHorizontalDisplay>
         <ThemeButton
           variant={sellType === "VENDA" ? "primary" : "normal"}
@@ -80,13 +78,7 @@ const VehicleRegister: React.FC = () => {
         </ThemeButton>
       </StyledHorizontalDisplay>
 
-      <Input
-        label="Título"
-        placeholder="Digitar título"
-        name="title"
-        register={register}
-        error={errors.title?.message as string}
-      />
+      <Input label="Título" placeholder="Digitar título" name="title" register={register} />
 
       <StyledHorizontalDisplay>
         <Input
@@ -95,17 +87,9 @@ const VehicleRegister: React.FC = () => {
           name="year"
           type="number"
           register={register}
-          error={errors.year?.message as string}
         />
 
-        <Input
-          label="Quilometragem"
-          placeholder="0"
-          name="km"
-          type="number"
-          register={register}
-          error={errors.km?.message as string}
-        />
+        <Input label="Quilometragem" placeholder="0" name="km" type="number" register={register} />
 
         <Input
           label="Preço"
@@ -113,7 +97,6 @@ const VehicleRegister: React.FC = () => {
           name="price"
           type="number"
           register={register}
-          error={errors.price?.message as string}
         />
       </StyledHorizontalDisplay>
 
@@ -123,7 +106,6 @@ const VehicleRegister: React.FC = () => {
         name="description"
         type="textarea"
         register={register}
-        error={errors.description?.message as string}
       />
 
       <StyledHorizontalDisplay>
@@ -148,10 +130,9 @@ const VehicleRegister: React.FC = () => {
         placeholder="Inserir URL da imagem"
         name="capeImage"
         register={register}
-        error={errors.capeImage?.message as string}
       />
 
-      {gallery.map((item, index) => {
+      {gallery.map((_, index) => {
         return (
           <Input
             label={`${index + 1}º Imagem da Galeria`}

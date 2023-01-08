@@ -11,13 +11,17 @@ const Input = ({
   id,
   error,
   register,
+  required,
   ...rest
 }: IInputProps) => {
   return (
     <ThemeInput>
       {label && (
-        <p>
-          {label} {!!error && <span> - {error}</span>}
+        <p style={{ color: error && "var(--alert1)" }}>
+          {label} {required && "*"}
+          {!!error && !required && (
+            <span style={{ color: error && "var(--alert1)" }}> - {error}</span>
+          )}
         </p>
       )}
       {type !== "textarea" ? (
@@ -26,6 +30,7 @@ const Input = ({
           id={id}
           name={name}
           placeholder={placeholder}
+          style={{ borderColor: error && "var(--alert1)" }}
           {...register(name)}
           {...rest}
         />
@@ -36,6 +41,7 @@ const Input = ({
           cols={cols ? cols : 25}
           rows={rows ? rows : 5}
           placeholder={placeholder}
+          style={{ borderColor: error && "var(--alert1)" }}
           {...register(name)}
           {...rest}
         ></textarea>

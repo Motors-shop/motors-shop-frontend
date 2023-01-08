@@ -15,9 +15,17 @@ export const StyledForm = styled.form`
 
   > div:last-child {
     justify-content: flex-end;
+    margin-bottom: 25px;
+
     > button {
       width: auto;
     }
+  }
+
+  > h4 {
+    font-family: var(--inter);
+    font-weight: 500;
+    font-size: 14px;
   }
 
   ::-webkit-scrollbar {
