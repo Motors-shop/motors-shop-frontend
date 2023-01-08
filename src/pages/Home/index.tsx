@@ -25,9 +25,7 @@ const Home = () => {
         setCars(data.filter(({ type }) => type === "CARRO"));
         setMotorbikes(data.filter(({ type }) => type === "MOTO"));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }, []);
 
   const scrollTo = (name: string) => {

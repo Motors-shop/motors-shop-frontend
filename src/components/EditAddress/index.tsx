@@ -52,7 +52,6 @@ const EditAddress: React.FC = () => {
       .catch(() => {
         openModal("actionError");
       });
-    console.log(data);
   };
 
   return (
