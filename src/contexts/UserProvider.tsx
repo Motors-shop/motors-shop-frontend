@@ -22,13 +22,15 @@ const UserProvider = ({ children }: IProviderProps) => {
   const [loadingUser, setLoadingUser] = useState<boolean>(true);
   const token: string = localStorage.getItem("@motorsShop:token") || "";
   const [tokenCheck, setTokenCheck] = useState<boolean>(true);
-  const { openModal } = useModalControls();
+  const { closeModal } = useModalControls();
 
   const parseJwt = (token: string) => {
     const decode = JSON.parse(atob(token.split(".")[1]));
     if (decode.exp * 1000 < new Date().getTime()) {
       localStorage.clear();
-      openModal("sessionExpired");
+      setLoadingUser(true);
+      setUser({} as IUserData);
+      closeModal();
     }
   };
 
@@ -51,7 +53,7 @@ const UserProvider = ({ children }: IProviderProps) => {
         setUser(res.data);
         setLoadingUser(false);
       })
-      .catch(() => localStorage.clear());
+      .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

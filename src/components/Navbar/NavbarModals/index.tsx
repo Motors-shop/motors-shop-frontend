@@ -2,7 +2,6 @@ import EditAddress from "../../EditAddress";
 import EditProfile from "../../EditProfile";
 import FeedbackMenssage from "../../FeedbackMenssage";
 import Modal from "../../Modal";
-import ThemeLinkButton from "../../ThemeLinkButton";
 
 const NavbarModals = () => {
   return (
@@ -33,16 +32,6 @@ const NavbarModals = () => {
         subtitle="Ops! Algo deu errado"
         menssage="Ocorreu um erro ao tentar atualizar seus dados, por favor tente novamente mais tarde."
       />
-
-      <FeedbackMenssage
-        name="sessionExpired"
-        title="Sessão expirada"
-        menssage="Para continuar comprando ou vendendo por favor faça o login novamente"
-      >
-        <ThemeLinkButton variant="primary" to="/login">
-          Ir para o login
-        </ThemeLinkButton>
-      </FeedbackMenssage>
     </>
   );
 };
