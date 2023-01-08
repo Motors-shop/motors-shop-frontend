@@ -47,10 +47,6 @@ const Login = () => {
             setUser(res.data);
             setLoadingUser(false);
 
-            setTimeout(() => {
-              setLoadingUser(true);
-              localStorage.clear();
-            }, 7200000);
             return navigate("/");
           });
       })
