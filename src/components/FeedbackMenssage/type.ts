@@ -3,4 +3,5 @@ export interface IFeedbackMessage {
   title: string;
   subtitle?: string;
   menssage: string;
+  closeable?: boolean;
 }
