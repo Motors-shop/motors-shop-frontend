@@ -11,6 +11,7 @@ import { UserContext } from "../../contexts/UserProvider";
 import { ModalContext } from "../../contexts/ModalProvider";
 import { api } from "../../service/api";
 import { useModalControls } from "../Modal";
+import { formatFileds } from "../../utils";
 
 const EditProfile: React.FC = () => {
   const { user, token } = useContext(UserContext);
@@ -20,10 +21,10 @@ const EditProfile: React.FC = () => {
   const editProfileSchema = yup.object().shape({
     name: yup.string(),
     email: yup.string(),
-    cpf: yup.string(),
-    phone: yup.string(),
+    cpf: yup.string().min(14),
+    phone: yup.string().min(15),
     biography: yup.string(),
-    birthDate: yup.string(),
+    birthDate: yup.string().min(10),
   });
 
   const { register, handleSubmit, setValue, resetField } = useForm({
@@ -58,22 +59,42 @@ const EditProfile: React.FC = () => {
   return (
     <StyledForm onSubmit={handleSubmit(sendForm)}>
       <h4>Informações pessoais</h4>
-      <Input label="Nome" placeholder={user.name} name="name" register={register} />
-      <Input label="Email" placeholder={user.email} name="email" register={register} />
-      <Input label="CPF" placeholder={user.cpf} name="cpf" register={register} />
-      <Input label="Celular" placeholder={user.phone} name="phone" register={register} />
+      <Input label="Nome" placeholder={user.name} name="name" maxLength={120} register={register} />
+      <Input
+        label="Email"
+        placeholder={user.email}
+        name="email"
+        maxLength={120}
+        register={register}
+      />
+      <Input
+        label="CPF"
+        placeholder={user.cpf}
+        name="cpf"
+        register={register}
+        onChange={(e) => formatFileds.cpf(e.target.value, e.target)}
+      />
+      <Input
+        label="Celular"
+        placeholder={user.phone}
+        name="phone"
+        register={register}
+        onChange={(e) => formatFileds.phone(e.target.value, e.target)}
+      />
       <Input
         label="Data de nascimento"
         placeholder={user.birthDate}
         name="birthDate"
         type="text"
         register={register}
+        onChange={(e) => formatFileds.birthdate(e.target.value, e.target)}
       />
       <Input
         label="Descrição"
         placeholder={user.biography}
         name="biography"
         register={register}
+        maxLength={300}
         type="textarea"
       />
 

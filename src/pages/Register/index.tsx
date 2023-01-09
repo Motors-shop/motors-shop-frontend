@@ -11,6 +11,8 @@ import { useState } from "react";
 import Modal, { useModalControls } from "../../components/Modal";
 import { api } from "../../service/api";
 import ThemeLinkButton from "../../components/ThemeLinkButton";
+import { formatFileds } from "../../utils";
+import FeedbackMenssage from "../../components/FeedbackMenssage";
 
 const Register = () => {
   const [userType, setUserType] = useState("COMPRADOR");
@@ -25,12 +27,12 @@ const Register = () => {
       .required()
       .oneOf([yup.ref("password")], "Senha não corresponde"),
     email: yup.string().required(),
-    cpf: yup.string().required().max(11),
-    phone: yup.string().required(),
-    birthDate: yup.string().required(),
+    cpf: yup.string().required().min(14),
+    phone: yup.string().required().min(15),
+    birthDate: yup.string().required().min(10),
     biography: yup.string().required(),
 
-    cep: yup.string().required(),
+    cep: yup.string().required().min(9),
     state: yup.string().required(),
     city: yup.string().required(),
     street: yup.string().required(),
@@ -46,7 +48,8 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    const { name, password, email, cpf, phone, birthDate, biography, ...address } = data;
+    const { name, password, email, cpf, phone, birthDate, biography, confirmPassword, ...address } =
+      data;
 
     const dataForAPI = {
       name,
@@ -65,8 +68,9 @@ const Register = () => {
       .then((_) => {
         openModal("registerSucess");
         Object.keys(schema.fields).forEach((field) => resetField(field));
+        setUserType("COMPRADOR");
       })
-      .then((err) => console.log(err));
+      .catch(() => openModal("registerError"));
   };
 
   return (
@@ -80,6 +84,12 @@ const Register = () => {
           Ir para o login
         </ThemeLinkButton>
       </Modal>
+
+      <FeedbackMenssage
+        name="registerError"
+        title="Ops! algo deu errado"
+        menssage="Ocorreu um erro ao tentar criar um novo usuário, por favor tente novamente mais tarde"
+      />
 
       <Navbar />
       <ThemeRegister>
@@ -116,6 +126,7 @@ const Register = () => {
             placeholder="000.000.000-00"
             label="CPF"
             name="cpf"
+            onChange={(e) => formatFileds.cpf(e.target.value, e.target)}
             required
           />
 
@@ -125,6 +136,7 @@ const Register = () => {
             placeholder="(DDD) 90000-0000"
             label="Celular"
             name="phone"
+            onChange={(e) => formatFileds.phone(e.target.value, e.target)}
             required
           />
 
@@ -134,6 +146,7 @@ const Register = () => {
             placeholder="00/00/0000"
             label="Data de Nascimeto"
             name="birthDate"
+            onChange={(e) => formatFileds.birthdate(e.target.value, e.target)}
             required
           />
 
@@ -144,6 +157,7 @@ const Register = () => {
             type="textarea"
             label="Descrição"
             name="biography"
+            maxLength={300}
             required
           />
 
@@ -155,6 +169,7 @@ const Register = () => {
             placeholder="00000-000"
             label="CEP"
             name="cep"
+            onChange={(e) => formatFileds.cep(e.target.value, e.target)}
             required
           />
 
@@ -165,6 +180,7 @@ const Register = () => {
               placeholder="Digitar Estado"
               label="Estado"
               name="state"
+              maxLength={2}
               required
             />
 
@@ -217,9 +233,9 @@ const Register = () => {
               Comprador
             </ThemeButton>
             <ThemeButton
-              variant={userType === "ANUNCIANTE" ? "primary" : "normal"}
-              outlined={userType !== "ANUNCIANTE"}
-              onClick={() => setUserType("ANUNCIANTE")}
+              variant={userType === "VENDEDOR" ? "primary" : "normal"}
+              outlined={userType !== "VENDEDOR"}
+              onClick={() => setUserType("VENDEDOR")}
             >
               Anunciante
             </ThemeButton>

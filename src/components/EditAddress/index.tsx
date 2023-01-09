@@ -11,6 +11,7 @@ import { ModalContext } from "../../contexts/ModalProvider";
 import { UserContext } from "../../contexts/UserProvider";
 import { api } from "../../service/api";
 import { useModalControls } from "../Modal";
+import { formatFileds } from "../../utils";
 
 const EditAddress: React.FC = () => {
   const { user, token } = useContext(UserContext);
@@ -19,7 +20,7 @@ const EditAddress: React.FC = () => {
   const { openModal } = useModalControls();
 
   const editAddressSchema = yup.object().shape({
-    cep: yup.string(),
+    cep: yup.string().min(9),
     state: yup.string(),
     city: yup.string(),
     street: yup.string(),
@@ -57,21 +58,52 @@ const EditAddress: React.FC = () => {
   return (
     <StyledForm onSubmit={handleSubmit(sendForm)}>
       <h4>Informações de endereço</h4>
-      <Input label="CEP" placeholder={address.cep} name="cep" register={register} />
+      <Input
+        label="CEP"
+        placeholder={address.cep}
+        name="cep"
+        register={register}
+        onChange={(e) => formatFileds.cep(e.target.value, e.target)}
+      />
 
       <StyledHorizontalDisplay>
-        <Input label="Estado" placeholder={address.state} name="state" register={register} />
-        <Input label="Cidade" placeholder={address.city} name="city" register={register} />
+        <Input
+          label="Estado"
+          placeholder={address.state}
+          name="state"
+          maxLength={2}
+          register={register}
+        />
+        <Input
+          label="Cidade"
+          placeholder={address.city}
+          name="city"
+          maxLength={30}
+          register={register}
+        />
       </StyledHorizontalDisplay>
 
-      <Input label="Rua" placeholder={address.street} name="street" register={register} />
+      <Input
+        label="Rua"
+        placeholder={address.street}
+        name="street"
+        maxLength={80}
+        register={register}
+      />
 
       <StyledHorizontalDisplay>
-        <Input label="Número" placeholder={address.number} name="number" register={register} />
+        <Input
+          label="Número"
+          placeholder={address.number}
+          name="number"
+          maxLength={5}
+          register={register}
+        />
         <Input
           label="Complemento"
           placeholder={address.complement}
           name="complement"
+          maxLength={60}
           register={register}
         />
       </StyledHorizontalDisplay>
