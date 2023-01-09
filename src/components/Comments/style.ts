@@ -22,6 +22,10 @@ export const ContainerComments = styled.div`
     display: flex;
     flex-direction: column;
     gap: calc(2vh + 2vw);
+
+    > p {
+      color: var(--grey3);
+    }
   }
 
   @media (max-width: 425px) {

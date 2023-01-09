@@ -37,17 +37,11 @@ export const ThemeNav = styled.header`
         font-family: var(--inter);
         font-weight: 600;
         font-size: calc(0.7vh + 0.7vw + 0.1vmin);
-        border-bottom: calc(0.03vh + 0.03vw) solid transparent;
 
         margin-right: calc(2vh + 2vw);
         color: var(--grey2);
         transition: color 0.3s;
-
-        &:hover {
-          cursor: pointer;
-          color: var(--brand2);
-          border-bottom: calc(0.03vh + 0.03vw) solid var(--brand2);
-        }
+        cursor: pointer;
       }
     }
 
@@ -110,12 +104,6 @@ export const ThemeNav = styled.header`
           font-size: calc(1.2vh + 1.2vw + 0.5vmin);
           margin-bottom: calc(2vh + 2vw);
           width: 100%;
-
-          &:hover {
-            cursor: pointer;
-            color: var(--brand2);
-            border-bottom: calc(0.03vh + 0.03vw) solid transparent;
-          }
         }
       }
 

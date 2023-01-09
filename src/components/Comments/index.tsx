@@ -25,9 +25,11 @@ const Comments = () => {
     <ContainerComments>
       <h3>Comentarios</h3>
       <ul>
-        {comments.map((comment) => (
-          <CommentCard key={comment.id} {...comment} />
-        ))}
+        {comments.length > 0 ? (
+          comments.map((comment) => <CommentCard key={comment.id} {...comment} />)
+        ) : (
+          <p>O Produto ainda não possui nenhum comentário, seja o primeiro(a) a comentar</p>
+        )}
       </ul>
     </ContainerComments>
   );
