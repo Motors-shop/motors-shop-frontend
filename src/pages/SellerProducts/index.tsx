@@ -1,19 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 
-import Modal from "../../components/Modal";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import UserCard from "../../components/UserCard";
 import VehicleSection from "../../components/VehicleSection";
-import VehicleRegister from "../../components/VehicleRegister";
 
 import { api } from "../../service/api";
 import { IProductData } from "../Home/types";
 import { StyledBody, StyledPurpleBackground, StyledUserCard } from "./styles";
 import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
-import FeedbackMenssage from "../../components/FeedbackMenssage";
 import { UserContext } from "../../contexts/UserProvider";
+import SellerProductsModals from "./SellerProductsModals";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -46,22 +44,7 @@ const SellerProducts = () => {
 
   return (
     <>
-      <Modal name="vehicleRegister" title="Criar Anuncio">
-        <VehicleRegister />
-      </Modal>
-
-      <FeedbackMenssage
-        name="vehicleRegisterSucess"
-        subtitle="Sucesso!"
-        title="Seu anúncio foi criado com sucesso!"
-        menssage="Agora você poderá ver negócios crescendo em grande escala"
-      />
-      <FeedbackMenssage
-        name="vehicleRegisterError"
-        subtitle="Error!"
-        title="Ops! algo deu errado."
-        menssage="Ocorreu um erro ao tentar cadastrar um novo veículo, por favor tente novamente mais tarde"
-      />
+      <SellerProductsModals />
 
       <Navbar />
 
