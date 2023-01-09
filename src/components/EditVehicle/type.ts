@@ -22,4 +22,5 @@ export interface IProductData {
 
 export interface IProductIdProps {
   vehicleData: IProductData;
+  token: string;
 }

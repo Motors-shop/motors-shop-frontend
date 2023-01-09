@@ -18,7 +18,7 @@ const VehicleRegister: React.FC = () => {
   const [cantSend, setCantSend] = useState(true);
   const maxGalleryImages = 5;
 
-  const { openModal } = useModalControls();
+  const { openModal, closeModal } = useModalControls();
   const { token } = useContext(UserContext);
 
   const vehicleRegisterSchema = yup.object().shape({
@@ -132,22 +132,20 @@ const VehicleRegister: React.FC = () => {
         register={register}
       />
 
-      {gallery.map((_, index) => {
-        return (
-          <Input
-            label={`${index + 1}º Imagem da Galeria`}
-            placeholder="Inserir URL da imagem"
-            name={`${index}galleryImage`}
-            register={() => {}}
-            key={index}
-            onChange={(event) => {
-              const galleryToUpdate = [...gallery];
-              galleryToUpdate[index] = event.target.value;
-              setGallery(galleryToUpdate);
-            }}
-          />
-        );
-      })}
+      {gallery.map((_, index) => (
+        <Input
+          label={`${index + 1}º Imagem da Galeria`}
+          placeholder="Inserir URL da imagem"
+          name={`${index}galleryImage`}
+          register={() => {}}
+          key={index}
+          onChange={(event) => {
+            const galleryToUpdate = [...gallery];
+            galleryToUpdate[index] = event.target.value;
+            setGallery(galleryToUpdate);
+          }}
+        />
+      ))}
 
       <ThemeButton
         disabled={gallery.length > maxGalleryImages}
@@ -158,7 +156,9 @@ const VehicleRegister: React.FC = () => {
       </ThemeButton>
 
       <StyledHorizontalDisplay>
-        <ThemeButton variant="negative">Cancelar</ThemeButton>
+        <ThemeButton variant="negative" onClick={() => closeModal()}>
+          Cancelar
+        </ThemeButton>
         <ThemeButton disabled={cantSend} variant="primary" type="submit">
           Criar anúncio
         </ThemeButton>

@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../contexts/UserProvider";
+import { api } from "../../service/api";
+import { StyledHorizontalDisplay } from "../EditAddress/style";
 import EditVehicle from "../EditVehicle";
+import FeedbackMenssage from "../FeedbackMenssage";
 import Modal, { useModalControls } from "../Modal";
 
 import ThemeButton from "../ThemeButton";
@@ -31,21 +34,44 @@ const ProductCard: React.FC<IProductCardProps> = ({
   vehicleData,
   ...linkProps
 }) => {
-  const { user } = useContext(UserContext);
-  const { openModal } = useModalControls();
+  const { user, token } = useContext(UserContext);
+  const { openModal, closeModal } = useModalControls();
+
+  const removeVehicle = () => {
+    api
+      .delete(`/vehicles/${vehicleData.id}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((_) => openModal("vehicleDeleteSucess"))
+      .catch((_) => openModal("vehicleDeleteError"));
+  };
 
   return (
     <div>
-      <Modal name="editVehicle" title="Editar anúncio">
-        <EditVehicle vehicleData={vehicleData} />
+      <Modal name={`edit-${vehicleData.id}`} title="Editar anúncio">
+        <EditVehicle vehicleData={vehicleData} token={token} />
       </Modal>
+
+      <FeedbackMenssage
+        name={`delete-${vehicleData.id}`}
+        title="Excluir anúncio"
+        subtitle="Tem certeza que deseja remover este anúncio?"
+        menssage="Essa ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.
+        "
+      >
+        <StyledHorizontalDisplay style={{ justifyContent: "flex-end" }}>
+          <ThemeButton variant="negative" onClick={() => closeModal()}>
+            Cancelar
+          </ThemeButton>
+          <ThemeButton variant="alert" onClick={removeVehicle}>
+            Sim, excluir anúncio
+          </ThemeButton>
+        </StyledHorizontalDisplay>
+      </FeedbackMenssage>
+
       <ProductCardContainer {...linkProps} draggable="false">
         <CoverContainer>
           <img src={coverImage} alt={`${title} product`} draggable="false" />
           {isOwner && (
-            <OwnerBadge isPublished={isPublished}>
-              {isPublished ? "Ativo" : "Inativo"}
-            </OwnerBadge>
+            <OwnerBadge isPublished={isPublished}>{isPublished ? "Ativo" : "Inativo"}</OwnerBadge>
           )}
         </CoverContainer>
         <ProductTitle>{title}</ProductTitle>
@@ -76,7 +102,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
       {user.id === owner.id && isOwner && (
         <StyledAdminButtons>
           <ThemeButton
-            onClick={() => openModal("editVehicle")}
+            onClick={() => openModal(`edit-${vehicleData.id}`)}
             variant="normal"
             outlined={true}
           >

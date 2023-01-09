@@ -7,68 +7,64 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Input";
 import ThemeButton from "../ThemeButton";
 import { StyledForm, StyledHorizontalDisplay } from "./styles";
-import { IProductData, IProductIdProps } from "./type";
+import { IProductIdProps } from "./type";
+import { api } from "../../service/api";
+import { useModalControls } from "../Modal";
 
-const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehicleData }) => {
-  const [sellType, setSellType] = useState("VENDA");
-  const [type, setType] = useState("CARRO");
-  const [isPublish, setIsPublish] = useState<boolean>(false);
-  const [gallery, setGallery] = useState([""]);
-  const [cantSend, setCantSend] = useState<boolean>(true);
-  const [vehicle, setVehicle] = useState<IProductData>({} as IProductData);
+const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
+  vehicleData,
+  token,
+}) => {
+  const [sellType, setSellType] = useState(vehicleData.sellType);
+  const [type, setType] = useState(vehicleData.type);
+  const [isPublish, setIsPublish] = useState<boolean>(vehicleData.isPublished);
+  const [gallery, setGallery] = useState(vehicleData.photos.map((img) => img.url));
   const maxGalleryImages = 5;
 
-  useEffect(() => {
-    setIsPublish(vehicleData.isPublished);
-    setSellType(vehicleData.sellType);
-    setType(vehicleData.type);
-    setGallery(vehicleData.photos.map((photo) => photo.url));
-    setVehicle(vehicleData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { openModal } = useModalControls();
 
   const vehicleRegisterSchema = yup.object().shape({
     title: yup.string(),
-
     year: yup.string(),
-
     km: yup.string(),
-
     price: yup.string(),
-
     description: yup.string(),
-
     capeImage: yup.string(),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm({ resolver: yupResolver(vehicleRegisterSchema) });
+  const { register, handleSubmit, setValue, resetField } = useForm({
+    resolver: yupResolver(vehicleRegisterSchema),
+  });
+
+  useEffect(() => {
+    const { photos, ...fields } = vehicleRegisterSchema.fields;
+    const formFields = Object.keys(fields);
+
+    const vehicleKeys = Object.keys(vehicleData);
+    const vehicleValues = Object.values(vehicleData);
+
+    formFields.forEach((field) => setValue(field, vehicleValues[vehicleKeys.indexOf(field)]));
+
+    return () => formFields.forEach((field) => resetField(field));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sendForm = (data: FieldValues) => {
     data.sellType = sellType;
     data.type = type;
-    data.gallery = gallery;
-    console.log(data);
-  };
+    data.isPublished = isPublish;
+    data.photos = gallery;
 
-  const verifyInputs = () => {
-    watch("capeImage") &&
-    watch("description") &&
-    watch("km") &&
-    watch("price") &&
-    watch("title") &&
-    watch("year") &&
-    gallery[0].length >= 1
-      ? setCantSend(false)
-      : setCantSend(true);
+    api
+      .patch(`/vehicles/${vehicleData.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => openModal("vehicleUpdateSucess"))
+      .catch(() => openModal("vehicleUpdateError"));
   };
 
   return (
-    <StyledForm onChange={verifyInputs} onSubmit={handleSubmit(sendForm)}>
+    <StyledForm onSubmit={handleSubmit(sendForm)}>
       <h4>Tipo de anuncio</h4>
       <StyledHorizontalDisplay>
         <ThemeButton
@@ -88,51 +84,17 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehic
       </StyledHorizontalDisplay>
 
       <h4>Informações do veículo</h4>
-      <Input
-        label="Título"
-        placeholder={vehicle.title}
-        name="title"
-        register={register}
-        error={errors.title?.message as string}
-      />
+      <Input label="Título" name="title" register={register} />
 
       <StyledHorizontalDisplay>
-        <Input
-          label="Ano"
-          placeholder={vehicle.year}
-          name="year"
-          type="number"
-          register={register}
-          error={errors.year?.message as string}
-        />
+        <Input label="Ano" name="year" type="number" register={register} />
 
-        <Input
-          label="Quilometragem"
-          placeholder={vehicle.km}
-          name="km"
-          type="number"
-          register={register}
-          error={errors.km?.message as string}
-        />
+        <Input label="Quilometragem" name="km" type="number" register={register} />
 
-        <Input
-          label="Preço"
-          placeholder={vehicle.price}
-          name="price"
-          type="number"
-          register={register}
-          error={errors.price?.message as string}
-        />
+        <Input label="Preço" name="price" type="number" register={register} />
       </StyledHorizontalDisplay>
 
-      <Input
-        label="Descrição"
-        placeholder={vehicle.description}
-        name="description"
-        type="textarea"
-        register={register}
-        error={errors.description?.message as string}
-      />
+      <Input label="Descrição" name="description" type="textarea" register={register} />
 
       <h4>Tipo de Veículo</h4>
       <StyledHorizontalDisplay>
@@ -170,30 +132,22 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehic
         </ThemeButton>
       </StyledHorizontalDisplay>
 
-      <Input
-        label="Imagem de capa"
-        placeholder={vehicle.capeImage}
-        name="capeImage"
-        register={register}
-        error={errors.capeImage?.message as string}
-      />
+      <Input label="Imagem de capa" name="capeImage" register={register} />
 
-      {gallery.map((item, index) => {
-        return (
-          <Input
-            label={`${index + 1}º Imagem da Galeria`}
-            placeholder={vehicle.photos[index].url}
-            name={`${index}galleryImage`}
-            register={() => {}}
-            key={index}
-            onChange={(event) => {
-              const galleryToUpdate = [...gallery];
-              galleryToUpdate[index] = event.target.value;
-              setGallery(galleryToUpdate);
-            }}
-          />
-        );
-      })}
+      {gallery.map((_, index) => (
+        <Input
+          label={`${index + 1}º Imagem da Galeria`}
+          value={gallery[index]}
+          name={`galleryImage${index + 1}`}
+          register={() => {}}
+          key={index}
+          onChange={(event) => {
+            const galleryToUpdate = [...gallery];
+            galleryToUpdate[index] = event.target.value;
+            setGallery(galleryToUpdate);
+          }}
+        />
+      ))}
 
       <ThemeButton
         disabled={gallery.length > maxGalleryImages}
@@ -204,8 +158,10 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({ vehic
       </ThemeButton>
 
       <StyledHorizontalDisplay>
-        <ThemeButton variant="negative">Excluir anúncio</ThemeButton>
-        <ThemeButton disabled={cantSend} variant="primary" type="submit">
+        <ThemeButton variant="negative" onClick={() => openModal(`delete-${vehicleData.id}`)}>
+          Excluir anúncio
+        </ThemeButton>
+        <ThemeButton variant="primary" type="submit">
           Salvar alterações
         </ThemeButton>
       </StyledHorizontalDisplay>

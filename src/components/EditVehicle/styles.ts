@@ -8,6 +8,10 @@ export const StyledForm = styled.form`
   height: 700px;
   overflow-y: scroll;
 
+  > div:last-child {
+    margin-bottom: 35px;
+  }
+
   ::-webkit-scrollbar {
     width: 4px;
     left: -100px;
@@ -25,4 +29,8 @@ export const StyledForm = styled.form`
 export const StyledHorizontalDisplay = styled.div`
   display: flex;
   gap: 10px;
+
+  > button {
+    width: 50%;
+  }
 `;
