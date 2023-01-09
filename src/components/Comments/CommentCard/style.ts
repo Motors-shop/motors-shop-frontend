@@ -63,3 +63,23 @@ export const ThemeCard = styled.li`
     }
   }
 `;
+
+export const ThemeCommentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+`;
+
+export const ThemeButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  > button {
+    position: relative;
+
+    > svg {
+      position: absolute;
+    }
+  }
+`;
