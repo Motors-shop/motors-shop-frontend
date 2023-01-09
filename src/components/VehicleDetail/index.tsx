@@ -13,7 +13,7 @@ const VehicleDetail = ({ data }: IProductInfoProps) => {
           <span>{year}</span>
           <span>{km} KM</span>
         </div>
-        <p>R$ {price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+        <p>{price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
       </div>
       <ThemeButton disabled variant="primary">
         Comprar
