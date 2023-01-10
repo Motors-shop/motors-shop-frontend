@@ -5,6 +5,10 @@ export const StyledBody = styled.main`
   padding-top: 250px;
   padding-bottom: 1px;
   min-height: 55vh;
+
+  @media (max-width: 425px) {
+    padding-top: 450px;
+  }
 `;
 
 export const StyledTypeShowCase = styled.div`
@@ -18,14 +22,15 @@ export const StyledUserCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   > div {
     width: 75%;
     position: absolute;
   }
 
   @media (max-width: 425px) {
-    padding-top: 50px;
     > div {
+      margin-top: 200px;
       width: 90%;
     }
   }

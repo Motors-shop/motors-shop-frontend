@@ -40,6 +40,12 @@ export const StyledForm = styled.form`
     background: var(--brand3);
     border-radius: 10px;
   }
+
+  @media (max-width: 425px) {
+    > div:last-child {
+      margin-bottom: 120px;
+    }
+  }
 `;
 
 export const StyledHorizontalDisplay = styled.div`

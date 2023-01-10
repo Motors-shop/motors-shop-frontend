@@ -14,9 +14,9 @@ const Home = () => {
   const [cars, setCars] = useState<IProductData[]>([]);
   const [motorbikes, setMotorbikes] = useState<IProductData[]>([]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 
+  useEffect(() => {
     api
       .get("/vehicles")
       .then((res) => {
