@@ -34,10 +34,18 @@ const UserCard = ({ product, profile, data }: IUSerCardProps) => {
         {name} {profile && <span>Anunciante</span>}
       </p>
       <span>{biography}</span>
-      {product && <ThemeLinkButton to={`/${id}/products`}>Ver todos anuncios</ThemeLinkButton>}
+      {product && (
+        <ThemeLinkButton to={`/${id}/products`}>
+          Ver todos anuncios
+        </ThemeLinkButton>
+      )}
       {profile && user.id === id && (
-        <ThemeButton outlined variant="primary" onClick={() => openModal("vehicleRegister")}>
-          Criar anuncio
+        <ThemeButton
+          outlined
+          variant="primary"
+          onClick={() => openModal("vehicleRegister")}
+        >
+          Criar anúncio
         </ThemeButton>
       )}
     </ThemeUserCard>

@@ -7,12 +7,19 @@ import VehicleSection from "../../components/VehicleSection";
 
 import { api } from "../../service/api";
 import { IProductData } from "../Home/types";
-import { StyledBody, StyledPurpleBackground, StyledUserCard } from "./styles";
+import {
+  StyledBody,
+  StyledMenssageCreateFirstProduct,
+  StyledPurpleBackground,
+  StyledUserCard,
+} from "./styles";
 import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import { UserContext } from "../../contexts/UserProvider";
 import SellerProductsModals from "./SellerProductsModals";
 import LoadingUserCard from "../../components/LoadingUserCard";
+import ThemeButton from "../../components/ThemeButton";
+import { useModalControls } from "../../components/Modal";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -20,6 +27,7 @@ const SellerProducts = () => {
   const [cars, setCars] = useState<IProductData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { user } = useContext(UserContext);
+  const { openModal } = useModalControls();
 
   const { user_id } = useParams();
 
@@ -59,6 +67,21 @@ const SellerProducts = () => {
         {loading && (
           <VehicleSection title="" type="products" data={[]} id="auction" />
         )}
+
+        {cars.length === 0 &&
+          motorbikes.length === 0 &&
+          user.id === userData.id && (
+            <StyledMenssageCreateFirstProduct>
+              <p>Você ainda não tem anúncio. Crie seu primeiro aqui!</p>
+              <ThemeButton
+                outlined
+                variant="primary"
+                onClick={() => openModal("vehicleRegister")}
+              >
+                Criar anúncio
+              </ThemeButton>
+            </StyledMenssageCreateFirstProduct>
+          )}
 
         {user.id === user_id && (
           <VehicleSection

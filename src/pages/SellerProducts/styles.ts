@@ -36,3 +36,22 @@ export const StyledPurpleBackground = styled.div`
   width: 100%;
   height: 35vh;
 `;
+
+export const StyledMenssageCreateFirstProduct = styled.div`
+  border-radius: calc(0.2vh + 0.2vw);
+  padding: calc(1.65vh + 1.65vw) calc(2vh + 2vw);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1.35vh + 1.4vw);
+
+  > p {
+    font-size: 32px;
+  }
+
+  > button {
+    font-size: 32px;
+  }
+`;
