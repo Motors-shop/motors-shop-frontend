@@ -8,6 +8,12 @@ const VehicleDetail = ({ data }: IProductInfoProps) => {
   const { title, year, km, price, owner } = data;
   const { loadingUser, user } = useContext(UserContext);
 
+  let formattingPrice = String(price);
+
+  formattingPrice = String(formattingPrice).slice(0, 16).replace(/[^\d]/g, "");
+  formattingPrice = String(formattingPrice).replace(/(\d{1,2})$/, ",$1");
+  formattingPrice = String(formattingPrice).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+
   return (
     <ThemeDetailCard>
       <h2>{title}</h2>
@@ -16,7 +22,7 @@ const VehicleDetail = ({ data }: IProductInfoProps) => {
           <span>{year}</span>
           <span>{km} KM</span>
         </div>
-        <p>{price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+        <p>R$ {formattingPrice}</p>
       </div>
       <ThemeButton disabled={owner.id === user.id || loadingUser ? true : false} variant="primary">
         {owner.id === user.id || loadingUser ? (

@@ -47,6 +47,11 @@ export const Contaier = styled.main`
     }
   }
 
+  > #auction > ul > div > li {
+    max-width: 43%;
+    min-width: 43%;
+  }
+
   @media (max-width: 425px) {
     min-height: 83vh;
     min-width: 100%;

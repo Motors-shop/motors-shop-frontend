@@ -9,6 +9,11 @@ export const StyledBody = styled.main`
   @media (max-width: 425px) {
     padding-top: 450px;
   }
+
+  > #auction > ul > div > li {
+    max-width: 43%;
+    min-width: 43%;
+  }
 `;
 
 export const StyledTypeShowCase = styled.div`
