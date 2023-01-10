@@ -58,6 +58,7 @@ const Login = () => {
     if (location.state && location.state.newPassword) {
       openModal("changedPassword");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -89,9 +90,9 @@ const Login = () => {
           <Input
             register={register}
             error={errors.email && "Campo obrigatório"}
-            placeholder="Digitar usuário"
+            placeholder="Digitar email"
             type="email"
-            label="Usuário"
+            label="Email"
             name="email"
           />
           <div>

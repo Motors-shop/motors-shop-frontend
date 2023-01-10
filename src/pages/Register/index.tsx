@@ -22,8 +22,6 @@ const Register = () => {
 
   const { openModal } = useModalControls();
 
-  window.scrollTo(0, 0);
-
   const schema = yup.object().shape({
     name: yup.string().required(),
     password: yup.string().required(),
@@ -53,17 +51,8 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    const {
-      name,
-      password,
-      email,
-      cpf,
-      phone,
-      birthDate,
-      biography,
-      confirmPassword,
-      ...address
-    } = data;
+    const { name, password, email, cpf, phone, birthDate, biography, confirmPassword, ...address } =
+      data;
 
     const dataForAPI = {
       name,
@@ -111,11 +100,7 @@ const Register = () => {
         </ThemeLinkButton>
       </Modal>
 
-      <FeedbackMenssage
-        name="registerError"
-        title="Ops! algo deu errado"
-        menssage={errorMessage}
-      />
+      <FeedbackMenssage name="registerError" title="Ops! algo deu errado" menssage={errorMessage} />
 
       <Navbar />
       <ThemeRegister>
