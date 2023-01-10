@@ -2,7 +2,11 @@ import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import ThemeButton from "../../components/ThemeButton";
-import { StyledHorizontalDisplay, StyledMessageSucess, ThemeRegister } from "./style";
+import {
+  StyledHorizontalDisplay,
+  StyledMessageSucess,
+  ThemeRegister,
+} from "./style";
 
 import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
