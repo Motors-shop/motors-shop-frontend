@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import { UserContext } from "../../contexts/UserProvider";
 import SellerProductsModals from "./SellerProductsModals";
+import LoadingCard from "../../components/LoadingCard";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -50,19 +51,40 @@ const SellerProducts = () => {
 
       <StyledPurpleBackground />
 
-      <StyledUserCard>{!loading && <UserCard profile data={userData} />}</StyledUserCard>
+      <StyledUserCard>
+        {!loading && <UserCard profile data={userData} />}
+      </StyledUserCard>
 
       <StyledBody>
+        {loading && (
+          <VehicleSection title="" type="products" data={[]} id="auction" />
+        )}
+
         {user.id === user_id && (
-          <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />
+          <VehicleSection
+            title="Leilão"
+            type="auction"
+            data={cars}
+            id="auction"
+          />
         )}
 
         {!loading && cars.length > 0 && (
-          <VehicleSection type="products" title="Carros" data={cars} id="cars" />
+          <VehicleSection
+            type="products"
+            title="Carros"
+            data={cars}
+            id="cars"
+          />
         )}
 
         {!loading && motorbikes.length > 0 && (
-          <VehicleSection type="products" title="Motos" data={motorbikes} id="motorbikes" />
+          <VehicleSection
+            type="products"
+            title="Motos"
+            data={motorbikes}
+            id="motorbikes"
+          />
         )}
       </StyledBody>
       <Footer />
