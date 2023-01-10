@@ -47,6 +47,10 @@ export const ThemeDetailCard = styled.div`
     padding: calc(0.5vh + 0.5vw) calc(1.05vh + 1.05vw);
     gap: calc(0.2vh + 0.2vw);
 
+    > a {
+      color: inherit;
+    }
+
     &:hover {
       background-color: var(--brand4);
       color: var(--brand1);
