@@ -40,9 +40,7 @@ const SetPasswordForm: FC = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(
-              "@motorsShop:recoveryToken"
-            )}`,
+            Authorization: `Bearer ${localStorage.getItem("@motorsShop:recoveryToken")}`,
           },
         }
       )
@@ -53,7 +51,6 @@ const SetPasswordForm: FC = () => {
             newPassword: true,
           },
         });
-        console.log(res);
       })
       .catch((err) => {
         console.error(err);
@@ -74,10 +71,7 @@ const SetPasswordForm: FC = () => {
       />
       <Input
         register={register}
-        error={
-          errors.passwordConfirmation &&
-          (errors.passwordConfirmation?.message as string)
-        }
+        error={errors.passwordConfirmation && (errors.passwordConfirmation?.message as string)}
         type="password"
         label="Repita a senha"
         name="passwordConfirmation"
