@@ -25,6 +25,7 @@ const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
   const [motorbikes, setMotorbikes] = useState<IProductData[]>([]);
   const [cars, setCars] = useState<IProductData[]>([]);
+  const [auction, setAuction] = useState<IProductData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { user } = useContext(UserContext);
   const { openModal } = useModalControls();
@@ -42,8 +43,12 @@ const SellerProducts = () => {
 
       setUserData(data);
 
-      setCars(vehicles.filter(({ type }) => type === "CARRO"));
-      setMotorbikes(vehicles.filter(({ type }) => type === "MOTO"));
+      setCars(vehicles.filter(({ type, sellType }) => type === "CARRO" && sellType === "VENDA"));
+      setMotorbikes(
+        vehicles.filter(({ type, sellType }) => type === "MOTO" && sellType === "VENDA")
+      );
+
+      setAuction(vehicles.filter(({ sellType }) => sellType === "LEILÃO"));
 
       setLoading(false);
     });
@@ -67,23 +72,17 @@ const SellerProducts = () => {
       <StyledBody>
         {loading && <VehicleSection title="" type="products" data={[]} id="auction" />}
 
-        {cars.length === 0 &&
-          motorbikes.length === 0 &&
-          user.id === userData.id && (
-            <StyledMenssageCreateFirstProduct>
-              <p>Você ainda não tem anúncio. Crie seu primeiro aqui!</p>
-              <ThemeButton
-                outlined
-                variant="primary"
-                onClick={() => openModal("vehicleRegister")}
-              >
-                Criar anúncio
-              </ThemeButton>
-            </StyledMenssageCreateFirstProduct>
-          )}
+        {cars.length === 0 && motorbikes.length === 0 && user.id === userData.id && (
+          <StyledMenssageCreateFirstProduct>
+            <p>Você ainda não tem anúncio. Crie seu primeiro aqui!</p>
+            <ThemeButton outlined variant="primary" onClick={() => openModal("vehicleRegister")}>
+              Criar anúncio
+            </ThemeButton>
+          </StyledMenssageCreateFirstProduct>
+        )}
 
         {user.id === user_id && (
-          <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />
+          <VehicleSection title="Leilão" type="auction" data={auction} id="auction" />
         )}
 
         <VehicleSection type="products" title="Carros" data={cars} id="cars" />

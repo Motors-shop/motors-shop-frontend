@@ -13,6 +13,7 @@ import { IProductData } from "./types";
 const Home = () => {
   const [cars, setCars] = useState<IProductData[]>([]);
   const [motorbikes, setMotorbikes] = useState<IProductData[]>([]);
+  const [auction, setAuction] = useState<IProductData[]>([]);
 
   window.scrollTo(0, 0);
 
@@ -22,8 +23,10 @@ const Home = () => {
       .then((res) => {
         const data: IProductData[] = res.data;
 
-        setCars(data.filter(({ type }) => type === "CARRO"));
-        setMotorbikes(data.filter(({ type }) => type === "MOTO"));
+        setCars(data.filter(({ type, sellType }) => type === "CARRO" && sellType === "VENDA"));
+        setMotorbikes(data.filter(({ type, sellType }) => type === "MOTO" && sellType === "VENDA"));
+
+        setAuction(data.filter(({ sellType }) => sellType === "LEILÃO"));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -54,7 +57,7 @@ const Home = () => {
             </ThemeButton>
           </div>
         </div>
-        <VehicleSection type="auction" title="Leilão" data={cars} id="auction" />
+        <VehicleSection type="auction" title="Leilão" data={auction} id="auction" />
         <VehicleSection type="products" title="Carros" data={cars} id="cars" />
         <VehicleSection type="products" title="Motos" data={motorbikes} id="motorbikes" />
       </Contaier>

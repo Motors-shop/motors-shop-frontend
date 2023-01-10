@@ -93,6 +93,7 @@ export const ProductTitle = styled.h3`
   font-family: var(--lexend);
   font-weight: 600;
   font-size: 1.2rem;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;

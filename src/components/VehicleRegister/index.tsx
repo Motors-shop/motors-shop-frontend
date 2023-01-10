@@ -73,9 +73,9 @@ const VehicleRegister: React.FC = () => {
           Venda
         </ThemeButton>
         <ThemeButton
-          variant={sellType === "LEILAO" ? "primary" : "normal"}
-          outlined={sellType !== "LEILAO"}
-          onClick={() => setSellType("LEILAO")}
+          variant={sellType === "LEILÃO" ? "primary" : "normal"}
+          outlined={sellType !== "LEILÃO"}
+          onClick={() => setSellType("LEILÃO")}
         >
           Leilão
         </ThemeButton>
