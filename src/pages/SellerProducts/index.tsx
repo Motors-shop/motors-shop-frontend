@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { IUserData } from "../../contexts/types";
 import { UserContext } from "../../contexts/UserProvider";
 import SellerProductsModals from "./SellerProductsModals";
-import LoadingCard from "../../components/LoadingCard";
+import LoadingUserCard from "../../components/LoadingUserCard";
 
 const SellerProducts = () => {
   const [userData, setUserData] = useState<IUserData>({} as IUserData);
@@ -52,7 +52,7 @@ const SellerProducts = () => {
       <StyledPurpleBackground />
 
       <StyledUserCard>
-        {!loading && <UserCard profile data={userData} />}
+        {!loading ? <UserCard profile data={userData} /> : <LoadingUserCard />}
       </StyledUserCard>
 
       <StyledBody>
@@ -69,23 +69,14 @@ const SellerProducts = () => {
           />
         )}
 
-        {!loading && cars.length > 0 && (
-          <VehicleSection
-            type="products"
-            title="Carros"
-            data={cars}
-            id="cars"
-          />
-        )}
+        <VehicleSection type="products" title="Carros" data={cars} id="cars" />
 
-        {!loading && motorbikes.length > 0 && (
-          <VehicleSection
-            type="products"
-            title="Motos"
-            data={motorbikes}
-            id="motorbikes"
-          />
-        )}
+        <VehicleSection
+          type="products"
+          title="Motos"
+          data={motorbikes}
+          id="motorbikes"
+        />
       </StyledBody>
       <Footer />
     </>
