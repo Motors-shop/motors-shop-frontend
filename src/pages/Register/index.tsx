@@ -16,6 +16,9 @@ import FeedbackMenssage from "../../components/FeedbackMenssage";
 
 const Register = () => {
   const [userType, setUserType] = useState("COMPRADOR");
+  const [errorMessage, setErrorMessage] = useState(
+    "Ocorreu um erro ao tentar criar um novo usuário, por favor tente novamente mais tarde"
+  );
 
   const { openModal } = useModalControls();
 
@@ -50,8 +53,17 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendForm = (data: FieldValues) => {
-    const { name, password, email, cpf, phone, birthDate, biography, confirmPassword, ...address } =
-      data;
+    const {
+      name,
+      password,
+      email,
+      cpf,
+      phone,
+      birthDate,
+      biography,
+      confirmPassword,
+      ...address
+    } = data;
 
     const dataForAPI = {
       name,
@@ -62,7 +74,7 @@ const Register = () => {
       birthDate: birthDate.split("/").reverse().join("-"),
       biography,
       accountType: userType,
-      address: address,
+      address: { ...address, cep: address.cep.split(".").join("") },
     };
 
     api
@@ -72,7 +84,19 @@ const Register = () => {
         Object.keys(schema.fields).forEach((field) => resetField(field));
         setUserType("COMPRADOR");
       })
-      .catch(() => openModal("registerError"));
+      .catch((err) => {
+        if (err.response.data.message === "Email already in use") {
+          setErrorMessage("Esse email ja esta em uso.");
+        } else if (err.response.data.message === "CPF already in use") {
+          setErrorMessage("Ja existe um usuario cadastrado com esse CPF.");
+        } else {
+          setErrorMessage(
+            "Ocorreu um erro ao tentar criar um novo usuário, por favor tente novamente mais tarde"
+          );
+        }
+
+        openModal("registerError");
+      });
   };
 
   return (
@@ -90,7 +114,7 @@ const Register = () => {
       <FeedbackMenssage
         name="registerError"
         title="Ops! algo deu errado"
-        menssage="Ocorreu um erro ao tentar criar um novo usuário, por favor tente novamente mais tarde"
+        menssage={errorMessage}
       />
 
       <Navbar />
