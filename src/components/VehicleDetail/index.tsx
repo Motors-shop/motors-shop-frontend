@@ -8,9 +8,6 @@ const VehicleDetail = ({ data }: IProductInfoProps) => {
   const { title, year, km, price, owner } = data;
   const { loadingUser, user } = useContext(UserContext);
 
-  console.log(owner.id);
-  console.log(user.id);
-
   return (
     <ThemeDetailCard>
       <h2>{title}</h2>
