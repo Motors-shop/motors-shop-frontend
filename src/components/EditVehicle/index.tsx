@@ -55,6 +55,7 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
     data.type = type;
     data.isPublished = isPublish;
     data.photos = gallery;
+    data.price = +data.price.split(".").join("").split(",").join("");
 
     api
       .patch(`/vehicles/${vehicleData.id}`, data, {

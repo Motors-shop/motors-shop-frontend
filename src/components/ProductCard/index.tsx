@@ -44,6 +44,9 @@ const ProductCard: React.FC<IProductCardProps> = ({
       .then((_) => openModal("vehicleDeleteSucess"))
       .catch((_) => openModal("vehicleDeleteError"));
   };
+  vehicleData.price = String(vehicleData.price).slice(0, 16).replace(/[^\d]/g, "");
+  vehicleData.price = String(vehicleData.price).replace(/(\d{1,2})$/, ",$1");
+  vehicleData.price = String(vehicleData.price).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 
   return (
     <div>
@@ -71,7 +74,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
       <ProductCardContainer
         {...linkProps}
         draggable="false"
-        style={{ pointerEvents: !isPublished ? "none" : "auto" }}
+        style={{ pointerEvents: !isPublished ? "none" : "unset" }}
       >
         <CoverContainer>
           <img src={coverImage} alt={`${title} product`} draggable="false" />
@@ -96,12 +99,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
               ))}
             </TagList>
           )}
-          <ProductPrice>
-            {price.toLocaleString("pt-BR", {
-              currency: "BRL",
-              style: "currency",
-            })}
-          </ProductPrice>
+          <ProductPrice>R$ {vehicleData.price}</ProductPrice>
         </ProductFooter>
       </ProductCardContainer>
       {user.id === owner.id && isOwner && (
