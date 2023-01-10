@@ -21,6 +21,8 @@ const Login = () => {
   const { openModal, closeModal } = useModalControls();
   const location = useLocation();
 
+  window.scrollTo(0, 0);
+
   const schema = yup.object().shape({
     email: yup.string().required(),
     password: yup.string().required(),
@@ -71,11 +73,7 @@ const Login = () => {
         </ThemeLinkButton>
       </FeedbackMenssage>
 
-      <FeedbackMenssage
-        name="sessionError"
-        title="Error"
-        menssage="Email ou senha incorreto."
-      />
+      <FeedbackMenssage name="sessionError" title="Error" menssage="Email ou senha incorreto." />
 
       <FeedbackMenssage
         name="changedPassword"

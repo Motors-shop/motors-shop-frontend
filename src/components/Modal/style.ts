@@ -45,6 +45,7 @@ export const ModalContainer = styled.aside<IModalStyledProps>`
   @media (max-width: 425px) {
     min-width: 90%;
     max-width: 90%;
+    overflow: hidden;
   }
 `;
 

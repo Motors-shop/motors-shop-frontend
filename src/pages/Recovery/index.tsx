@@ -12,6 +12,8 @@ const Recovery: FC = () => {
   const [recoveryStep, setRecoveryStep] = useState(0);
   const [email, setEmail] = useState("");
 
+  window.scrollTo(0, 0);
+
   return (
     <RecoveryContainer>
       <Navbar />

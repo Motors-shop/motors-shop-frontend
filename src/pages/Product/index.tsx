@@ -20,6 +20,8 @@ const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  window.scrollTo(0, 0);
+
   useEffect(() => {
     api
       .get(`/vehicles/${id}`)

@@ -24,6 +24,7 @@ const SellerProducts = () => {
   const { user_id } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api.get(`/users/${user_id}`).then((res) => {
       const data: IUserData = res.data;
       const vehicles = data.vehicles.map((vehicle) => ({
@@ -56,27 +57,15 @@ const SellerProducts = () => {
       </StyledUserCard>
 
       <StyledBody>
-        {loading && (
-          <VehicleSection title="" type="products" data={[]} id="auction" />
-        )}
+        {loading && <VehicleSection title="" type="products" data={[]} id="auction" />}
 
         {user.id === user_id && (
-          <VehicleSection
-            title="Leilão"
-            type="auction"
-            data={cars}
-            id="auction"
-          />
+          <VehicleSection title="Leilão" type="auction" data={cars} id="auction" />
         )}
 
         <VehicleSection type="products" title="Carros" data={cars} id="cars" />
 
-        <VehicleSection
-          type="products"
-          title="Motos"
-          data={motorbikes}
-          id="motorbikes"
-        />
+        <VehicleSection type="products" title="Motos" data={motorbikes} id="motorbikes" />
       </StyledBody>
       <Footer />
     </>
