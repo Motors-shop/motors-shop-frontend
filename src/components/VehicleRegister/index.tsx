@@ -10,6 +10,7 @@ import { StyledForm, StyledHorizontalDisplay } from "./styles";
 import { useModalControls } from "../Modal";
 import { api } from "../../service/api";
 import { UserContext } from "../../contexts/UserProvider";
+import { formatFileds } from "../../utils";
 
 const VehicleRegister: React.FC = () => {
   const [sellType, setSellType] = useState("VENDA");
@@ -38,6 +39,8 @@ const VehicleRegister: React.FC = () => {
     data.sellType = sellType;
     data.type = type;
     data.photos = gallery.filter((img) => img !== "");
+    data.km = +data.km;
+    data.price = +data.price.split(".").join("").split(",").join("");
 
     api
       .post("/vehicles", data, { headers: { Authorization: `Bearer ${token}` } })
@@ -78,14 +81,21 @@ const VehicleRegister: React.FC = () => {
         </ThemeButton>
       </StyledHorizontalDisplay>
 
-      <Input label="Título" placeholder="Digitar título" name="title" register={register} />
+      <Input
+        label="Título"
+        placeholder="Digitar título"
+        name="title"
+        maxLength={150}
+        register={register}
+      />
 
       <StyledHorizontalDisplay>
         <Input
           label="Ano"
           placeholder="Digitar ano"
           name="year"
-          type="number"
+          maxLength={4}
+          onChange={(e) => formatFileds.year(e.target.value, e.target)}
           register={register}
         />
 
@@ -95,7 +105,7 @@ const VehicleRegister: React.FC = () => {
           label="Preço"
           placeholder="Digitar preço"
           name="price"
-          type="number"
+          onChange={(e) => formatFileds.price(e.target.value, e.target)}
           register={register}
         />
       </StyledHorizontalDisplay>
@@ -105,6 +115,7 @@ const VehicleRegister: React.FC = () => {
         placeholder="Digitar descrição"
         name="description"
         type="textarea"
+        maxLength={500}
         register={register}
       />
 
@@ -129,6 +140,7 @@ const VehicleRegister: React.FC = () => {
         label="Imagem de capa"
         placeholder="Inserir URL da imagem"
         name="capeImage"
+        maxLength={200}
         register={register}
       />
 
@@ -137,6 +149,7 @@ const VehicleRegister: React.FC = () => {
           label={`${index + 1}º Imagem da Galeria`}
           placeholder="Inserir URL da imagem"
           name={`${index}galleryImage`}
+          maxLength={200}
           register={() => {}}
           key={index}
           onChange={(event) => {

@@ -89,6 +89,7 @@ const NewCommentArea = ({ productOwnerId }: ICommentAreaProps) => {
             type="textarea"
             name="commentary"
             register={register}
+            maxLength={500}
             placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
           />
           <ThemeButton variant="primary" disabled={!canSend} type="submit">

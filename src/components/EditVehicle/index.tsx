@@ -10,6 +10,7 @@ import { StyledForm, StyledHorizontalDisplay } from "./styles";
 import { IProductIdProps } from "./type";
 import { api } from "../../service/api";
 import { useModalControls } from "../Modal";
+import { formatFileds } from "../../utils";
 
 const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
   vehicleData,
@@ -84,17 +85,34 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
       </StyledHorizontalDisplay>
 
       <h4>Informações do veículo</h4>
-      <Input label="Título" name="title" register={register} />
+      <Input label="Título" name="title" maxLength={150} register={register} />
 
       <StyledHorizontalDisplay>
-        <Input label="Ano" name="year" type="number" register={register} />
+        <Input
+          label="Ano"
+          name="year"
+          maxLength={4}
+          onChange={(e) => formatFileds.year(e.target.value, e.target)}
+          register={register}
+        />
 
         <Input label="Quilometragem" name="km" type="number" register={register} />
 
-        <Input label="Preço" name="price" type="number" register={register} />
+        <Input
+          label="Preço"
+          name="price"
+          onChange={(e) => formatFileds.price(e.target.value, e.target)}
+          register={register}
+        />
       </StyledHorizontalDisplay>
 
-      <Input label="Descrição" name="description" type="textarea" register={register} />
+      <Input
+        label="Descrição"
+        name="description"
+        type="textarea"
+        maxLength={500}
+        register={register}
+      />
 
       <h4>Tipo de Veículo</h4>
       <StyledHorizontalDisplay>
@@ -132,13 +150,14 @@ const EditVehicle: React.FC<React.PropsWithChildren<IProductIdProps>> = ({
         </ThemeButton>
       </StyledHorizontalDisplay>
 
-      <Input label="Imagem de capa" name="capeImage" register={register} />
+      <Input label="Imagem de capa" name="capeImage" maxLength={200} register={register} />
 
       {gallery.map((_, index) => (
         <Input
           label={`${index + 1}º Imagem da Galeria`}
           value={gallery[index]}
           name={`galleryImage${index + 1}`}
+          maxLength={200}
           register={() => {}}
           key={index}
           onChange={(event) => {

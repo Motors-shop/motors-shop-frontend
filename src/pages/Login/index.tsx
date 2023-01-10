@@ -10,14 +10,16 @@ import * as yup from "yup";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../service/api";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserProvider";
 import FeedbackMenssage from "../../components/FeedbackMenssage";
 import { useModalControls } from "../../components/Modal";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const { setUser, setLoadingUser } = useContext(UserContext);
   const { openModal, closeModal } = useModalControls();
+  const location = useLocation();
 
   const schema = yup.object().shape({
     email: yup.string().required(),
@@ -39,7 +41,9 @@ const Login = () => {
         openModal("sessionSuccess");
 
         api
-          .get("/users/profile", { headers: { Authorization: `Bearer ${res.data.token}` } })
+          .get("/users/profile", {
+            headers: { Authorization: `Bearer ${res.data.token}` },
+          })
           .then((res) => {
             setUser(res.data);
             setLoadingUser(false);
@@ -47,6 +51,12 @@ const Login = () => {
       })
       .catch((_) => openModal("sessionError"));
   };
+
+  useEffect(() => {
+    if (location.state && location.state.newPassword) {
+      openModal("changedPassword");
+    }
+  }, []);
 
   return (
     <>
@@ -61,7 +71,17 @@ const Login = () => {
         </ThemeLinkButton>
       </FeedbackMenssage>
 
-      <FeedbackMenssage name="sessionError" title="Error" menssage="Email ou senha incorreto." />
+      <FeedbackMenssage
+        name="sessionError"
+        title="Error"
+        menssage="Email ou senha incorreto."
+      />
+
+      <FeedbackMenssage
+        name="changedPassword"
+        title="Senha alterada"
+        menssage="Agora faça o login normalmente com a sua nova senha."
+      />
 
       <Navbar />
       <ThemeLogin>
@@ -85,8 +105,11 @@ const Login = () => {
               label="Senha"
               name="password"
             />
-            <span>Esqueci minha senha</span>
+            {/* <span>Esqueci minha senha</span> */}
           </div>
+          <ThemeLinkButton to="/recovery" variant="link">
+            Esqueci minha senha
+          </ThemeLinkButton>
 
           <ThemeButton variant="primary" type="submit">
             Entrar
