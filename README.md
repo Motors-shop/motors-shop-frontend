@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Motors Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre o projeto
 
-## Available Scripts
+Motors Shop é uma aplicação de venda de veículos,
+nela o usuário pode navegar pelos anúncios e caso algo chame a atenção poderá ver os detalhes dos produtos. Caso o usuário queira comprar o veículo ou deixar um comentário ele precissará entrar em sua conta.
 
-In the project directory, you can run:
+<br />
 
-### `yarn start`
+Existem 3 tipos de usuários possíveis:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **_Visitantes_**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Esse tipo de usuário não precisa se cadastrar e nem de autentificação para navegar por certas partes da aplicação, ele pode navegar pelos anúncios e ver suas informações, bem como seu preço, descrição, comentarios e outros detalhes.
 
-### `yarn test`
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **_Usuário Comprador_**
 
-### `yarn build`
+Esse tipo de usuário precisa se cadastrar e fazer login para se diferenciar do `Visitante`, ele é capaz de deixar comentários nos produtos e fazer a compra do mesmo. Um menu fica visivel para ele, para poder editar seus dados e também se desconectar.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **_Usuário Vendedor_**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Por ultimo temos o usuário vendedor, e ele precisa se cadastrar e fazer login, ele pode criar anúncios com o veículo que pretende vender, e administrá-los. Além de todas as funcionalidades que um `Comprador` tem acesso, o menu dele ganha um adicional de `Meus anúncios`, onde ele é capaz de ir para sua pagina pessoal para editar e/ou deletar seus anúncios.
 
-### `yarn eject`
+<br />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Iniciando a aplicação
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Faça o clone em sua maquina do repositório, tanto o Front, quanto o Back ([Motors Shop Back-end](https://github.com/Motors-shop/motors-shop-backend))
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Veja no back-end como inicia-lo para essa aplicação utilizar o banco de dados.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**_Importante:_** Não mude as portas do projeto, e lembre-se de verificar se as mesma estão disponiveis.
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+No diretório do projeto, use o comando no terminal:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn ou yarn install
+```
+
+Para baixar as dependências, em seguida use:
+
+```bash
+yarn start
+```
+
+Para executar o aplicativo no modo de desenvolvimento.
+
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
+
+Para para a execução precione `Ctrl + c` no terminal.
