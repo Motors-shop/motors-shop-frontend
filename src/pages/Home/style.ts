@@ -78,5 +78,9 @@ export const Contaier = styled.main`
         padding: 0;
       }
     }
+    > #auction > ul > div > li {
+      max-width: 80%;
+      min-width: 80%;
+    }
   }
 `;

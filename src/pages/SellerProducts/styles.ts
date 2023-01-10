@@ -6,13 +6,18 @@ export const StyledBody = styled.main`
   padding-bottom: 1px;
   min-height: 55vh;
 
-  @media (max-width: 425px) {
-    padding-top: 450px;
-  }
-
   > #auction > ul > div > li {
     max-width: 43%;
     min-width: 43%;
+  }
+
+  @media (max-width: 425px) {
+    padding-top: 450px;
+
+    > #auction > ul > div > li {
+      max-width: 80%;
+      min-width: 80%;
+    }
   }
 `;
 
