@@ -23,7 +23,7 @@ const UserChip: React.FC<IUserChipProps> = ({ name, avatar, whiteText, user = fa
     const firstName = name.split(" ")[0];
     const lastName = name.split(" ")[name.split(" ").length - 1];
 
-    if (firstName.length > 0 && firstName.length <= 5) {
+    if (firstName.length > 0 && firstName.length <= 12) {
       return firstName.length;
     } else {
       if (Math.abs(firstName.length - lastName.length) === 0) {
