@@ -7,6 +7,7 @@ import FeedbackMenssage from "../FeedbackMenssage";
 import Modal, { useModalControls } from "../Modal";
 
 import ThemeButton from "../ThemeButton";
+import ThemeLinkButton from "../ThemeLinkButton";
 import UserChip from "../UserChip";
 
 import {
@@ -67,7 +68,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
         </StyledHorizontalDisplay>
       </FeedbackMenssage>
 
-      <ProductCardContainer {...linkProps} draggable="false">
+      <ProductCardContainer
+        {...linkProps}
+        draggable="false"
+        style={{ pointerEvents: !isPublished ? "none" : "auto" }}
+      >
         <CoverContainer>
           <img src={coverImage} alt={`${title} product`} draggable="false" />
           {isOwner && (
@@ -108,9 +113,9 @@ const ProductCard: React.FC<IProductCardProps> = ({
           >
             Editar
           </ThemeButton>
-          <ThemeButton variant="normal" outlined={true}>
+          <ThemeLinkButton variant="normal" outlined={true} to={linkProps.to}>
             Ver como
-          </ThemeButton>
+          </ThemeLinkButton>
         </StyledAdminButtons>
       )}
     </div>
