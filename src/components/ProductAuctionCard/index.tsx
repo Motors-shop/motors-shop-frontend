@@ -32,13 +32,19 @@ const ProductAuctionCard: React.FC<IProductAuctionProps> = ({
 }) => {
   const { user } = useContext(UserContext);
   const [nowTime, setNowTime] = useState(new Date());
+  const [formattingPrice, setFormattingPrice] = useState<string>(String(price));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setNowTime(new Date());
     }, 1000);
 
+    setFormattingPrice(formattingPrice.slice(0, 16).replace(/[^\d]/g, ""));
+    setFormattingPrice(formattingPrice.replace(/(\d{1,2})$/, ",$1"));
+    setFormattingPrice(formattingPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
+
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowTime]);
 
   return (
@@ -75,12 +81,7 @@ const ProductAuctionCard: React.FC<IProductAuctionProps> = ({
                   ))}
                 </TagsList>
               )}
-              <ProductPrice>
-                {price.toLocaleString("pt-BR", {
-                  currency: "BRL",
-                  style: "currency",
-                })}
-              </ProductPrice>
+              <ProductPrice>R$ {formattingPrice}</ProductPrice>
             </ProductFooter>
           </Content>
         </ContentContainer>
