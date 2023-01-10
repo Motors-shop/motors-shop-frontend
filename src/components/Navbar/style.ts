@@ -50,6 +50,7 @@ export const ThemeNav = styled.header`
       display: flex;
       align-items: center;
       gap: calc(1vh + 1vw);
+      min-width: 10vw;
 
       > button {
         font-size: calc(0.6vh + 0.6vw + 0.2vmin);
@@ -111,6 +112,7 @@ export const ThemeNav = styled.header`
         height: max-content;
         flex-direction: column;
         align-items: flex-start;
+        min-width: auto;
 
         padding: calc(2vh + 2vw) calc(3vh + 2.6vw);
 
